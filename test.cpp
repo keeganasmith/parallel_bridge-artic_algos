@@ -1,6 +1,7 @@
 #include "uf.h" 
+#include "bridges.h"  
 #include <gtest/gtest.h>
-
+using std::vector, std::pair, std::make_pair;
 // Test fixture for Union_Find
 class UnionFindTest : public ::testing::Test {
 protected:
@@ -48,4 +49,44 @@ TEST_F(UnionFindTest, MergeByRank) {
     EXPECT_EQ(uf.find(7), uf.find(9)) << "Rank-based merging should ensure minimal tree depth.";
 }
 
+TEST(FindBridgesTest, SingleBridge) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {1, 3}};  // Bridge: (0, 1)
+    vector<pair<int, int>> result = find_bridges(edges, 4);
 
+    ASSERT_EQ(result.size(), 1);
+    EXPECT_EQ(result[0], make_pair(0, 1));
+}
+
+TEST(FindBridgesTest, MultipleBridges) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}};  // Bridges: (0, 1), (1, 2), (2, 3), (3, 4)
+    vector<pair<int, int>> result = find_bridges(edges, 5);
+
+    EXPECT_EQ(result.size(), 4);
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(0, 1)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(1, 2)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(2, 3)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(3, 4)), result.end());
+}
+
+TEST(FindBridgesTest, NoBridges) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 0}, {1, 3}, {3, 4}, {4, 1}};  // No bridges
+    vector<pair<int, int>> result = find_bridges(edges, 5);
+
+    EXPECT_TRUE(result.empty()) << "Expected no bridges, but some were found.";
+}
+
+TEST(FindBridgesTest, DisconnectedGraph) {
+    vector<pair<int, int>> edges = {{0, 1}, {2, 3}};  // Two disconnected components, each edge is a bridge
+    vector<pair<int, int>> result = find_bridges(edges, 4);
+
+    EXPECT_EQ(result.size(), 2);
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(0, 1)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(2, 3)), result.end());
+}
+
+TEST(FindBridgesTest, SingleNodeNoEdges) {
+    vector<pair<int, int>> edges = {};  // No edges
+    vector<pair<int, int>> result = find_bridges(edges, 1);
+
+    EXPECT_TRUE(result.empty()) << "Expected no bridges for a single node with no edges.";
+}
