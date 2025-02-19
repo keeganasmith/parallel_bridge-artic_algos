@@ -1,6 +1,7 @@
 #include "uf.h" 
 #include "bridges.h"  
 #include <gtest/gtest.h>
+#include "articulation_points.h"
 using std::vector, std::pair, std::make_pair;
 // Test fixture for Union_Find
 class UnionFindTest : public ::testing::Test {
@@ -89,4 +90,86 @@ TEST(FindBridgesTest, SingleNodeNoEdges) {
     vector<pair<int, int>> result = find_bridges(edges, 1);
 
     EXPECT_TRUE(result.empty()) << "Expected no bridges for a single node with no edges.";
+}
+
+// Helper function to check if two vectors contain the same elements (unordered)
+bool compareUnorderedVectors(const vector<int>& a, const vector<int>& b) {
+    if (a.size() != b.size()) return false;
+    vector<int> sorted_a = a, sorted_b = b;
+    std::sort(sorted_a.begin(), sorted_a.end());
+    std::sort(sorted_b.begin(), sorted_b.end());
+    return sorted_a == sorted_b;
+}
+
+// Test case for a graph with a single articulation point
+TEST(ArticulationPointsTest, SingleArticulationPoint) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {1, 3}, {3, 4}};  // Articulation Point: {1, 3}
+    vector<int> result = articulation_points(edges);
+
+    vector<int> expected = {1, 3}; // Order doesn't matter
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 3}";
+}
+
+// Test case for a graph with multiple articulation points
+TEST(ArticulationPointsTest, MultipleArticulationPoints) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {1, 3}, {3, 4}, {4, 5}, {4, 6}};  
+    // Articulation Points: {1, 3, 4}
+    vector<int> result = articulation_points(edges);
+
+    vector<int> expected = {1, 3, 4};
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 3, 4}";
+}
+
+// Test case for a cycle (No articulation points)
+TEST(ArticulationPointsTest, NoArticulationPointsCycle) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 0}};  // No articulation points in a cycle
+    vector<int> result = articulation_points(edges);
+
+    EXPECT_TRUE(result.empty()) << "Expected no articulation points in a cycle.";
+}
+
+// Test case for a fully connected graph (clique)
+TEST(ArticulationPointsTest, FullyConnectedGraph) {
+    vector<pair<int, int>> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}};  
+    // Fully connected, removing any node still leaves the graph connected
+    vector<int> result = articulation_points(edges);
+
+    EXPECT_TRUE(result.empty()) << "Expected no articulation points in a fully connected graph.";
+}
+
+// Test case for a disconnected graph
+TEST(ArticulationPointsTest, DisconnectedGraph) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {3, 4}};  // Articulation Point: {1}
+    vector<int> result = articulation_points(edges);
+
+    vector<int> expected = {1};
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation point {1}";
+}
+
+// Test case for a tree structure (every non-leaf node is an articulation point)
+TEST(ArticulationPointsTest, TreeGraph) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {1, 3}, {3, 4}, {3, 5}};
+    // Articulation Points: {1, 3}
+    vector<int> result = articulation_points(edges);
+
+    vector<int> expected = {1, 3};
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 3}";
+}
+
+// Test case for a single node with no edges
+TEST(ArticulationPointsTest, SingleNodeNoEdges) {
+    vector<pair<int, int>> edges = {};  // No edges
+    vector<int> result = articulation_points(edges);
+
+    EXPECT_TRUE(result.empty()) << "Expected no articulation points for a single node with no edges.";
+}
+
+// Test case for a simple path graph (all non-leaf nodes are articulation points)
+TEST(ArticulationPointsTest, SimplePathGraph) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}};
+    // Articulation Points: {1, 2, 3}
+    vector<int> result = articulation_points(edges);
+
+    vector<int> expected = {1, 2, 3};
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 2, 3}";
 }
