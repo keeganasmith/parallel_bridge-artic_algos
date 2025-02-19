@@ -192,3 +192,12 @@ TEST(ArticulationPointsTest, Truss){
     vector<int> expected = {};
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {}";
 }
+
+TEST(ArticulationPointsTest, Truss_plus_one){
+    vector<pair<int, int>> edges = {{0, 1}, {1, 3}, {0, 3}, {0, 2}, {2, 3}, {3, 4}, {1, 4}, {5, 0}};
+    vector<int> result = articulation_points(edges, 6);
+    vector<int> expected = {0};
+    cout << "Got: ";
+    print_vector(result);
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {0}";
+}
