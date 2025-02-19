@@ -83,13 +83,15 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     }  
     bool found_new_vertex = false;
     //find vertices which have degree <= 1
+    int new_vertices_found = 0;
     for(auto it = vertex_degree_spanning.begin(); it != vertex_degree_spanning.end(); it++){
       if((it->second <= 1) && (known_vertices.count(it->first) == 0)){
         known_vertices.emplace(it->first);
         found_new_vertex = true;
+        new_vertices_found++;
       }
     }
-
+    cout << "found " << new_vertices_found << " new vertices\n";
     if(!found_new_vertex){
       break;
     }
