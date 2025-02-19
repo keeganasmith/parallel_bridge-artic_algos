@@ -2,7 +2,7 @@
 #include "bridges.h"  
 #include <gtest/gtest.h>
 #include "articulation_points.h"
-using std::vector, std::pair, std::make_pair;
+using std::cout, std::vector, std::pair, std::make_pair;
 // Test fixture for Union_Find
 class UnionFindTest : public ::testing::Test {
 protected:
@@ -12,6 +12,11 @@ protected:
         uf = Union_Find(10);  // Initialize with 10 elements
     }
 };
+void print_vector(vector<int>& result){
+  for(int i = 0; i < result.size(); i++){
+    cout << result[i] << " ";
+  }
+}
 
 // Test case for the constructor
 TEST_F(UnionFindTest, ConstructorInitializesCorrectly) {
@@ -104,7 +109,7 @@ bool compareUnorderedVectors(const vector<int>& a, const vector<int>& b) {
 // Test case for a graph with a single articulation point
 TEST(ArticulationPointsTest, SingleArticulationPoint) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {1, 3}, {3, 4}};  // Articulation Point: {1, 3}
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 5);
 
     vector<int> expected = {1, 3}; // Order doesn't matter
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 3}";
@@ -114,7 +119,7 @@ TEST(ArticulationPointsTest, SingleArticulationPoint) {
 TEST(ArticulationPointsTest, MultipleArticulationPoints) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {1, 3}, {3, 4}, {4, 5}, {4, 6}};  
     // Articulation Points: {1, 3, 4}
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 7);
 
     vector<int> expected = {1, 3, 4};
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 3, 4}";
@@ -123,7 +128,7 @@ TEST(ArticulationPointsTest, MultipleArticulationPoints) {
 // Test case for a cycle (No articulation points)
 TEST(ArticulationPointsTest, NoArticulationPointsCycle) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 0}};  // No articulation points in a cycle
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 4);
 
     EXPECT_TRUE(result.empty()) << "Expected no articulation points in a cycle.";
 }
@@ -132,7 +137,7 @@ TEST(ArticulationPointsTest, NoArticulationPointsCycle) {
 TEST(ArticulationPointsTest, FullyConnectedGraph) {
     vector<pair<int, int>> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}};  
     // Fully connected, removing any node still leaves the graph connected
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 4);
 
     EXPECT_TRUE(result.empty()) << "Expected no articulation points in a fully connected graph.";
 }
@@ -140,7 +145,7 @@ TEST(ArticulationPointsTest, FullyConnectedGraph) {
 // Test case for a disconnected graph
 TEST(ArticulationPointsTest, DisconnectedGraph) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {3, 4}};  // Articulation Point: {1}
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 5);
 
     vector<int> expected = {1};
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation point {1}";
@@ -150,7 +155,7 @@ TEST(ArticulationPointsTest, DisconnectedGraph) {
 TEST(ArticulationPointsTest, TreeGraph) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {1, 3}, {3, 4}, {3, 5}};
     // Articulation Points: {1, 3}
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 6);
 
     vector<int> expected = {1, 3};
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 3}";
@@ -159,7 +164,7 @@ TEST(ArticulationPointsTest, TreeGraph) {
 // Test case for a single node with no edges
 TEST(ArticulationPointsTest, SingleNodeNoEdges) {
     vector<pair<int, int>> edges = {};  // No edges
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 0);
 
     EXPECT_TRUE(result.empty()) << "Expected no articulation points for a single node with no edges.";
 }
@@ -168,7 +173,7 @@ TEST(ArticulationPointsTest, SingleNodeNoEdges) {
 TEST(ArticulationPointsTest, SimplePathGraph) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}};
     // Articulation Points: {1, 2, 3}
-    vector<int> result = articulation_points(edges);
+    vector<int> result = articulation_points(edges, 5);
 
     vector<int> expected = {1, 2, 3};
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 2, 3}";
