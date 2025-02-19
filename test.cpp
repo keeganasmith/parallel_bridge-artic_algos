@@ -178,3 +178,10 @@ TEST(ArticulationPointsTest, SimplePathGraph) {
     vector<int> expected = {1, 2, 3};
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1, 2, 3}";
 }
+
+TEST(ArticulationPointsTest, BiConnectedComponents) {
+    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 1}, {3, 1}, {0, 5}, {5, 1}, {5, 6}, {6, 1}};
+    vector<int> result = articulation_points(edges, 7);
+    vector<int> expected = {1};
+    EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {1}";
+}
