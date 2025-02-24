@@ -67,9 +67,11 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
    */
   vector<int> result;
   set<pair<int, int>> known_edges;
+  set<pair<int, int>> almost_known_edges; //edges connected to neighbor of known
   vector<pair<int, int>> unknown_edges(edges);
   vector<Edge_With_Count> largest_neighbor_edges = construct_largest_neighbor_edges(edges);
   unordered_set<int> known_vertices;
+  unordered_set<int> vertices_connected_to_known;
   while(true){
     Union_Find uf(num_vertices);
     unordered_map<int, int> vertex_degree_spanning;
@@ -83,11 +85,18 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     }
     
     vector<int> edges_connecting_two_unknowns_largest_indices;
+    vector<int> edges_connected_to_neighbor_of_known_largest_indices;
+    //only add edges where one of the vertices is connected to a known vertex
     for(int i = 0; i < largest_neighbor_edges.size(); i++){
       int vertex_one = largest_neighbor_edges.at(i).vertex_one;
       int vertex_two = largest_neighbor_edges.at(i).vertex_two;
       if(known_vertices.count(vertex_one) == 0 && known_vertices.count(vertex_two) == 0){
-        edges_connecting_two_unknowns_largest_indices.push_back(i);
+        if(vertices_connected_to_known.count(vertex_one) != 0 || vertices_connected_to_known.count(vertex_two) != 0){
+          edges_connected_to_neighbor_of_known_largest_indices.push_back(i);
+        }
+        else{
+          edges_connecting_two_unknowns_largest_indices.push_back(i);
+        }
         continue;
       }
       bool merged = uf.merge(vertex_one, vertex_two);
@@ -98,10 +107,19 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
         largest_neighbor_edges.at(i).count++;
       }
     }
+
+    //only add unknown edges where one of the vertices is connected to a known
+    //vertex
     vector<pair<int, int>> edges_connecting_two_unknowns;
+    vector<pair<int, int>> edges_connected_to_neighbor_of_known;
     for(int i = 0; i < unknown_edges.size(); i++){
       if(known_vertices.count(unknown_edges.at(i).first) == 0 && known_vertices.count(unknown_edges.at(i).second) == 0){
-        edges_connecting_two_unknowns.push_back(unknown_edges.at(i));
+        if(vertices_connected_to_known.count(unknown_edges.at(i).first) != 0 || vertices_connected_to_known.count(unknown_edges.at(i).second) != 0){
+          edges_connected_to_neighbor_of_known.push_back(unknown_edges.at(i));
+        }
+        else{
+          edges_connecting_two_unknowns.push_back(unknown_edges.at(i));
+        }
         continue;
       }
       bool merged = uf.merge(unknown_edges.at(i).first, unknown_edges.at(i).second);
@@ -111,6 +129,32 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
         vertex_degree_spanning[unknown_edges.at(i).second]++;
       }
     }  
+    
+    //only add edges where both of the vertices are connected to a known vertex
+    for(auto it = almost_known_edges.begin(); it != almost_known_edges.end(); it++){
+      int first = it->first;
+      int second = it->second;
+      bool merged = uf.merge(first, second);
+      if(merged){
+        cout << "neighbor of + neighbor of connected " << first << ", " << second << "\n";
+        vertex_degree_spanning[first]++;
+        vertex_degree_spanning[second]++;
+      }    
+    }
+    //connect vertices which are neighbors to known first for largest
+    for(int i = 0;i < edges_connected_to_neighbor_of_known_largest_indices.size(); i++){
+      int index = edges_connected_to_neighbor_of_known_largest_indices.at(i);
+      int vertex_one = largest_neighbor_edges.at(index).vertex_one;
+      int vertex_two = largest_neighbor_edges.at(index).vertex_two;
+      bool merged = uf.merge(vertex_one, vertex_two);
+      if(merged){
+        cout << "unknown edges largest, known neighbor(s), connected " << vertex_one << ", " << vertex_two << "\n";
+        vertex_degree_spanning[vertex_one]++;
+        vertex_degree_spanning[vertex_two]++;
+        largest_neighbor_edges.at(index).count++;
+      }
+    } 
+    
     for(int i = 0;i < edges_connecting_two_unknowns_largest_indices.size(); i++){
       int index = edges_connecting_two_unknowns_largest_indices.at(i);
       int vertex_one = largest_neighbor_edges.at(index).vertex_one;
@@ -153,6 +197,16 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
       //if both are known, add edge to known edges
       if((known_vertices.count(first_vertex) != 0) && (known_vertices.count(second_vertex) != 0)){
         known_edges.emplace(pair<int, int>(first_vertex, second_vertex));
+      }
+      else if(vertices_connected_to_known.count(first_vertex) != 0 && vertices_connected_to_known.count(second_vertex)){
+        almost_known_edges.emplace(pair<int, int>(first_vertex, second_vertex));
+      }
+      //if one is known, add unkown vertex to known neighbors
+      if(known_vertices.count(first_vertex) != 0){
+        vertices_connected_to_known.emplace(second_vertex);
+      }
+      if(known_vertices.count(second_vertex) != 0){
+        vertices_connected_to_known.emplace(first_vertex);
       }
     }
 
