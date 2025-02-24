@@ -204,5 +204,7 @@ TEST(ArticulationPointsTest, Truss_plus_four){
     vector<pair<int, int>> edges = {{0, 1}, {1, 3}, {0, 3}, {0, 2}, {2, 3}, {3, 4}, {1, 4}, {5, 0}, {6, 1}, {7, 4}, {8, 2}};
     vector<int> result = articulation_points(edges, 9);
     vector<int> expected = {0, 1, 2, 4};
+    cout << "got: ";
+    print_vector(result);
     EXPECT_TRUE(compareUnorderedVectors(result, expected)) << "Expected articulation points {0, 1, 2, 4}";
 }

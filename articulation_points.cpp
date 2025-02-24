@@ -76,26 +76,29 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     for(auto it = known_edges.begin(); it != known_edges.end(); it++){
       bool merged = uf.merge(it->first, it->second);
       if(merged){
+        cout << "known connected " << it->first << ", " << it->second << "\n";
         vertex_degree_spanning[it->first]++;
         vertex_degree_spanning[it->second]++;
       }
     }
     
-    vector<pair<int, int>> edges_connecting_two_unknowns;
+    vector<int> edges_connecting_two_unknowns_largest_indices;
     for(int i = 0; i < largest_neighbor_edges.size(); i++){
       int vertex_one = largest_neighbor_edges.at(i).vertex_one;
       int vertex_two = largest_neighbor_edges.at(i).vertex_two;
       if(known_vertices.count(vertex_one) == 0 && known_vertices.count(vertex_two) == 0){
-        edges_connecting_two_unknowns.push_back(pair<int, int>(vertex_one, vertex_two));
+        edges_connecting_two_unknowns_largest_indices.push_back(i);
         continue;
       }
       bool merged = uf.merge(vertex_one, vertex_two);
       if(merged){
+        cout << "largest neighbor connected " << vertex_one << ", " << vertex_two << "\n";
         vertex_degree_spanning[vertex_one]++;
         vertex_degree_spanning[vertex_two]++;
         largest_neighbor_edges.at(i).count++;
       }
     }
+    vector<pair<int, int>> edges_connecting_two_unknowns;
     for(int i = 0; i < unknown_edges.size(); i++){
       if(known_vertices.count(unknown_edges.at(i).first) == 0 && known_vertices.count(unknown_edges.at(i).second) == 0){
         edges_connecting_two_unknowns.push_back(unknown_edges.at(i));
@@ -103,14 +106,28 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
       }
       bool merged = uf.merge(unknown_edges.at(i).first, unknown_edges.at(i).second);
       if(merged){
+        cout << "known + unknown connected " << unknown_edges.at(i).first << ", " << unknown_edges.at(i).second << "\n";
         vertex_degree_spanning[unknown_edges.at(i).first]++;
         vertex_degree_spanning[unknown_edges.at(i).second]++;
       }
     }  
+    for(int i = 0;i < edges_connecting_two_unknowns_largest_indices.size(); i++){
+      int index = edges_connecting_two_unknowns_largest_indices.at(i);
+      int vertex_one = largest_neighbor_edges.at(index).vertex_one;
+      int vertex_two = largest_neighbor_edges.at(index).vertex_two;
+      bool merged = uf.merge(vertex_one, vertex_two);
+      if(merged){
+        cout << "unknown edges largest connected " << vertex_one << ", " << vertex_two << "\n";
+        vertex_degree_spanning[vertex_one]++;
+        vertex_degree_spanning[vertex_two]++;
+        largest_neighbor_edges.at(index).count++;
+      }
+    }
 
     for(int i = 0;i < edges_connecting_two_unknowns.size(); i++){
       bool merged = uf.merge(edges_connecting_two_unknowns.at(i).first, edges_connecting_two_unknowns.at(i).second);
       if(merged){
+        cout << "unknown edges connected " << edges_connecting_two_unknowns.at(i).first << ", " << edges_connecting_two_unknowns.at(i).second << "\n";
         vertex_degree_spanning[edges_connecting_two_unknowns.at(i).first]++;
         vertex_degree_spanning[edges_connecting_two_unknowns.at(i).second]++;
       }
@@ -125,6 +142,7 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
         new_vertices_found++;
       }
     }
+    cout << "found " << new_vertices_found << " new vertices\n";
     if(!found_new_vertex){
       break;
     }
@@ -142,7 +160,6 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
           [](const Edge_With_Count& a, const Edge_With_Count& b) {
               return a.count < b.count;
           });
-
   }
   
   unordered_set<int> already_placed;
