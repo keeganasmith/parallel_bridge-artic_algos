@@ -1,0 +1,218 @@
+g++ -std=c++17 test.cpp uf.cpp bridges.cpp articulation_points.cpp -lgtest -lgtest_main -pthread -o test
+./test
+Running main() from /tmp/baum/easybuild/googletest/1.14.0/GCCcore-13.2.0/googletest-1.14.0/googletest/src/gtest_main.cc
+[==========] Running 23 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 5 tests from UnionFindTest
+[ RUN      ] UnionFindTest.ConstructorInitializesCorrectly
+[       OK ] UnionFindTest.ConstructorInitializesCorrectly (0 ms)
+[ RUN      ] UnionFindTest.MergeNodes
+[       OK ] UnionFindTest.MergeNodes (0 ms)
+[ RUN      ] UnionFindTest.MergeNodesAlreadyInSameSet
+[       OK ] UnionFindTest.MergeNodesAlreadyInSameSet (0 ms)
+[ RUN      ] UnionFindTest.PathCompression
+[       OK ] UnionFindTest.PathCompression (0 ms)
+[ RUN      ] UnionFindTest.MergeByRank
+[       OK ] UnionFindTest.MergeByRank (0 ms)
+[----------] 5 tests from UnionFindTest (0 ms total)
+
+[----------] 6 tests from FindBridgesTest
+[ RUN      ] FindBridgesTest.SingleBridge
+[       OK ] FindBridgesTest.SingleBridge (0 ms)
+[ RUN      ] FindBridgesTest.MultipleBridges
+[       OK ] FindBridgesTest.MultipleBridges (0 ms)
+[ RUN      ] FindBridgesTest.NoBridges
+[       OK ] FindBridgesTest.NoBridges (0 ms)
+[ RUN      ] FindBridgesTest.DisconnectedGraph
+[       OK ] FindBridgesTest.DisconnectedGraph (0 ms)
+[ RUN      ] FindBridgesTest.SingleNodeNoEdges
+[       OK ] FindBridgesTest.SingleNodeNoEdges (0 ms)
+[ RUN      ] FindBridgesTest.GoogleSnap
+[       OK ] FindBridgesTest.GoogleSnap (16626 ms)
+[----------] 6 tests from FindBridgesTest (16626 ms total)
+
+[----------] 12 tests from ArticulationPointsTest
+[ RUN      ] ArticulationPointsTest.SingleArticulationPoint
+unknown edges largest connected 3, 4
+unknown edges largest connected 1, 3
+unknown edges largest connected 1, 2
+unknown edges largest connected 0, 1
+found 3 new vertices
+largest neighbor connected 3, 4
+largest neighbor connected 1, 2
+largest neighbor connected 0, 1
+unknown edges largest, known neighbor(s), connected 1, 3
+found 0 new vertices
+[       OK ] ArticulationPointsTest.SingleArticulationPoint (0 ms)
+[ RUN      ] ArticulationPointsTest.MultipleArticulationPoints
+unknown edges largest connected 4, 6
+unknown edges largest connected 4, 5
+unknown edges largest connected 3, 4
+unknown edges largest connected 1, 3
+unknown edges largest connected 1, 2
+unknown edges largest connected 0, 1
+found 4 new vertices
+largest neighbor connected 4, 6
+largest neighbor connected 4, 5
+largest neighbor connected 1, 2
+largest neighbor connected 0, 1
+unknown edges largest, known neighbor(s), connected 3, 4
+unknown edges largest, known neighbor(s), connected 1, 3
+found 0 new vertices
+[       OK ] ArticulationPointsTest.MultipleArticulationPoints (0 ms)
+[ RUN      ] ArticulationPointsTest.NoArticulationPointsCycle
+unknown edges largest connected 2, 3
+unknown edges largest connected 0, 3
+unknown edges largest connected 1, 2
+found 2 new vertices
+known connected 0, 1
+largest neighbor connected 0, 3
+largest neighbor connected 1, 2
+found 2 new vertices
+known connected 0, 1
+known connected 1, 2
+known connected 2, 3
+found 0 new vertices
+[       OK ] ArticulationPointsTest.NoArticulationPointsCycle (0 ms)
+[ RUN      ] ArticulationPointsTest.FullyConnectedGraph
+unknown edges largest connected 0, 3
+unknown edges largest connected 1, 3
+unknown edges largest connected 2, 3
+found 3 new vertices
+known connected 0, 1
+known connected 0, 2
+largest neighbor connected 0, 3
+found 1 new vertices
+known connected 0, 1
+known connected 0, 2
+known connected 0, 3
+found 0 new vertices
+[       OK ] ArticulationPointsTest.FullyConnectedGraph (0 ms)
+[ RUN      ] ArticulationPointsTest.DisconnectedGraph
+unknown edges largest connected 3, 4
+unknown edges largest connected 1, 2
+unknown edges largest connected 0, 1
+found 4 new vertices
+known connected 3, 4
+largest neighbor connected 1, 2
+largest neighbor connected 0, 1
+found 0 new vertices
+[       OK ] ArticulationPointsTest.DisconnectedGraph (0 ms)
+[ RUN      ] ArticulationPointsTest.TreeGraph
+unknown edges largest connected 3, 5
+unknown edges largest connected 3, 4
+unknown edges largest connected 1, 3
+unknown edges largest connected 1, 2
+unknown edges largest connected 0, 1
+found 4 new vertices
+largest neighbor connected 3, 5
+largest neighbor connected 3, 4
+largest neighbor connected 1, 2
+largest neighbor connected 0, 1
+unknown edges largest, known neighbor(s), connected 1, 3
+found 0 new vertices
+[       OK ] ArticulationPointsTest.TreeGraph (0 ms)
+[ RUN      ] ArticulationPointsTest.SingleNodeNoEdges
+found 0 new vertices
+[       OK ] ArticulationPointsTest.SingleNodeNoEdges (0 ms)
+[ RUN      ] ArticulationPointsTest.SimplePathGraph
+unknown edges largest connected 3, 4
+unknown edges largest connected 2, 3
+unknown edges largest connected 1, 2
+unknown edges largest connected 0, 1
+found 2 new vertices
+largest neighbor connected 3, 4
+largest neighbor connected 0, 1
+unknown edges largest, known neighbor(s), connected 2, 3
+unknown edges largest, known neighbor(s), connected 1, 2
+found 0 new vertices
+[       OK ] ArticulationPointsTest.SimplePathGraph (0 ms)
+[ RUN      ] ArticulationPointsTest.BiConnectedComponents
+unknown edges largest connected 1, 6
+unknown edges largest connected 1, 5
+unknown edges largest connected 1, 4
+unknown edges largest connected 1, 3
+unknown edges largest connected 1, 2
+unknown edges largest connected 0, 1
+found 6 new vertices
+known connected 0, 5
+known connected 2, 3
+known connected 3, 4
+known connected 5, 6
+largest neighbor connected 1, 6
+largest neighbor connected 1, 4
+found 0 new vertices
+[       OK ] ArticulationPointsTest.BiConnectedComponents (0 ms)
+[ RUN      ] ArticulationPointsTest.Truss
+unknown edges largest connected 3, 4
+unknown edges largest connected 2, 3
+unknown edges largest connected 1, 3
+unknown edges largest connected 0, 3
+found 4 new vertices
+known connected 0, 1
+known connected 0, 2
+known connected 1, 4
+largest neighbor connected 3, 4
+found 1 new vertices
+known connected 0, 1
+known connected 0, 2
+known connected 0, 3
+known connected 1, 4
+found 0 new vertices
+[       OK ] ArticulationPointsTest.Truss (0 ms)
+[ RUN      ] ArticulationPointsTest.Truss_plus_one
+unknown edges largest connected 0, 5
+unknown edges largest connected 3, 4
+unknown edges largest connected 0, 2
+unknown edges largest connected 2, 3
+unknown edges largest connected 0, 1
+found 3 new vertices
+known connected 1, 4
+largest neighbor connected 1, 3
+largest neighbor connected 0, 5
+largest neighbor connected 0, 1
+unknown edges largest, known neighbor(s), connected 0, 2
+found 2 new vertices
+known connected 1, 3
+known connected 1, 4
+known connected 2, 3
+largest neighbor connected 0, 3
+largest neighbor connected 0, 5
+found 0 new vertices
+[       OK ] ArticulationPointsTest.Truss_plus_one (0 ms)
+[ RUN      ] ArticulationPointsTest.Truss_plus_four
+unknown edges largest connected 2, 8
+unknown edges largest connected 4, 7
+unknown edges largest connected 1, 6
+unknown edges largest connected 0, 5
+unknown edges largest connected 3, 4
+unknown edges largest connected 1, 4
+unknown edges largest connected 0, 2
+unknown edges largest connected 2, 3
+found 4 new vertices
+largest neighbor connected 2, 8
+largest neighbor connected 4, 7
+largest neighbor connected 1, 6
+largest neighbor connected 0, 5
+unknown edges largest, known neighbor(s), connected 1, 3
+unknown edges largest, known neighbor(s), connected 0, 3
+unknown edges largest, known neighbor(s), connected 3, 4
+unknown edges largest, known neighbor(s), connected 0, 2
+found 0 new vertices
+got: 0 1 3 2 4 test.cpp:238: Failure
+Value of: compareUnorderedVectors(result, expected)
+  Actual: false
+Expected: true
+Expected articulation points {0, 1, 2, 4}
+
+[  FAILED  ] ArticulationPointsTest.Truss_plus_four (0 ms)
+[----------] 12 tests from ArticulationPointsTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 23 tests from 3 test suites ran. (16627 ms total)
+[  PASSED  ] 22 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] ArticulationPointsTest.Truss_plus_four
+
+ 1 FAILED TEST
+make: *** [Makefile:3: test] Error 1

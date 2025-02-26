@@ -2,7 +2,7 @@
 #include "bridges.h"  
 #include <gtest/gtest.h>
 #include "articulation_points.h"
-using std::cout, std::vector, std::pair, std::make_pair;
+using namespace std;
 // Test fixture for Union_Find
 class UnionFindTest : public ::testing::Test {
 protected:
@@ -97,6 +97,35 @@ TEST(FindBridgesTest, SingleNodeNoEdges) {
     EXPECT_TRUE(result.empty()) << "Expected no bridges for a single node with no edges.";
 }
 
+TEST(FindBridgesTest, GoogleSnap){
+    vector<pair<int, int>> edges;
+    ifstream fs("web-Google.txt");
+    set<pair<int, int>> unique_edges;
+    string line;
+    int max_vertex_num = 0;
+    while(getline(fs, line)){
+      stringstream ss(line);
+      string pair_one;
+      string pair_two;
+      ss >> pair_one;
+      if(pair_one == "#"){
+        continue;
+      }
+      ss >> pair_two;
+      int vertex_one = stoi(pair_one);
+      int vertex_two = stoi(pair_two);
+      int start_vertex = min(vertex_one, vertex_two);
+      int end_vertex = max(vertex_one, vertex_two);
+      unique_edges.emplace(pair<int, int>(start_vertex, end_vertex));
+      max_vertex_num = max(max_vertex_num, end_vertex);
+    }
+    for(auto it = unique_edges.begin(); it != unique_edges.end(); it++){
+      edges.push_back(*it);
+    }
+    vector<pair<int, int>> result = find_bridges(edges, max_vertex_num + 1);
+    vector<pair<int, int>> seq_result = find_bridges_tarjan(edges);
+    EXPECT_TRUE(result.size() == seq_result.size());
+}
 // Helper function to check if two vectors contain the same elements (unordered)
 bool compareUnorderedVectors(const vector<int>& a, const vector<int>& b) {
     if (a.size() != b.size()) return false;
