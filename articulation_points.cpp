@@ -81,7 +81,7 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
         vertex_degree[edges.at(i).second] = 0;
       }
       //both vertices must not be in marked
-      if(marked_vertices.count(edges.at(i).first) == 0 && marked_vertices.count(edges.at(i).second) == 0){
+      if((marked_vertices.count(edges.at(i).first) == 0) && (marked_vertices.count(edges.at(i).second) == 0)){
         bool merged = spanning_tree.merge(edges.at(i).first, edges.at(i).second);
         if(merged){
           vertex_degree[edges.at(i).first]++;
@@ -89,6 +89,8 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
         }
       }
     }
+
+    //find and mark all vertices of degree 1 or less
     unordered_set<int> newly_marked_vertices;
     for(auto it = vertex_degree.begin(); it != vertex_degree.end(); it++){
       if(it->second <= 1){
@@ -96,22 +98,34 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
         marked_vertices.emplace(it->first);
       }
     }
+
     unordered_map<int, int> num_times_merged;
     for(int i = 0; i < edges.size(); i++){
+      int first_vertex = edges.at(i).first;
+      int second_vertex = edges.at(i).second;
       //if both vertices are marked, and at least one is newly marked
-      if(marked_vertices.count(edges.at(i).first) != 0 && marked_vertices.count(edges.at(i).second) != 0){
-        if(newly_marked_vertices.count(edges.at(i).first) != 0){
-          bool merged = marked_vertices_union.merge(edges.at(i).first, edges.at(i).second);
+      if((marked_vertices.count(first_vertex) != 0) && (marked_vertices.count(second_vertex) != 0)){
+        bool first_point_is_new = (newly_marked_vertices.count(first_vertex) != 0);
+        bool second_point_is_new = (newly_marked_vertices.count(second_vertex) != 0);
+        if(first_point_is_new && second_point_is_new){
+          bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
           if(merged){
-            num_times_merged[edges.at(i).first]++;
+            num_times_merged[first_vertex]++;
+            num_times_merged[second_vertex]++;
           }
         }
-        if(newly_marked_vertices.count(edges.at(i).second) != 0){
-          bool merged = marked_vertices_union.merge(edges.at(i).first, edges.at(i).second);
+        else if(first_point_is_new){
+          bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
           if(merged){
-            num_times_merged[edges.at(i).second]++;
+            num_times_merged[first_vertex]++;
           }
         } 
+        else if(second_point_is_new){
+          bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
+          if(merged){
+            num_times_merged[second_vertex]++;
+          }
+        }
       }
     }
     for(auto it = num_times_merged.begin(); it != num_times_merged.end(); it++){
