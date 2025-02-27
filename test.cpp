@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 #include "articulation_points.h"
 using namespace std;
+using namespace std::chrono;
 // Test fixture for Union_Find
 class UnionFindTest : public ::testing::Test {
 protected:
@@ -17,7 +18,13 @@ void print_vector(vector<int>& result){
     cout << result[i] << " ";
   }
 }
-
+string vector_string(vector<int>& result){
+  string joe = "";
+  for(int i = 0; i < result.size(); i++){
+    joe += to_string(result.at(i)) + " ";
+  }
+  return joe;
+}
 // Test case for the constructor
 TEST_F(UnionFindTest, ConstructorInitializesCorrectly) {
     for (size_t i = 0; i < 10; i++) {
@@ -122,8 +129,16 @@ TEST(FindBridgesTest, GoogleSnap){
     for(auto it = unique_edges.begin(); it != unique_edges.end(); it++){
       edges.push_back(*it);
     }
+    auto start_time = high_resolution_clock::now();
     vector<pair<int, int>> result = find_bridges(edges, max_vertex_num + 1);
+    auto end_time = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end_time - start_time);
+    cout << "Time taken (parallel imp): " << duration.count() << " ms" << endl;
+    start_time = high_resolution_clock::now();
     vector<pair<int, int>> seq_result = find_bridges_tarjan(edges);
+    end_time = high_resolution_clock::now();
+    duration = duration_cast<milliseconds>(end_time - start_time);
+    cout << "time taken (tarjan): " << duration.count() << " ms" << endl;
     EXPECT_TRUE(result.size() == seq_result.size());
 }
 // Helper function to check if two vectors contain the same elements (unordered)
@@ -158,8 +173,8 @@ TEST(ArticulationPointsTest, MultipleArticulationPoints) {
 TEST(ArticulationPointsTest, NoArticulationPointsCycle) {
     vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 0}};  // No articulation points in a cycle
     vector<int> result = articulation_points(edges, 4);
-
-    EXPECT_TRUE(result.empty()) << "Expected no articulation points in a cycle.";
+    
+    EXPECT_TRUE(result.empty()) << "Expected no articulation points in a cycle, got: " << vector_string(result) << "\n";
 }
 
 // Test case for a fully connected graph (clique)
