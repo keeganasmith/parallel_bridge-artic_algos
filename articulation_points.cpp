@@ -74,16 +74,17 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     //iterate through edges, only add edges which do not contain a marked vertex
     for(int i = 0; i < edges.size(); i++){
       //if not in the marked vertices yet, we need to keep track of its degree in the spanning tree
-      if(marked_vertices.count(edges.at(i).first) == 0){
+      if(vertex_degree.count(edges.at(i).first) == 0 && marked_vertices.count(edges.at(i).first) == 0){
         vertex_degree[edges.at(i).first] = 0;
       }
-      if(marked_vertices.count(edges.at(i).second) == 0){
+      if(vertex_degree.count(edges.at(i).second) ==0 && marked_vertices.count(edges.at(i).second) == 0){
         vertex_degree[edges.at(i).second] = 0;
       }
       //both vertices must not be in marked
       if((marked_vertices.count(edges.at(i).first) == 0) && (marked_vertices.count(edges.at(i).second) == 0)){
         bool merged = spanning_tree.merge(edges.at(i).first, edges.at(i).second);
         if(merged){
+          cout << "using edge: " << edges.at(i).first << ", " << edges.at(i).second << "\n";
           vertex_degree[edges.at(i).first]++;
           vertex_degree[edges.at(i).second]++;
         }
@@ -93,46 +94,71 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     //find and mark all vertices of degree 1 or less
     unordered_set<int> newly_marked_vertices;
     for(auto it = vertex_degree.begin(); it != vertex_degree.end(); it++){
+      cout << "degree of vertex " << it->first << " was " << it->second << "\n";
       if(it->second <= 1){
         newly_marked_vertices.emplace(it->first);
-        marked_vertices.emplace(it->first);
       }
     }
-
+    cout << "marked vertices size: " << marked_vertices.size() << "\n";
     unordered_map<int, int> num_times_merged;
+    //ONLY MERGE WITH PREVIOUSLY NOT MARKED FIRST
     for(int i = 0; i < edges.size(); i++){
       int first_vertex = edges.at(i).first;
       int second_vertex = edges.at(i).second;
-      //if both vertices are marked, and at least one is newly marked
-      if((marked_vertices.count(first_vertex) != 0) && (marked_vertices.count(second_vertex) != 0)){
-        bool first_point_is_new = (newly_marked_vertices.count(first_vertex) != 0);
-        bool second_point_is_new = (newly_marked_vertices.count(second_vertex) != 0);
-        if(first_point_is_new && second_point_is_new){
-          bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
-          if(merged){
-            num_times_merged[first_vertex]++;
-            num_times_merged[second_vertex]++;
-          }
+      bool first_vertex_marked = marked_vertices.count(first_vertex) != 0;
+      bool second_vertex_marked = marked_vertices.count(second_vertex) != 0;
+      bool first_vertex_new = newly_marked_vertices.count(first_vertex) != 0;
+      bool second_vertex_new = newly_marked_vertices.count(second_vertex) != 0;
+
+      if(first_vertex_new && second_vertex_marked){ 
+        bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
+        if(merged){
+          cout << first_vertex << " merged into " << second_vertex << "\n";
+          num_times_merged[first_vertex]++;
         }
-        else if(first_point_is_new){
-          bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
-          if(merged){
+      }
+      if(second_vertex_new && first_vertex_marked){
+        bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
+        if(merged){
+          cout << first_vertex << " merged into " << second_vertex << "\n";
+          num_times_merged[second_vertex]++;
+        }
+      }
+    }
+
+    //now merge adjacent newly found vertices
+    for(int i = 0; i < edges.size(); i++){
+      int first_vertex = edges.at(i).first;
+      int second_vertex = edges.at(i).second;
+      bool first_vertex_marked = marked_vertices.count(first_vertex) != 0;
+      bool second_vertex_marked = marked_vertices.count(second_vertex) != 0;
+      bool first_vertex_new = newly_marked_vertices.count(first_vertex) != 0;
+      bool second_vertex_new = newly_marked_vertices.count(second_vertex) != 0;
+
+      if(first_vertex_new && second_vertex_new){ 
+        bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
+        if(merged){
+          if(num_times_merged[first_vertex] != 0){
             num_times_merged[first_vertex]++;
           }
-        } 
-        else if(second_point_is_new){
-          bool merged = marked_vertices_union.merge(first_vertex, second_vertex);
-          if(merged){
+          if(num_times_merged[second_vertex] != 0){
             num_times_merged[second_vertex]++;
           }
         }
       }
     }
+    
     for(auto it = num_times_merged.begin(); it != num_times_merged.end(); it++){
       cout << it->first << " was merged " << it->second << " times\n";
       if(it->second > 1){
         result.push_back(it->first);
       }
+    }
+    
+
+    //add all of the newly marked to the marked
+    for(auto it = newly_marked_vertices.begin(); it != newly_marked_vertices.end(); it++){
+      marked_vertices.emplace(*it);
     }
   }
     
