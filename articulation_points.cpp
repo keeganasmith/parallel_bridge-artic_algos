@@ -71,13 +71,16 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
   while(marked_vertices.size() != num_vertices){
     Union_Find spanning_tree(num_vertices);
     unordered_map<int, int> vertex_degree;
+    //iterate through edges, only add edges which do not contain a marked vertex
     for(int i = 0; i < edges.size(); i++){
+      //if not in the marked vertices yet, we need to keep track of its degree in the spanning tree
       if(marked_vertices.count(edges.at(i).first) == 0){
         vertex_degree[edges.at(i).first] = 0;
       }
       if(marked_vertices.count(edges.at(i).second) == 0){
         vertex_degree[edges.at(i).second] = 0;
       }
+      //both vertices must not be in marked
       if(marked_vertices.count(edges.at(i).first) == 0 && marked_vertices.count(edges.at(i).second) == 0){
         bool merged = spanning_tree.merge(edges.at(i).first, edges.at(i).second);
         if(merged){
@@ -96,14 +99,18 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     unordered_map<int, int> num_times_merged;
     for(int i = 0; i < edges.size(); i++){
       //if both vertices are marked, and at least one is newly marked
-      if(marked_vertices.count(edges.at(i).first) != 0 && marked_vertices.count(edges.at(i).second)){
-        bool merged = marked_vertices_union.merge(edges.at(i).first, edges.at(i).second);
-        if(merged){
-          if(newly_marked_vertices.count(edges.at(i).first) > 0){
-            num_times_merged[edges.at(i).first]++;
+      if(marked_vertices.count(edges.at(i).first) != 0 && marked_vertices.count(edges.at(i).second) != 0){
+          if(newly_marked_vertices.count(edges.at(i).first) != 0){
+            bool merged = marked_vertices_union.merge(edges.at(i).first, edges.at(i).second);
+            if(merged){
+              num_times_merged[edges.at(i).first]++;
+            }
           }
-          if(newly_marked_vertices.count(edges.at(i).second) > 0){
-            num_times_merged[edges.at(i).second]++;
+          if(newly_marked_vertices.count(edges.at(i).second) != 0){
+            bool merged = marked_vertices_union.merge(edges.at(i).first, edges.at(i).second);
+            if(merged){
+              num_times_merged[edges.at(i).second]++;
+            }
           } 
         }
       }
@@ -115,5 +122,4 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
     }
   }
   return result; 
-
 }
