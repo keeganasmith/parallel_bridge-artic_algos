@@ -129,6 +129,7 @@ vector<int> articulation_points(vector<pair<int, int>>& edges, size_t num_vertic
       }
     }
     for(auto it = num_times_merged.begin(); it != num_times_merged.end(); it++){
+      cout << it->first << " was merged " << it->second << " times\n";
       if(it->second > 1){
         result.push_back(it->first);
       }
