@@ -75,7 +75,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   //...
   //<vertex one>,<vertex two>
   //and should not contain duplicates
-  
+  vector<string> filenames(1, csv_file);
   ygm::io::csv_parser parser(world, filenames);
   ygm::container::bag<pair<long long, long long>> not_bridges(world);
   ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
