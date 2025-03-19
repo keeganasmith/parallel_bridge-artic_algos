@@ -1,3 +1,5 @@
+#ifndef HEADERFILE_H
+#define HEADERFILE_H
 #include <bits/stdc++.h>
 #include <ygm/comm.hpp>
 #include <ygm/comm.hpp>
@@ -11,3 +13,4 @@ using std::pair, std::vector, std::unordered_map, std::min, std::string;
 vector<pair<int, int>> find_bridges(vector<pair<int, int>>& edges, size_t num_vertices);
 vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges);
 void find_bridges_parallel(string& filename, ygm::comm& world);
+#endif

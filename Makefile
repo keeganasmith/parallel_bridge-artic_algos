@@ -7,5 +7,5 @@ artic:
 	./test --gtest_filter=ArticulationPointsTest.*
 
 parallel:
-	g++ -std=c++20 parallel_runner.cpp bridges.cpp -o parallel_runner
+	mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
 
