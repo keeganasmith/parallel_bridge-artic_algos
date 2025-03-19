@@ -1,5 +1,5 @@
 #include "bridges.h"
-using std::cout, std::vector, std::pair;
+using std::cout, std::vector, std::pair, std::endl;
 vector<pair<int, int>> find_bridges(vector<pair<int, int>>& edges, size_t num_vertices){
   vector<pair<int, int>> not_bridges;
   vector<pair<int, int>> maybe_bridges(edges);
@@ -79,7 +79,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   ygm::io::csv_parser parser(world, filenames);
   ygm::container::bag<pair<long long, long long>> not_bridges(world);
   ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
-  parser.for_all([](csv_line line){
+  parser.for_all([](ygm::io::detail::csv_line line){
     long long vertex_one = line[0].as_integer();
     long long vertex_two = line[1].as_integer();
   });
@@ -87,7 +87,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   while(true){
     ygm::container::disjoint_set<long long>(world); //use async_union_and_execute
     not_bridges.for_all([](const pair<long long, long long>& edge){
-      cout << "edge: " << edge << "\n";
+      cout << "edge: " << edge << endl;
     });
     break;
   }
