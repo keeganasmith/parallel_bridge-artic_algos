@@ -9,5 +9,5 @@ int main(int argc, char** argv){
     }
   }
   string file_name(argv[1]);
-  find_bridges_parallel(file_name);
+  find_bridges_parallel(file_name, world);
 }
