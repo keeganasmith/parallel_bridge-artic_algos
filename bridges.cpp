@@ -85,7 +85,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   });
 
   while(true){
-    ygm::container::disjoint_set<long long, ygm::detail::old_hash_partitioner<long long>>(world); //use async_union_and_execute
+    ygm::container::disjoint_set<long long, ygm::container::detail::old_hash_partitioner<long long>>(world); //use async_union_and_execute
     not_bridges.for_all([](const pair<long long, long long>& edge){
       cout << "edge: " << edge << endl;
     });
