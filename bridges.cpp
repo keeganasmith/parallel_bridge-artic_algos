@@ -87,7 +87,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   while(true){
     ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
     not_bridges.for_all([](const pair<long long, long long>& edge){
-      cout << "edge: " << edge << endl;
+      cout << "edge: " << edge.first << ", " << edge.second << endl;
     });
     break;
   }
