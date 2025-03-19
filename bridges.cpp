@@ -67,3 +67,30 @@ vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges) {
   }
   return result;
 }
+
+void find_bridges_parallel(string& csv_file){
+  //csv file must be in the format:
+  //<vertex one>,<vertex two>
+  //<vertex one>,<vertex two>
+  //...
+  //<vertex one>,<vertex two>
+  //and should not contain duplicates
+  ygm::comm world(&argc, &argv);
+  world.welcome();
+  ygm::io::csv_parser parser(world, filenames);
+  ygm::container::bag<pair<long long, long long>> not_bridges(world);
+  ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
+  parser.for_all([](csv_line line){
+    long long vertex_one = line[0].as_integer();
+    long long vertex_two = line[1].as_integer();
+  });
+
+  while(true){
+    ygm::container::disjoint_set<long long>(world); //use async_union_and_execute
+    not_bridges.for_all([](const pair<long long, long long>& edge){
+      cout << "edge: " << edge << "\n";
+    });
+    break;
+  }
+
+}
