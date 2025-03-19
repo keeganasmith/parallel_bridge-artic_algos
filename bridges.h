@@ -4,6 +4,7 @@
 #include <ygm/container/map.hpp>
 #include <ygm/container/set.hpp>
 #include <ygm/container/bag.hpp>
+#include <ygm/container/disjoint_set.hpp>
 #include <ygm/io/csv_parser.hpp>
 #include "uf.h"
 using std::pair, std::vector, std::unordered_map, std::min, std::string;
