@@ -2,7 +2,8 @@ import csv
 import sys
 
 def convert_txt_to_csv(input_file, output_file):
-    edges = set()    
+    edges = set()
+    
     with open(input_file, 'r') as fin:
         for line in fin:
             line = line.strip()
@@ -19,6 +20,12 @@ def convert_txt_to_csv(input_file, output_file):
             except ValueError:
                 continue
             
+            if node1 < 0 or node2 < 0:
+                continue
+
+            if node1 == node2:
+                continue
+
             edge = (min(node1, node2), max(node1, node2))
             edges.add(edge)
     
