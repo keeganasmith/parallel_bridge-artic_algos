@@ -35,6 +35,6 @@ def convert_txt_to_csv(input_file, output_file):
             writer.writerow(edge)
 
 if __name__ == '__main__':
-    input_file = "web-google.txt"
+    input_file = "web-Google.txt"
     output_file = "web-google.csv"
     convert_txt_to_csv(input_file, output_file)

@@ -6,6 +6,7 @@ int main(int argc, char** argv){
   if(world.rank0()){
     if(argc < 2){
       cout << "need to provide file name\n";
+      return 1;
     }
   }
   string file_name(argv[1]);

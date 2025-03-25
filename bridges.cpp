@@ -79,17 +79,39 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   ygm::io::csv_parser parser(world, filenames);
   ygm::container::bag<pair<long long, long long>> not_bridges(world);
   ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
-  parser.for_all([](ygm::io::detail::csv_line line){
+  parser.for_all([&maybe_bridges](ygm::io::detail::csv_line line){
     long long vertex_one = line[0].as_integer();
     long long vertex_two = line[1].as_integer();
+    maybe_bridges.local_insert(pair<long long, long long>(vertex_one, vertex_two)); 
   });
-
+  world.barrier();
+  world.cout("local size: ",maybe_bridges.local_size(),"\n");
+  world.barrier();
   while(true){
     ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
-    not_bridges.for_all([](const pair<long long, long long>& edge){
-      cout << "edge: " << edge.first << ", " << edge.second << endl;
+    ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
+    not_bridges.for_all([&disjoint](const pair<long long, long long>& edge){
+      disjoint.async_union(edge.first, edge.second);
+    });
+    world.barrier();
+    maybe_bridges.for_all([&disjoint, &not_bridges, &new_maybe_bridges](const pair<long long, long long>& edge){
+      ygm::ygm_ptr<ygm::container::bag<pair<long long, long long>>> not_bridges_ptr(&not_bridges); 
+      ygm::ygm_ptr<ygm::container::bag<pair<long long, long long>>> new_maybe_bridges_ptr(&new_maybe_bridges);
+      disjoint.async_union_and_execute(edge.first, edge.second, [not_bridges_ptr, new_maybe_bridges_ptr](const long long& vertex_one, const long long& vertex_two, bool merged){
+        if(!merged){
+          not_bridges_ptr->local_insert(pair<long long, long long>(vertex_one, vertex_two));
+
+        }
+        else{
+          new_maybe_bridges_ptr->local_insert(pair<long long, long long>(vertex_one, vertex_two));
+        }
+      });
     });
     break;
+    world.barrier();
+    break;
+    world.cout("not bridges size: ", not_bridges.local_size());
+    maybe_bridges = ygm::container::bag<pair<long long, long long>>(new_maybe_bridges);
+    break;
   }
-
 }
