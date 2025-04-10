@@ -75,43 +75,56 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   //...
   //<vertex one>,<vertex two>
   //and should not contain duplicates
+  static ygm::comm* s_world = &world;
   vector<string> filenames(1, csv_file);
   ygm::io::csv_parser parser(world, filenames);
-  ygm::container::bag<pair<long long, long long>> not_bridges(world);
-  ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
-  parser.for_all([&maybe_bridges](ygm::io::detail::csv_line line){
+  static vector<pair<long long, long long>> not_bridges;
+  static vector<pair<long long, long long>> maybe_bridges;
+  parser.for_all([](ygm::io::detail::csv_line line){
     long long vertex_one = line[0].as_integer();
     long long vertex_two = line[1].as_integer();
-    maybe_bridges.local_insert(pair<long long, long long>(vertex_one, vertex_two)); 
+    maybe_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two)); 
   });
-  world.barrier();
-  world.cout("local size: ",maybe_bridges.local_size(),"\n");
+  world.cout("local size: ",maybe_bridges.size(),"\n");
   world.barrier();
   while(true){
-    ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
-    ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
-    not_bridges.for_all([&disjoint](const pair<long long, long long>& edge){
-      disjoint.async_union(edge.first, edge.second);
-    });
+    static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
+    static vector<pair<long long, long long>> new_maybe_bridges;
+    for(size_t i = 0; i < not_bridges.size(); i++){
+      disjoint.async_union(not_bridges.at(i).first, not_bridges.at(i).second);
+    }
     world.barrier();
-    maybe_bridges.for_all([&disjoint, &not_bridges, &new_maybe_bridges](const pair<long long, long long>& edge){
-      ygm::ygm_ptr<ygm::container::bag<pair<long long, long long>>> not_bridges_ptr(&not_bridges); 
-      ygm::ygm_ptr<ygm::container::bag<pair<long long, long long>>> new_maybe_bridges_ptr(&new_maybe_bridges);
-      disjoint.async_union_and_execute(edge.first, edge.second, [not_bridges_ptr, new_maybe_bridges_ptr](const long long& vertex_one, const long long& vertex_two, bool merged){
+    
+    for(int i = 0; i < maybe_bridges.size(); i++){
+      pair<long long, long long> edge = maybe_bridges.at(i);
+      disjoint.async_union_and_execute(edge.first, edge.second, [](const long long& vertex_one, const long long& vertex_two, bool merged){
         if(!merged){
-          not_bridges_ptr->local_insert(pair<long long, long long>(vertex_one, vertex_two));
-
+          not_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two));
         }
         else{
-          new_maybe_bridges_ptr->local_insert(pair<long long, long long>(vertex_one, vertex_two));
+          new_maybe_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two));
         }
       });
-    });
-    break;
+    }
+    world.cout0("got past for all\n");
     world.barrier();
-    break;
-    world.cout("not bridges size: ", not_bridges.local_size());
-    maybe_bridges = ygm::container::bag<pair<long long, long long>>(new_maybe_bridges);
-    break;
+    bool equivalent = (maybe_bridges.size() == new_maybe_bridges.size());
+    bool all_equivalent = world.all_reduce(equivalent, [](bool one, bool two){
+          return one && two;
+        });
+    world.barrier();
+    if(all_equivalent){
+      break;
+    }
+    world.cout0("got to swapping\n");
+    maybe_bridges = new_maybe_bridges;
+    if(world.rank0()){
+      cout << "maybe bridges size: " << maybe_bridges.size() << "\n";
+    }
+    world.barrier();
   }
+  if(world.rank0()){
+    cout << "total number of bridges: " << maybe_bridges.size() << "\n";
+  }
+  world.barrier();
 }

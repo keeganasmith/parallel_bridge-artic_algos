@@ -8,6 +8,7 @@
 #include <ygm/container/bag.hpp>
 #include <ygm/container/disjoint_set.hpp>
 #include <ygm/io/csv_parser.hpp>
+#include <ygm/collective.hpp>
 #include "uf.h"
 using std::pair, std::vector, std::unordered_map, std::min, std::string;
 vector<pair<int, int>> find_bridges(vector<pair<int, int>>& edges, size_t num_vertices);
