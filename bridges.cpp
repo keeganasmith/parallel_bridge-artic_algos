@@ -85,7 +85,6 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
     long long vertex_two = line[1].as_integer();
     maybe_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two)); 
   });
-  world.cout("local size: ",maybe_bridges.size(),"\n");
   world.barrier();
   while(true){
     static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
@@ -106,25 +105,19 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
         }
       });
     }
-    world.cout0("got past for all\n");
     world.barrier();
-    bool equivalent = (maybe_bridges.size() == new_maybe_bridges.size());
-    bool all_equivalent = world.all_reduce(equivalent, [](bool one, bool two){
-          return one && two;
-        });
+    size_t total_maybe_bridges_size = ygm::sum(maybe_bridges.size(), world);
+    size_t total_new_bridges_size = ygm::sum(new_maybe_bridges.size(), world);
     world.barrier();
-    if(all_equivalent){
+    if(total_maybe_bridges_size == total_new_bridges_size){
       break;
     }
-    world.cout0("got to swapping\n");
     maybe_bridges = new_maybe_bridges;
-    if(world.rank0()){
-      cout << "maybe bridges size: " << maybe_bridges.size() << "\n";
-    }
+    new_maybe_bridges.clear();
+    disjoint.clear();
     world.barrier();
   }
-  if(world.rank0()){
-    cout << "total number of bridges: " << maybe_bridges.size() << "\n";
-  }
+  size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
+  world.cout0("total bridges: ", total_bridges);
   world.barrier();
 }

@@ -134,6 +134,7 @@ TEST(FindBridgesTest, GoogleSnap){
     auto end_time = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end_time - start_time);
     cout << "Time taken (parallel imp): " << duration.count() << " ms" << endl;
+    cout << "Num bridges: " << result.size() << "\n";
     start_time = high_resolution_clock::now();
     vector<pair<int, int>> seq_result = find_bridges_tarjan(edges);
     end_time = high_resolution_clock::now();

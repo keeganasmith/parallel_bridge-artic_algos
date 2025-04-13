@@ -10,5 +10,9 @@ int main(int argc, char** argv){
     }
   }
   string file_name(argv[1]);
+  const auto start{std::chrono::steady_clock::now()};
   find_bridges_parallel(file_name, world);
+  const auto finish{std::chrono::steady_clock::now()};
+  const std::chrono::duration<double> elapsed_seconds{finish - start};
+  cout << file_name << " took " << elapsed_seconds << "\n";
 }

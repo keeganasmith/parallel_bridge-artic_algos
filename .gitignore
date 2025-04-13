@@ -1,3 +1,5 @@
 test
 .nfs*
 parallel_runner
+graphs/
+generate
