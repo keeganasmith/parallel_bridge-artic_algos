@@ -1,11 +1,11 @@
 #include "bridges.h"
 using std::cout, std::vector, std::pair, std::endl;
-vector<pair<int, int>> find_bridges(vector<pair<int, int>>& edges, size_t num_vertices){
-  vector<pair<int, int>> not_bridges;
-  vector<pair<int, int>> maybe_bridges(edges);
+vector<pair<long long, long long>> find_bridges(vector<pair<long long, long long>>& edges, size_t num_vertices){
+  vector<pair<long long, long long>> not_bridges;
+  vector<pair<long long, long long>> maybe_bridges(edges);
   while(true){
     Union_Find uf(num_vertices);
-    vector<pair<int, int>> new_maybe_bridges;
+    vector<pair<long long, long long>> new_maybe_bridges;
     for(size_t i = 0; i < not_bridges.size(); i++){
       uf.merge(not_bridges.at(i).first, not_bridges.at(i).second);
     } 

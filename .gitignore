@@ -3,3 +3,5 @@ test
 parallel_runner
 graphs/
 generate
+a.out
+verify

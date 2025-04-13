@@ -1,19 +1,19 @@
 #!/bin/bash
-#SBATCH --job-name=DELTA_STEPPING
-#SBATCH --time=02:00:00
-#SBATCH --ntasks=3840
+#SBATCH --job-name=BRIDGE_WEAK_SCALING
+#SBATCH --time=08:00:00
+#SBATCH --ntasks=2048
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
 #SBATCH --output=weak_scaling_output
+#SBATCH --error=weak_scaling_error
 #SBATCH --partition=staff
-cd /scratch/user/u.ks124812/CSCE-626-S25/assignments/hw4
+cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
-source venv/bin/activate
 make -B parallel
 BASE_VERT=131072
 MAX_PROCESSES=3840
 for ((np=1; np<=MAX_PROCESSES; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_16.csv"
+  file_name="./graphs/${BASE_VERT}_8.csv"
   mpirun -np $np parallel_runner $file_name
   BASE_VERT=$(( BASE_VERT * 2 ))
 done

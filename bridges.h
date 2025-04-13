@@ -12,7 +12,7 @@
 #include <chrono>
 #include "uf.h"
 using std::pair, std::vector, std::unordered_map, std::min, std::string;
-vector<pair<int, int>> find_bridges(vector<pair<int, int>>& edges, size_t num_vertices);
+vector<pair<long long, long long>> find_bridges(vector<pair<long long, long long>>& edges, size_t num_vertices);
 vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges);
 void find_bridges_parallel(string& filename, ygm::comm& world);
 #endif

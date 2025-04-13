@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=delta_stepping
+#SBATCH --job-name=graph_generation
 #SBATCH --time=1-00:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=192
@@ -15,4 +15,4 @@ module load WebProxy
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B generate
-./generate 2000000000 16
+./generate 2000000000 8

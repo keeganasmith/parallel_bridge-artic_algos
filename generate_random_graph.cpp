@@ -19,8 +19,9 @@ int main(int argc, char** argv){
         return 1;
     }
     long long max_num_vertices = stol(argv[1]);
-    long long num_vertices = 33554432;
+    long long num_vertices = 131072;
     long long average_degree = stol(argv[2]);
+    set<pair<long long, long long>> already_added;
     while(num_vertices <= max_num_vertices){
         
         string file_name = "./graphs/" + to_string(num_vertices) + "_" + to_string(average_degree) + ".csv";
@@ -29,7 +30,7 @@ int main(int argc, char** argv){
           continue;
         }
         poisson_distribution<int> degree_dist(average_degree);
-        vector<vector<Edge>> vertex_edges(num_vertices);
+        vector<Edge> vertex_edges;
         #pragma omp parallel
         {
             int thread_id = omp_get_thread_num();
@@ -41,10 +42,19 @@ int main(int argc, char** argv){
                     Edge my_edge;
                     my_edge.vertex_one = i;
                     my_edge.vertex_two = generate_random_vertex(num_vertices);
-                    while(my_edge.vertex_two == my_edge.vertex_one){
-                        my_edge.vertex_two = generate_random_vertex(num_vertices);
+                    while(my_edge.vertex_one == my_edge.vertex_two){
+                      my_edge.vertex_two = generate_random_vertex(num_vertices);
                     }
-                    vertex_edges.at(i).push_back(my_edge);
+                    //the following is to guarantee uniqueness since undirected
+                    //graph
+                    #pragma omp critical
+                    {
+                    if(already_added.count(pair<long long, long long>(my_edge.vertex_one, my_edge.vertex_two)) == 0){
+                      vertex_edges.push_back(my_edge);
+                      already_added.emplace(pair<long long, long long>(my_edge.vertex_one, my_edge.vertex_two));
+                      
+                    }
+                    }
                 }
             }
         }
@@ -53,11 +63,9 @@ int main(int argc, char** argv){
             cerr << "Failed to open " << file_name;
             return 1;
         }
-
         for (long long i = 0; i < vertex_edges.size(); ++i) {
-            for (const auto& edge : vertex_edges[i]) {
-                out << edge.vertex_one << "," << edge.vertex_two << "\n";
-            }
+          Edge edge = vertex_edges.at(i);
+          out << edge.vertex_one << "," << edge.vertex_two << "\n";
         }
         out.close();
         cout << "finished graph with " << num_vertices << " vertices\n";
