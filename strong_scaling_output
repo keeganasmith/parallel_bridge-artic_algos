@@ -1,0 +1,22 @@
+rm -f *.o test parallel_runner
+mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
+total bridges: 0
+./graphs/524288_8.csv took 147.105s with 4
+total bridges: 3
+./graphs/1048576_8.csv took 149.537s with 8
+total bridges: 4
+./graphs/2097152_8.csv took 146.49s with 16
+total bridges: 5
+./graphs/4194304_8.csv took 155.352s with 32
+total bridges: 15
+./graphs/8388608_8.csv took 155.73s with 64
+total bridges: 37
+./graphs/16777216_8.csv took 159.588s with 128
+total bridges: 84
+./graphs/33554432_8.csv took 318.753s with 256
+total bridges: 206
+./graphs/67108864_8.csv took 819.888s with 512
+total bridges: 605
+./graphs/134217728_8.csv took 1861.76s with 1024
+total bridges: 2684
+./graphs/268435456_8.csv took 1728.87s with 2048

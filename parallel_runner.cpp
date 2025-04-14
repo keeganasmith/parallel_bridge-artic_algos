@@ -13,5 +13,5 @@ int main(int argc, char** argv){
   find_bridges_parallel(file_name, world);
   const auto finish{std::chrono::steady_clock::now()};
   const std::chrono::duration<double> elapsed_seconds{finish - start};
-  world.cout0(file_name," took ",elapsed_seconds,"\n");
+  world.cout0(file_name," took ",elapsed_seconds," with ", world.size());
 }

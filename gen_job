@@ -15,4 +15,4 @@ module load WebProxy
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B generate
-./generate 2000000000 8
+./generate 2000000000 4

@@ -85,6 +85,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
     long long vertex_two = line[1].as_integer();
     maybe_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two)); 
   });
+  int num_iterations = 0;
   world.barrier();
   while(true){
     static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
@@ -115,9 +116,11 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
     maybe_bridges = new_maybe_bridges;
     new_maybe_bridges.clear();
     disjoint.clear();
+    num_iterations++;
     world.barrier();
   }
   size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
   world.cout0("total bridges: ", total_bridges);
+  world.cout0("total iterations: ", num_iterations);
   world.barrier();
 }
