@@ -19,5 +19,6 @@ make -B generate
 ./generate 50000000 6 &
 ./generate 50000000 2 &
 ./generate 50000000 16 &
+./generate 50000000 4 &
 
 wait

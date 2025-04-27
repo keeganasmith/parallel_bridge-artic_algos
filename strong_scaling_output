@@ -1,48 +1,33 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
-total bridges: 1316
+total bridges: 2902
+total iterations: 4
+./graphs/1048576_4.csv took 136.246s with 6
+total bridges: 2902
+total iterations: 4
+./graphs/1048576_4.csv took 70.7055s with 12
+total bridges: 2902
+total iterations: 4
+./graphs/1048576_4.csv took 38.1544s with 24
+total bridges: 2902
+total iterations: 4
+./graphs/1048576_4.csv took 27.0683s with 48
+total bridges: 2902
+total iterations: 4
+./graphs/1048576_4.csv took 21.1472s with 96
+total bridges: 2902
 total iterations: 3
-./graphs/524288_4.csv took 104.624s with 3
-total bridges: 1316
-total iterations: 4
-./graphs/524288_4.csv took 72.3196s with 6
-total bridges: 1316
-total iterations: 4
-./graphs/524288_4.csv took 34.8901s with 12
-total bridges: 1316
-total iterations: 3
-./graphs/524288_4.csv took 17.8945s with 24
-total bridges: 1316
-total iterations: 4
-./graphs/524288_4.csv took 14.6096s with 48
-total bridges: 1316
-total iterations: 4
-./graphs/524288_4.csv took 11.6547s with 96
-total bridges: 1316
-total iterations: 3
-./graphs/524288_4.csv took 11.3374s with 192
+./graphs/1048576_4.csv took 20.954s with 192
 Starting cross node benchmarks
-total bridges: 10139797
+total bridges: 709474
 total iterations: 5
-./graphs/536870912_4.csv took 1630.54s with 192
-total bridges: 10139797
+./graphs/134217728_4.csv took 587.293s with 192
+total bridges: 709474
 total iterations: 5
-./graphs/536870912_4.csv took 2161.37s with 384
-total bridges: 10139797
+./graphs/134217728_4.csv took 1148.07s with 384
+total bridges: 709474
 total iterations: 5
-./graphs/536870912_4.csv took 3084.46s with 576
-total bridges: 10139797
-total iterations: 6
-./graphs/536870912_4.csv took 3934.02s with 768
-total bridges: 10139797
+./graphs/134217728_4.csv took 1114.22s with 576
+total bridges: 709474
 total iterations: 5
-./graphs/536870912_4.csv took 4145.28s with 960
-total bridges: 10139797
-total iterations: 5
-./graphs/536870912_4.csv took 4079.58s with 1152
-total bridges: 10139797
-total iterations: 5
-./graphs/536870912_4.csv took 3878.77s with 1344
-total bridges: 10139797
-total iterations: 5
-./graphs/536870912_4.csv took 3278.11s with 1536
+./graphs/134217728_4.csv took 1387.77s with 768
