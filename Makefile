@@ -15,7 +15,7 @@ clean:
 
 generate:
 	rm -f *.o test parallel_runner generate
-	g++ -std=c++20 -fopenmp generate_random_graph.cpp -o generate
+	mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition generate_random_graph.cpp -o generate
 	
 verify:
 	mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition -fopenmp verify_bridges.cpp bridges.cpp uf.cpp -o verify 
