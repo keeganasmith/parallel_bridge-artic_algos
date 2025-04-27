@@ -1,5 +1,38 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
-total bridges: 1
-total iterations: 2
-./graphs/131072_8.csv took 58.2745s with 1
+total bridges: 380
+total iterations: 3
+./graphs/131072_4.csv took 56.3893s with 1
+total bridges: 754
+total iterations: 4
+./graphs/262144_4.csv took 86.6307s with 2
+total bridges: 1316
+total iterations: 3
+./graphs/524288_4.csv took 76.7511s with 4
+total bridges: 2902
+total iterations: 4
+./graphs/1048576_4.csv took 100.104s with 8
+total bridges: 5658
+total iterations: 4
+./graphs/2097152_4.csv took 112.158s with 16
+total bridges: 11538
+total iterations: 4
+./graphs/4194304_4.csv took 101.375s with 32
+total bridges: 23796
+total iterations: 4
+./graphs/8388608_4.csv took 109.735s with 64
+total bridges: 49648
+total iterations: 4
+./graphs/16777216_4.csv took 121.203s with 128
+total bridges: 108381
+total iterations: 4
+./graphs/33554432_4.csv took 226.923s with 256
+total bridges: 0
+total iterations: 0
+./graphs/67108864_4.csv took 0.30111s with 512
+total bridges: 0
+total iterations: 0
+./graphs/134217728_4.csv took 0.725207s with 1024
+total bridges: 0
+total iterations: 0
+./graphs/268435456_4.csv took 0.43102s with 2048

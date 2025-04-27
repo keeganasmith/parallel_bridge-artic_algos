@@ -90,6 +90,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   while(true){
     static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
     static vector<pair<long long, long long>> new_maybe_bridges;
+    const auto start{std::chrono::steady_clock::now()};
     for(size_t i = 0; i < not_bridges.size(); i++){
       disjoint.async_union(not_bridges.at(i).first, not_bridges.at(i).second);
     }
@@ -107,6 +108,9 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
       });
     }
     world.barrier();
+    const auto end{std::chrono::steady_clock::now()};
+    const std::chrono::duration<double> elapsed_seconds{end - start};
+    //world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
     size_t total_maybe_bridges_size = ygm::sum(maybe_bridges.size(), world);
     size_t total_new_bridges_size = ygm::sum(new_maybe_bridges.size(), world);
     world.barrier();
@@ -118,6 +122,9 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
     disjoint.clear();
     num_iterations++;
     world.barrier();
+    const auto new_end{std::chrono::steady_clock::now()};
+    const std::chrono::duration<double> new_elapsed_seconds{new_end - end};
+    //world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
   }
   size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
   world.cout0("total bridges: ", total_bridges);

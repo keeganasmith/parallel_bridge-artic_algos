@@ -1,19 +1,24 @@
 #!/bin/bash
 #SBATCH --job-name=BRIDGE_STRONG_SCALING
 #SBATCH --time=08:00:00
-#SBATCH --ntasks=2048
+#SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
 #SBATCH --output=strong_scaling_output
 #SBATCH --error=strong_scaling_error
-#SBATCH --partition=staff
+#SBATCH --partition=cpu
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B parallel
-BASE_VERT=524288
-MAX_PROCESSES=3840
-for ((np=4; np<=MAX_PROCESSES; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_8.csv"
+BASE_VERT=1048576
+MAX_PROCESSES=768
+for ((np=6; np<=192; np*=2)); do
+  file_name="./graphs/${BASE_VERT}_4.csv"
   mpirun -np $np parallel_runner $file_name
-  BASE_VERT=$(( BASE_VERT * 2 ))
+done
+echo "Starting cross node benchmarks"
+BASE_VERT=134217728
+for ((np=192; np<=MAX_PROCESSES; np+=192)); do
+  file_name="./graphs/${BASE_VERT}_4.csv"
+  mpirun -np $np parallel_runner $file_name
 done

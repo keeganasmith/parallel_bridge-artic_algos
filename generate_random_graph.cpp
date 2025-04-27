@@ -29,32 +29,28 @@ int main(int argc, char** argv){
           num_vertices *= 2;
           continue;
         }
-        poisson_distribution<int> degree_dist(average_degree);
         vector<Edge> vertex_edges;
         #pragma omp parallel
         {
             int thread_id = omp_get_thread_num();
             #pragma omp for
-            for(long long i = 0; i < num_vertices; i++){
+            for(long long i = 0; i < num_vertices * average_degree; i++){
                 mt19937 gen(thread_id);
-                int num_children = degree_dist(gen);
-                for(long long j = 0; j < num_children; j++){
-                    Edge my_edge;
-                    my_edge.vertex_one = i;
-                    my_edge.vertex_two = generate_random_vertex(num_vertices);
-                    while(my_edge.vertex_one == my_edge.vertex_two){
-                      my_edge.vertex_two = generate_random_vertex(num_vertices);
-                    }
-                    //the following is to guarantee uniqueness since undirected
-                    //graph
-                    #pragma omp critical
-                    {
-                    if(already_added.count(pair<long long, long long>(my_edge.vertex_one, my_edge.vertex_two)) == 0){
-                      vertex_edges.push_back(my_edge);
-                      already_added.emplace(pair<long long, long long>(my_edge.vertex_one, my_edge.vertex_two));
-                      
-                    }
-                    }
+                Edge my_edge;
+                my_edge.vertex_one = generate_random_vertex(num_vertices);
+                my_edge.vertex_two = generate_random_vertex(num_vertices);
+                while(my_edge.vertex_one == my_edge.vertex_two){
+                  my_edge.vertex_two = generate_random_vertex(num_vertices);
+                }
+                //the following is to guarantee uniqueness since undirected
+                //graph
+                #pragma omp critical
+                {
+                if(already_added.count(pair<long long, long long>(my_edge.vertex_one, my_edge.vertex_two)) == 0){
+                  vertex_edges.push_back(my_edge);
+                  already_added.emplace(pair<long long, long long>(my_edge.vertex_one, my_edge.vertex_two));
+                  
+                }
                 }
             }
         }

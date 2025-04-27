@@ -7,7 +7,7 @@
 #SBATCH --mem=370G
 #SBATCH --output=gen_out
 #SBATCH --error=gen_error
-#SBATCH --partition=staff
+#SBATCH --partition=cpu
 
 module purge
 module load WebProxy 
@@ -15,4 +15,9 @@ module load WebProxy
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B generate
-./generate 2000000000 4
+./generate 50000000 8 &
+./generate 50000000 6 &
+./generate 50000000 2 &
+./generate 50000000 16 &
+
+wait

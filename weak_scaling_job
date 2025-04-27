@@ -13,7 +13,7 @@ make -B parallel
 BASE_VERT=131072
 MAX_PROCESSES=3840
 for ((np=1; np<=MAX_PROCESSES; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_8.csv"
+  file_name="./graphs/${BASE_VERT}_4.csv"
   mpirun -np $np parallel_runner $file_name
   BASE_VERT=$(( BASE_VERT * 2 ))
 done
