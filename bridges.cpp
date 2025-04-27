@@ -145,7 +145,12 @@ struct Edge{
       ar(vertex_one, vertex_two, degree_one, degree_two);
   }
 };
-
+bool compare_small(const Edge a, const Edge b){
+  return ((a.degree_one - 1) * (a.degree_two - 1)) < ((b.degree_one - 1) * (b.degree_two - 1));
+}
+bool compare_large(const Edge a, const Edge b){
+  return ((a.degree_one -1) * (a.degree_two -1)) > ((b.degree_one -1) * (b.degree_two - 1));
+}
 void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
   //csv file must be in the format:
   //<vertex one>,<vertex two>
@@ -199,10 +204,12 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     world.barrier();
     //edges connected to vertices with small degrees are more likely to be
     //bridges
-    std::sort(maybe_bridges.begin(), maybe_bridges.end(),
-    [](const Edge& a, const Edge& b) {
-        return ((a.degree_one - 1) * (a.degree_two - 1)) < ((b.degree_one - 1) * (b.degree_two - 1));
-    });
+    if(num_iterations % 2 == 0){
+      std::sort(maybe_bridges.begin(), maybe_bridges.end(), compare_small);
+    }
+    else{
+      std::sort(maybe_bridges.begin(), maybe_bridges.end(), compare_large);
+    }
     world.cout0("first edge degrees: ", maybe_bridges.at(0).degree_one, " ", maybe_bridges.at(0).degree_two);
     world.cout0("last edge degrees: ", maybe_bridges.at(maybe_bridges.size()-1).degree_one, " ", maybe_bridges.at(maybe_bridges.size() -1).degree_two);
     for(int i = 0; i < maybe_bridges.size(); i++){
