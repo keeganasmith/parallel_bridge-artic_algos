@@ -417,3 +417,425 @@ finished 1258288 edges
 finished 1415574 edges
 finished 1572860 edges
 generating file
+finished graph with 402653184 vertices
+3 total processes killed (some possibly by mpirun during cleanup)
+======================================
+ YY    YY     GGGGGG      MM     MM   
+  YY  YY     GG    GG     MMM   MMM   
+   YYYY      GG           MMMM MMMM   
+    YY       GG   GGGG    MM MMM MM   
+    YY       GG    GG     MM     MM   
+    YY       GG    GG     MM     MM   
+    YY        GGGGGG      MM     MM   
+======================================
+COMM_SIZE      = 768
+RANKS_PER_NODE = 192
+NUM_NODES      = 4
+MPI_LIBRARY    = Open MPI v4.1.6
+YGM_VERSION    = v0.8-dev
+======== ENVIRONMENT SETTINGS ========
+YGM_COMM_LOCAL_BUFFER_SIZE_KB   = 4096
+YGM_COMM_REMOTE_BUFFER_SIZE_KB  = 12288
+YGM_COMM_NUM_IRECVS             = 8
+YGM_COMM_IRECVS_SIZE_KB         = 1048576
+YGM_COMM_NUM_ISENDS_WAIT        = 4
+YGM_COMM_ISSEND_FREQ            = 8
+YGM_COMM_ROUTING                = NONE
+======================================
+generating graph
+131072
+1
+131072
+world size is: 768
+got to generate graphs: 131072
+generating graph
+131072
+2
+262144
+world size is: 768
+got to generate graphs: 262144
+generating graph
+131072
+4
+524288
+world size is: 768
+got to generate graphs: 524288
+generating graph
+131072
+8
+1048576
+world size is: 768
+got to generate graphs: 1048576
+generating graph
+131072
+16
+2097152
+world size is: 768
+got to generate graphs: 2097152
+generating graph
+131072
+32
+4194304
+world size is: 768
+got to generate graphs: 4194304
+generating graph
+131072
+64
+8388608
+world size is: 768
+got to generate graphs: 8388608
+generating graph
+131072
+128
+16777216
+world size is: 768
+got to generate graphs: 16777216
+generating graph
+131072
+256
+33554432
+world size is: 768
+got to generate graphs: 33554432
+generating graph
+131072
+512
+67108864
+world size is: 768
+got to generate graphs: 67108864
+generating graph
+131072
+1024
+134217728
+world size is: 768
+got to generate graphs: 134217728
+world size is: 768
+got to generate graphs: 100663296
+world size is: 768
+got to generate graphs: 201326592
+my edges: 1048576
+finished 0 edges
+finished 104857 edges
+finished 209714 edges
+finished 314571 edges
+finished 419428 edges
+finished 524285 edges
+finished 629142 edges
+finished 733999 edges
+finished 838856 edges
+finished 943713 edges
+finished 1048570 edges
+generating file
+finished graph with 201326592 vertices
+world size is: 768
+got to generate graphs: 301989888
+my edges: 1572864
+finished 0 edges
+finished 157286 edges
+finished 314572 edges
+finished 471858 edges
+finished 629144 edges
+finished 786430 edges
+finished 943716 edges
+finished 1101002 edges
+finished 1258288 edges
+finished 1415574 edges
+finished 1572860 edges
+generating file
+finished graph with 301989888 vertices
+world size is: 768
+got to generate graphs: 402653184
+my edges: 2097152
+finished 0 edges
+finished 209715 edges
+finished 419430 edges
+finished 629145 edges
+finished 838860 edges
+finished 1048575 edges
+finished 1258290 edges
+finished 1468005 edges
+finished 1677720 edges
+finished 1887435 edges
+finished 2097150 edges
+generating file
+finished graph with 402653184 vertices
+2 total processes killed (some possibly by mpirun during cleanup)
+======================================
+ YY    YY     GGGGGG      MM     MM   
+  YY  YY     GG    GG     MMM   MMM   
+   YYYY      GG           MMMM MMMM   
+    YY       GG   GGGG    MM MMM MM   
+    YY       GG    GG     MM     MM   
+    YY       GG    GG     MM     MM   
+    YY        GGGGGG      MM     MM   
+======================================
+COMM_SIZE      = 768
+RANKS_PER_NODE = 192
+NUM_NODES      = 4
+MPI_LIBRARY    = Open MPI v4.1.6
+YGM_VERSION    = v0.8-dev
+======== ENVIRONMENT SETTINGS ========
+YGM_COMM_LOCAL_BUFFER_SIZE_KB   = 4096
+YGM_COMM_REMOTE_BUFFER_SIZE_KB  = 12288
+YGM_COMM_NUM_IRECVS             = 8
+YGM_COMM_IRECVS_SIZE_KB         = 1048576
+YGM_COMM_NUM_ISENDS_WAIT        = 4
+YGM_COMM_ISSEND_FREQ            = 8
+YGM_COMM_ROUTING                = NONE
+======================================
+generating graph
+131072
+1
+131072
+world size is: 768
+got to generate graphs: 131072
+generating graph
+131072
+2
+262144
+world size is: 768
+got to generate graphs: 262144
+generating graph
+131072
+4
+524288
+world size is: 768
+got to generate graphs: 524288
+generating graph
+131072
+8
+1048576
+world size is: 768
+got to generate graphs: 1048576
+generating graph
+131072
+16
+2097152
+world size is: 768
+got to generate graphs: 2097152
+generating graph
+131072
+32
+4194304
+world size is: 768
+got to generate graphs: 4194304
+generating graph
+131072
+64
+8388608
+world size is: 768
+got to generate graphs: 8388608
+generating graph
+131072
+128
+16777216
+world size is: 768
+got to generate graphs: 16777216
+generating graph
+131072
+256
+33554432
+world size is: 768
+got to generate graphs: 33554432
+generating graph
+131072
+512
+67108864
+world size is: 768
+got to generate graphs: 67108864
+generating graph
+131072
+1024
+134217728
+world size is: 768
+got to generate graphs: 134217728
+world size is: 768
+got to generate graphs: 100663296
+world size is: 768
+got to generate graphs: 201326592
+my edges: 2097152
+finished 0 edges
+finished 209715 edges
+finished 419430 edges
+finished 629145 edges
+finished 838860 edges
+finished 1048575 edges
+finished 1258290 edges
+finished 1468005 edges
+finished 1677720 edges
+finished 1887435 edges
+finished 2097150 edges
+generating file
+finished graph with 201326592 vertices
+world size is: 768
+got to generate graphs: 301989888
+my edges: 3145728
+finished 0 edges
+finished 314572 edges
+finished 629144 edges
+finished 943716 edges
+finished 1258288 edges
+finished 1572860 edges
+finished 1887432 edges
+finished 2202004 edges
+finished 2516576 edges
+finished 2831148 edges
+finished 3145720 edges
+generating file
+finished graph with 301989888 vertices
+world size is: 768
+got to generate graphs: 402653184
+my edges: 4194304
+finished 0 edges
+finished 419430 edges
+finished 838860 edges
+finished 1258290 edges
+finished 1677720 edges
+finished 2097150 edges
+finished 2516580 edges
+finished 2936010 edges
+finished 3355440 edges
+finished 3774870 edges
+finished 4194300 edges
+generating file
+finished graph with 402653184 vertices
+2 total processes killed (some possibly by mpirun during cleanup)
+======================================
+ YY    YY     GGGGGG      MM     MM   
+  YY  YY     GG    GG     MMM   MMM   
+   YYYY      GG           MMMM MMMM   
+    YY       GG   GGGG    MM MMM MM   
+    YY       GG    GG     MM     MM   
+    YY       GG    GG     MM     MM   
+    YY        GGGGGG      MM     MM   
+======================================
+COMM_SIZE      = 768
+RANKS_PER_NODE = 192
+NUM_NODES      = 4
+MPI_LIBRARY    = Open MPI v4.1.6
+YGM_VERSION    = v0.8-dev
+======== ENVIRONMENT SETTINGS ========
+YGM_COMM_LOCAL_BUFFER_SIZE_KB   = 4096
+YGM_COMM_REMOTE_BUFFER_SIZE_KB  = 12288
+YGM_COMM_NUM_IRECVS             = 8
+YGM_COMM_IRECVS_SIZE_KB         = 1048576
+YGM_COMM_NUM_ISENDS_WAIT        = 4
+YGM_COMM_ISSEND_FREQ            = 8
+YGM_COMM_ROUTING                = NONE
+======================================
+generating graph
+131072
+1
+131072
+world size is: 768
+got to generate graphs: 131072
+generating graph
+131072
+2
+262144
+world size is: 768
+got to generate graphs: 262144
+generating graph
+131072
+4
+524288
+world size is: 768
+got to generate graphs: 524288
+generating graph
+131072
+8
+1048576
+world size is: 768
+got to generate graphs: 1048576
+generating graph
+131072
+16
+2097152
+world size is: 768
+got to generate graphs: 2097152
+generating graph
+131072
+32
+4194304
+world size is: 768
+got to generate graphs: 4194304
+generating graph
+131072
+64
+8388608
+world size is: 768
+got to generate graphs: 8388608
+generating graph
+131072
+128
+16777216
+world size is: 768
+got to generate graphs: 16777216
+generating graph
+131072
+256
+33554432
+world size is: 768
+got to generate graphs: 33554432
+generating graph
+131072
+512
+67108864
+world size is: 768
+got to generate graphs: 67108864
+generating graph
+131072
+1024
+134217728
+world size is: 768
+got to generate graphs: 134217728
+world size is: 768
+got to generate graphs: 100663296
+world size is: 768
+got to generate graphs: 201326592
+my edges: 4194304
+finished 0 edges
+finished 419430 edges
+finished 838860 edges
+finished 1258290 edges
+finished 1677720 edges
+finished 2097150 edges
+finished 2516580 edges
+finished 2936010 edges
+finished 3355440 edges
+finished 3774870 edges
+finished 4194300 edges
+generating file
+finished graph with 201326592 vertices
+world size is: 768
+got to generate graphs: 301989888
+my edges: 6291456
+finished 0 edges
+finished 629145 edges
+finished 1258290 edges
+finished 1887435 edges
+finished 2516580 edges
+finished 3145725 edges
+finished 3774870 edges
+finished 4404015 edges
+finished 5033160 edges
+finished 5662305 edges
+finished 6291450 edges
+generating file
+finished graph with 301989888 vertices
+world size is: 768
+got to generate graphs: 402653184
+my edges: 8388608
+finished 0 edges
+finished 838860 edges
+finished 1677720 edges
+finished 2516580 edges
+finished 3355440 edges
+finished 4194300 edges
+finished 5033160 edges
+finished 5872020 edges
+finished 6710880 edges
+finished 7549740 edges
+finished 8388600 edges
+generating file
+finished graph with 402653184 vertices
+3 total processes killed (some possibly by mpirun during cleanup)

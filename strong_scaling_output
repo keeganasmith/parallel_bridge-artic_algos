@@ -1,5 +1,2 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
-total bridges: 25
-total iterations: 3
-./graphs/16777216_16.csv took 521.211s with 24 regular
