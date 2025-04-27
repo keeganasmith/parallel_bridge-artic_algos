@@ -131,3 +131,101 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   world.cout0("total iterations: ", num_iterations);
   world.barrier();
 }
+
+
+struct Edge{
+	long long vertex_one;
+	long long vertex_two;
+	long long degree_one;
+	long long degree_two;
+	Edge(long long vertex_one, long long vertex_two, long long degree_one, long long degree_two): vertex_one(vertex_one), vertex_two(vertex_two), degree_one(degree_one), degree_two(degree_two){}
+};
+
+void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
+  //csv file must be in the format:
+  //<vertex one>,<vertex two>
+  //<vertex one>,<vertex two>
+  //...
+  //<vertex one>,<vertex two>
+  //and should not contain duplicates
+  static ygm::comm* s_world = &world;
+  vector<string> filenames(1, csv_file);
+  ygm::io::csv_parser parser(world, filenames);
+  static vector<Edge> not_bridges;
+  static vector<Edge> maybe_bridges;
+	static ygm::container::map<long long, long long> vertex_degree_mapping(world);
+  static auto map_increment_function = [](const long long& key, const long long& value){
+    vertex_degree_mapping.local_insert_or_assign(key, value + 1);
+  }; 
+  parser.for_all([](ygm::io::detail::csv_line line){
+    long long vertex_one = line[0].as_integer();
+    long long vertex_two = line[1].as_integer();
+    vertex_degree_mapping.async_visit(vertex_one, map_increment_function);
+    vertex_degree_mapping.async_visit(vertex_two, map_increment_function);
+    maybe_bridges.push_back(Edge(vertex_one, vertex_two, 0, 0)); 
+  });
+
+  std::vector<ygm::ygm_ptr<long long>> degree_one_ptrs;
+  std::vector<ygm::ygm_ptr<long long>> degree_two_ptrs;
+
+  for (size_t i = 0; i < maybe_bridges.size(); i++) {
+      degree_one_ptrs.push_back(ygm::ygm_ptr<long long>(&maybe_bridges.at(i).degree_one));
+      degree_two_ptrs.push_back(ygm::ygm_ptr<long long>(&maybe_bridges.at(i).degree_two));
+  }
+
+  static auto update_degree = [](const long long& key,const long long& value, const ygm::ygm_ptr<long long>& vertex_degree){
+    *vertex_degree = value;
+  };
+  for(size_t i = 0; i < maybe_bridges.size(); i++){
+    degree_one_ptrs.at(i).check(world);
+    degree_two_ptrs.at(i).check(world);
+    vertex_degree_mapping.async_visit(maybe_bridges.at(i).vertex_one, update_degree, degree_one_ptrs.at(i));
+    vertex_degree_mapping.async_visit(maybe_bridges.at(i).vertex_two, update_degree, degree_two_ptrs.at(i));
+  } 
+  
+  int num_iterations = 0;
+  world.barrier();
+  while(true){
+    static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
+    static vector<Edge> new_maybe_bridges;
+    const auto start{std::chrono::steady_clock::now()};
+    for(size_t i = 0; i < not_bridges.size(); i++){
+      disjoint.async_union(not_bridges.at(i).vertex_one, not_bridges.at(i).vertex_two);
+    }
+    world.barrier();
+    
+    for(int i = 0; i < maybe_bridges.size(); i++){
+      Edge edge = maybe_bridges.at(i);
+      disjoint.async_union_and_execute(edge.vertex_one, edge.vertex_two, [edge](const long long& vertex_one, const long long& vertex_two, bool merged){
+        if(!merged){
+          not_bridges.push_back(edge);
+        }
+        else{
+          new_maybe_bridges.push_back(edge);
+        }
+      });
+    }
+    world.barrier();
+    const auto end{std::chrono::steady_clock::now()};
+    const std::chrono::duration<double> elapsed_seconds{end - start};
+    //world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
+    size_t total_maybe_bridges_size = ygm::sum(maybe_bridges.size(), world);
+    size_t total_new_bridges_size = ygm::sum(new_maybe_bridges.size(), world);
+    world.barrier();
+    if(total_maybe_bridges_size == total_new_bridges_size){
+      break;
+    }
+    maybe_bridges = new_maybe_bridges;
+    new_maybe_bridges.clear();
+    disjoint.clear();
+    num_iterations++;
+    world.barrier();
+    const auto new_end{std::chrono::steady_clock::now()};
+    const std::chrono::duration<double> new_elapsed_seconds{new_end - end};
+    //world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
+  }
+  size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
+  world.cout0("total bridges: ", total_bridges);
+  world.cout0("total iterations: ", num_iterations);
+  world.barrier();
+}
