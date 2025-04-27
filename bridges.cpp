@@ -138,7 +138,12 @@ struct Edge{
 	long long vertex_two;
 	long long degree_one;
 	long long degree_two;
+  Edge() : vertex_one(0), vertex_two(0), degree_one(0), degree_two(0) {}
 	Edge(long long vertex_one, long long vertex_two, long long degree_one, long long degree_two): vertex_one(vertex_one), vertex_two(vertex_two), degree_one(degree_one), degree_two(degree_two){}
+  template <class Archive>
+  void serialize(Archive& ar) {
+      ar(vertex_one, vertex_two, degree_one, degree_two);
+  }
 };
 
 void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
@@ -181,8 +186,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     degree_two_ptrs.at(i).check(world);
     vertex_degree_mapping.async_visit(maybe_bridges.at(i).vertex_one, update_degree, degree_one_ptrs.at(i));
     vertex_degree_mapping.async_visit(maybe_bridges.at(i).vertex_two, update_degree, degree_two_ptrs.at(i));
-  } 
-  
+  }  
   int num_iterations = 0;
   world.barrier();
   while(true){
@@ -193,17 +197,24 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
       disjoint.async_union(not_bridges.at(i).vertex_one, not_bridges.at(i).vertex_two);
     }
     world.barrier();
-    
+    //edges connected to vertices with small degrees are more likely to be
+    //bridges
+    std::sort(maybe_bridges.begin(), maybe_bridges.end(),
+    [](const Edge& a, const Edge& b) {
+        return ((a.degree_one - 1) * (a.degree_two - 1)) < ((b.degree_one - 1) * (b.degree_two - 1));
+    });
+    world.cout0("first edge degrees: ", maybe_bridges.at(0).degree_one, " ", maybe_bridges.at(0).degree_two);
+    world.cout0("last edge degrees: ", maybe_bridges.at(maybe_bridges.size()-1).degree_one, " ", maybe_bridges.at(maybe_bridges.size() -1).degree_two);
     for(int i = 0; i < maybe_bridges.size(); i++){
       Edge edge = maybe_bridges.at(i);
-      disjoint.async_union_and_execute(edge.vertex_one, edge.vertex_two, [edge](const long long& vertex_one, const long long& vertex_two, bool merged){
+      disjoint.async_union_and_execute(edge.vertex_one, edge.vertex_two, [](const long long& vertex_one, const long long& vertex_two, bool merged, const Edge& my_edge){
         if(!merged){
-          not_bridges.push_back(edge);
+          not_bridges.push_back(my_edge);
         }
         else{
-          new_maybe_bridges.push_back(edge);
+          new_maybe_bridges.push_back(my_edge);
         }
-      });
+      }, edge);
     }
     world.barrier();
     const auto end{std::chrono::steady_clock::now()};
