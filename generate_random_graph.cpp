@@ -31,6 +31,7 @@ int generate_random_vertex(long long num_vertices){
 void generate_graph(long long num_vertices, long long average_degree, ygm::comm& world){
     static ygm::container::set<pair<long long, long long>> already_added(world);
     size_t world_size = world.size();
+    world.cout0("world size is: ", world_size);
     int rank = world.rank();
     world.cout0("got to generate graphs: ", num_vertices);
     string file_name = "./graphs/" + to_string(num_vertices) + "_" + to_string(average_degree) + ".csv";
@@ -111,7 +112,7 @@ int main(int argc, char** argv){
       generate_graph(num_vertices * int_pow(2, power), average_degree, world);  
       world.barrier();
     }
-    
+    num_vertices = 524288; 
     for(long long vertices = num_vertices * 192; vertices <= 192 * 4 * num_vertices; vertices += 192 * num_vertices){
       generate_graph(vertices, average_degree, world);  
       world.barrier();

@@ -1,9 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=graph_generation
 #SBATCH --time=1-00:00:00
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=192
-#SBATCH --nodes=1
+#SBATCH --ntasks=768
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=370G
 #SBATCH --output=gen_out
 #SBATCH --error=gen_error
@@ -11,14 +10,13 @@
 
 module purge
 module load WebProxy 
-
+PROC=768
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B generate
-./generate 200000000 8 &
-./generate 200000000 6 &
-./generate 200000000 2 &
-./generate 200000000 16 &
-./generate 200000000 4 &
-
-wait
+mpirun -np $PROC generate 200000000 2 
+mpirun -np $PROC generate 200000000 4 
+mpirun -np $PROC generate 200000000 6 
+mpirun -np $PROC generate 200000000 8 
+mpirun -np $PROC generate 200000000 16 
+mpirun -np $PROC generate 200000000 32

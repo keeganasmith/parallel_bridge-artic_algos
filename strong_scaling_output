@@ -1,33 +1,5 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
-total bridges: 2902
-total iterations: 4
-./graphs/1048576_4.csv took 136.246s with 6
-total bridges: 2902
-total iterations: 4
-./graphs/1048576_4.csv took 70.7055s with 12
-total bridges: 2902
-total iterations: 4
-./graphs/1048576_4.csv took 38.1544s with 24
-total bridges: 2902
-total iterations: 4
-./graphs/1048576_4.csv took 27.0683s with 48
-total bridges: 2902
-total iterations: 4
-./graphs/1048576_4.csv took 21.1472s with 96
-total bridges: 2902
+total bridges: 25
 total iterations: 3
-./graphs/1048576_4.csv took 20.954s with 192
-Starting cross node benchmarks
-total bridges: 709474
-total iterations: 5
-./graphs/134217728_4.csv took 587.293s with 192
-total bridges: 709474
-total iterations: 5
-./graphs/134217728_4.csv took 1148.07s with 384
-total bridges: 709474
-total iterations: 5
-./graphs/134217728_4.csv took 1114.22s with 576
-total bridges: 709474
-total iterations: 5
-./graphs/134217728_4.csv took 1387.77s with 768
+./graphs/16777216_16.csv took 521.211s with 24 regular

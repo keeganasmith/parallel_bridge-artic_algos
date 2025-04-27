@@ -194,6 +194,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
   }  
   int num_iterations = 0;
   world.barrier();
+  world.cout0("got to main loop");
   while(true){
     static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
     static vector<Edge> new_maybe_bridges;

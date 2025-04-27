@@ -4,23 +4,21 @@
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
-#SBATCH --output=weak_scaling_output
-#SBATCH --error=weak_scaling_error
+#SBATCH --output=vary_output
+#SBATCH --error=vary_error
 #SBATCH --partition=cpu
 #SBATCH --exclusive
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
-make -B parallel
-BASE_VERT=131072
-MAX_PROCESSES=3840
-for ((np=1; np<=192; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_4.csv"
-  mpirun -np $np parallel_runner $file_name
-  BASE_VERT=$(( BASE_VERT * 2 ))
+BASE_VERT=134217728
+np=192
+for avg in 2 4 6 8 16 32; do
+  file_name="./graphs/${BASE_VERT}_${avg}.csv"
+  mpirun -np $np parallel_runner $file_name 1
 done
-BASE_VERT=131072
-for ((np=192; np<=MAX_PROCESSES; np+=192)); do
-  VERT=$(( BASE_VERT * np ))
-  file_name="./graphs/${VERT}_4.csv"
-  mpirun -np $np parallel_runner $file_name
+echo "starting cross node"
+np=768
+for avg in 2 4 6 8 16 32; do
+  file_name="./graphs/${BASE_VERT}_${avg}.csv"
+  mpirun -np $np parallel_runner $file_name 1
 done

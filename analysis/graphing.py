@@ -23,12 +23,16 @@ def graph(x, y, xlabel: str, ylabel: str, title: str, xlog: bool, ylog: bool):
     plt.savefig(file_name)
     plt.close()
 
-def seperate_single_multi(results):
+def seperate_single_multi(results, vary = False):
     proc = results["proc"]
     i = 0
     while(proc[i] != 192):
         i += 1
-
+    if(vary):
+        i = 0
+        while(proc[i] != 768):
+            i += 1
+        i -= 1
     single = {}
     multi = {}
     for key in results:
@@ -45,7 +49,16 @@ def strong_scaling_graphs(results):
     multi_time = multi["time"]
     graph(single_proc, single_time, "# processors", "time (s)", "Strong Scaling Single Node", True, True)
     graph(multi_proc, multi_time, "# processors", "time (s)", "Strong Scaling Multi-Node", False, False)
+def vary_graphs(result):
+    single, multi = seperate_single_multi(result, True)
+    single_time = single["time"]
+    multi_time = multi["time"]
+    single_degree = single["degree"]
+    multi_degree = multi["degree"]
+    graph(single_degree, single_time, "average degree", "normalized time (s)", "Degree Sensitivity Single Node", True, False)
+    graph(multi_degree, multi_time, "average degree", "normalized time (s)", "Degree Sensitivity Multi Node", True, False)
     
+
 
 def parse(input_file):
     result = ""
@@ -71,7 +84,7 @@ def parse(input_file):
             vertices = int(file_name[0][-1][0]);
             degree = int(file_name[0][-1][1]);
             time = float(split_line_by_spaces[2][:-1])
-            proc = int(split_line_by_spaces[-1])
+            proc = int(split_line_by_spaces[-2])
             vertice_list.append(vertices)
             degree_list.append(degree)
             time_list.append(time)
@@ -90,6 +103,8 @@ def main():
     result = parse(input_file_name)
     if(scale_type == "s"):
         strong_scaling_graphs(result)
+    if(scale_type == "d"):
+        vary_graphs(result)
     
 if __name__ == "__main__":
     main()

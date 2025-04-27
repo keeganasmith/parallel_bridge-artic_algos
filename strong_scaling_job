@@ -10,15 +10,15 @@
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B parallel
-BASE_VERT=1048576
+BASE_VERT=16777216
 MAX_PROCESSES=768
-for ((np=6; np<=192; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_4.csv"
-  mpirun -np $np parallel_runner $file_name
+for ((np=24; np<=192; np*=2)); do
+  file_name="./graphs/${BASE_VERT}_16.csv"
+  mpirun -np $np parallel_runner $file_name 1
 done
 echo "Starting cross node benchmarks"
 BASE_VERT=134217728
 for ((np=192; np<=MAX_PROCESSES; np+=192)); do
-  file_name="./graphs/${BASE_VERT}_4.csv"
-  mpirun -np $np parallel_runner $file_name
+  file_name="./graphs/${BASE_VERT}_16.csv"
+  mpirun -np $np parallel_runner $file_name 1
 done

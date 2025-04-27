@@ -1,840 +1,103 @@
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22167] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+[lc21:21049:0:21049] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x10)
+[lc21:21050:0:21050] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x10)
+[lc21:21048:0:21048] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x10)
+==== backtrace (tid:  21049) ====
+ 0 0x000000000004e5b0 killpg()  ???:0
+ 1 0x00000000004078d8 std::_Function_base::_M_empty()  ???:0
+ 2 0x0000000000414a7c std::function<void ()>::operator bool()  ???:0
+ 3 0x00000000004115a9 std::function<void ()>::function()  ???:0
+ 4 0x000000000040d81f ygm::comm::flush_all_local_and_process_incoming()  ???:0
+ 5 0x000000000040c08a ygm::comm::barrier()  ???:0
+ 6 0x0000000000436f7c ygm::container::detail::disjoint_set_impl<long long, ygm::container::detail::old_hash_partitioner<long long> >::~disjoint_set_impl()  ???:0
+ 7 0x0000000000434a7c ygm::container::disjoint_set<long long, ygm::container::detail::old_hash_partitioner<long long> >::~disjoint_set()  ???:0
+ 8 0x0000000000050ccc __run_exit_handlers()  :0
+ 9 0x0000000000050e00 __GI_exit()  :0
+10 0x000000000003a7ec __libc_start_main()  ???:0
+11 0x000000000040687e _start()  ???:0
+=================================
+[lc21:21049] *** Process received signal ***
+[lc21:21049] Signal: Segmentation fault (11)
+[lc21:21049] Signal code:  (-6)
+[lc21:21049] Failing at address: 0xc50d00005239
+[lc21:21049] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x145f9a05e5b0]
+[lc21:21049] [ 1] parallel_runner[0x4078d8]
+[lc21:21049] [ 2] parallel_runner[0x414a7c]
+[lc21:21049] [ 3] parallel_runner[0x4115a9]
+[lc21:21049] [ 4] parallel_runner[0x40d81f]
+[lc21:21049] [ 5] ==== backtrace (tid:  21050) ====
+ 0 0x000000000004e5b0 killpg()  ???:0
+ 1 0x00000000004078d8 std::_Function_base::_M_empty()  ???:0
+ 2 0x0000000000414a7c std::function<void ()>::operator bool()  ???:0
+ 3 0x00000000004115a9 std::function<void ()>::function()  ???:0
+ 4 0x000000000040d81f ygm::comm::flush_all_local_and_process_incoming()  ???:0
+ 5 0x000000000040c08a ygm::comm::barrier()  ???:0
+ 6 0x0000000000436f7c ygm::container::detail::disjoint_set_impl<long long, ygm::container::detail::old_hash_partitioner<long long> >::~disjoint_set_impl()  ???:0
+ 7 0x0000000000434a7c ygm::container::disjoint_set<long long, ygm::container::detail::old_hash_partitioner<long long> >::~disjoint_set()  ???:0
+ 8 0x0000000000050ccc __run_exit_handlers()  :0
+ 9 0x0000000000050e00 __GI_exit()  :0
+10 0x000000000003a7ec __libc_start_main()  ???:0
+11 0x000000000040687e _start()  ???:0
+=================================
+parallel_runner[0x40c08a]
+[lc21:21049] [ 6] parallel_runner[0x436f7c]
+[lc21:21049] [ 7] parallel_runner[0x434a7c]
+[lc21:21049] [ 8] [lc21:21050] *** Process received signal ***
+[lc21:21050] Signal: Segmentation fault (11)
+[lc21:21050] Signal code:  (-6)
+[lc21:21050] Failing at address: 0xc50d0000523a
+/lib64/libc.so.6(+0x50ccc)[0x145f9a060ccc]
+[lc21:21049] [ 9] /lib64/libc.so.6(on_exit+0x0)[0x145f9a060e00]
+[lc21:21049] [10] [lc21:21050] [ 0] /lib64/libc.so.6(__libc_start_main+0xec)[0x145f9a04a7ec]
+[lc21:21049] [11] parallel_runner[0x40687e]
+[lc21:21049] *** End of error message ***
+/lib64/libc.so.6(+0x4e5b0)[0x1537a96885b0]
+[lc21:21050] [ 1] parallel_runner[0x4078d8]
+[lc21:21050] [ 2] parallel_runner[0x414a7c]
+[lc21:21050] [ 3] parallel_runner[0x4115a9]
+[lc21:21050] [ 4] ==== backtrace (tid:  21048) ====
+ 0 0x000000000004e5b0 killpg()  ???:0
+parallel_runner[0x40d81f]
+[lc21:21050] [ 5] parallel_runner[0x40c08a]
+[lc21:21050] [ 6] parallel_runner[0x436f7c]
+[lc21:21050]  1 0x00000000004078d8 std::_Function_base::_M_empty()  ???:0
+ 2 0x0000000000414a7c std::function<void ()>::operator bool()  ???:0
+ 3 0x00000000004115a9 std::function<void ()>::function()  ???:0
+ 4 0x000000000040d81f ygm::comm::flush_all_local_and_process_incoming()  ???:0
+ 5 0x000000000040c08a ygm::comm::barrier()  ???:0
+ 6 0x0000000000436f7c ygm::container::detail::disjoint_set_impl<long long, ygm::container::detail::old_hash_partitioner<long long> >::~disjoint_set_impl()  ???:0
+ 7 0x0000000000434a7c ygm::container::disjoint_set<long long, ygm::container::detail::old_hash_partitioner<long long> >::~disjoint_set()  ???:0
+ 8 0x0000000000050ccc __run_exit_handlers()  :0
+ 9 0x0000000000050e00 __GI_exit()  :0
+10 0x000000000003a7ec __libc_start_main()  ???:0
+11 0x000000000040687e _start()  ???:0
+=================================
+[ 7] parallel_runner[0x434a7c]
+[lc21:21050] [ 8] /lib64/libc.so.6(+0x50ccc)[0x1537a968accc]
+[lc21:21050] [ 9] /lib64/libc.so.6(on_exit+0x0)[0x1537a968ae00]
+[lc21:21050] [10] [lc21:21048] *** Process received signal ***
+[lc21:21048] Signal: Segmentation fault (11)
+[lc21:21048] Signal code:  (-6)
+[lc21:21048] Failing at address: 0xc50d00005238
+/lib64/libc.so.6(__libc_start_main+0xec)[0x1537a96747ec]
+[lc21:21050] [11] parallel_runner[0x40687e]
+[lc21:21050] *** End of error message ***
+[lc21:21048] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x148cde1d25b0]
+[lc21:21048] [ 1] parallel_runner[0x4078d8]
+[lc21:21048] [ 2] parallel_runner[0x414a7c]
+[lc21:21048] [ 3] parallel_runner[0x4115a9]
+[lc21:21048] [ 4] parallel_runner[0x40d81f]
+[lc21:21048] [ 5] parallel_runner[0x40c08a]
+[lc21:21048] [ 6] parallel_runner[0x436f7c]
+[lc21:21048] [ 7] parallel_runner[0x434a7c]
+[lc21:21048] [ 8] /lib64/libc.so.6(+0x50ccc)[0x148cde1d4ccc]
+[lc21:21048] [ 9] /lib64/libc.so.6(on_exit+0x0)[0x148cde1d4e00]
+[lc21:21048] [10] /lib64/libc.so.6(__libc_start_main+0xec)[0x148cde1be7ec]
+[lc21:21048] [11] parallel_runner[0x40687e]
+[lc21:21048] *** End of error message ***
 --------------------------------------------------------------------------
 Primary job  terminated normally, but 1 process returned
 a non-zero exit code. Per user-direction, the job has been aborted.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14024,1],0]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22188] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22187] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14044,1],1]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22208] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22210] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22207] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22209] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14070,1],1]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22238] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22240] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22242] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[13970,1],3]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22296] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22289] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22279] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22287] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22294] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22292] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22285] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22282] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22283] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22281] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22280] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22278] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22286] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22288] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22284] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14009,1],1]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22367] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22393] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22372] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22375] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22374] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22377] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22376] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22380] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22378] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22382] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22379] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22384] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22381] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22386] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22383] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22389] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22385] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22396] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22388] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22394] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22390] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22397] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22362] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22363] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22364] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22365] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22366] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22369] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22368] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22371] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22370] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22373] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14089,1],5]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22584] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14237,1],52]
-  Exit code:    1
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:22911] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-Primary job  terminated normally, but 1 process returned
-a non-zero exit code. Per user-direction, the job has been aborted.
---------------------------------------------------------------------------
-*** The MPI_Testsome() function was called after MPI_FINALIZE was invoked.
-*** This is disallowed by the MPI standard.
-*** Your MPI job will now abort.
-[lc05:23011] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
---------------------------------------------------------------------------
-mpirun detected that one or more processes exited with non-zero status, thus causing
-the job to be terminated. The first process to do so was:
-
-  Process name: [[14522,1],58]
-  Exit code:    1
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun was unable to find the specified executable file, and therefore
-did not launch the job.  This error was first reported for process
-rank 0; it may have occurred for other processes as well.
-
-NOTE: A common cause for this error is misspelling a mpirun command
-      line parameter option (remember that mpirun interprets the first
-      unrecognized command line token as the executable).
-
-Node:       lc05
-Executable: parallel_runner
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun was unable to find the specified executable file, and therefore
-did not launch the job.  This error was first reported for process
-rank 0; it may have occurred for other processes as well.
-
-NOTE: A common cause for this error is misspelling a mpirun command
-      line parameter option (remember that mpirun interprets the first
-      unrecognized command line token as the executable).
-
-Node:       lc05
-Executable: parallel_runner
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun was unable to find the specified executable file, and therefore
-did not launch the job.  This error was first reported for process
-rank 0; it may have occurred for other processes as well.
-
-NOTE: A common cause for this error is misspelling a mpirun command
-      line parameter option (remember that mpirun interprets the first
-      unrecognized command line token as the executable).
-
-Node:       lc05
-Executable: parallel_runner
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-mpirun was unable to find the specified executable file, and therefore
-did not launch the job.  This error was first reported for process
-rank 0; it may have occurred for other processes as well.
-
-NOTE: A common cause for this error is misspelling a mpirun command
-      line parameter option (remember that mpirun interprets the first
-      unrecognized command line token as the executable).
-
-Node:       lc05
-Executable: parallel_runner
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 960
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 1152
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 1344
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 1536
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 1728
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 1920
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 2112
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 2304
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 2496
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 2688
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 2880
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 3072
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 3264
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 3456
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 3648
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 3840
-slots that were requested by the application:
-
-  parallel_runner
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
+mpirun noticed that process rank 1 with PID 0 on node lc21 exited on signal 11 (Segmentation fault).
 --------------------------------------------------------------------------

@@ -11,16 +11,16 @@
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B parallel
-BASE_VERT=131072
-MAX_PROCESSES=3840
-for ((np=1; np<=192; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_4.csv"
-  mpirun -np $np parallel_runner $file_name
+BASE_VERT=1048576
+MAX_PROCESSES=768
+for ((np=3; np<=192; np*=2)); do
+  file_name="./graphs/${BASE_VERT}_16.csv"
+  mpirun -np $np parallel_runner $file_name 1 
   BASE_VERT=$(( BASE_VERT * 2 ))
 done
-BASE_VERT=131072
+BASE_VERT=524288
 for ((np=192; np<=MAX_PROCESSES; np+=192)); do
   VERT=$(( BASE_VERT * np ))
-  file_name="./graphs/${VERT}_4.csv"
-  mpirun -np $np parallel_runner $file_name
+  file_name="./graphs/${VERT}_16.csv"
+  mpirun -np $np parallel_runner $file_name 1
 done
