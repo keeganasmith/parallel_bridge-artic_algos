@@ -1,0 +1,60 @@
+\documentclass[conference]{IEEEtran}
+
+% Packages
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+% Title
+\title{Your Paper Title Here}
+
+% Authors
+\author{
+\IEEEauthorblockN{Keegan Smith}
+\IEEEauthorblockA{
+\textit{Computer Science} \\
+\textit{Texas A\&M University} \\
+College Station TX, United States \\
+keeganasmith2003@tamu.edu
+}
+}
+
+% Begin Document
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Bridges have important applications in areas like networking, cybersecurity, and biological sciences. In this paper we propose a parallel bridge-finding algorithm which leverages union-find. Our implementation scales to at least 192 cores on a single node. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Parallel Algorithms, Bridges, Graphs
+\end{IEEEkeywords}
+
+\section{Introduction}
+Graphs are used in many fields of science to model systems, thus being able to analyze these graphs quickly and efficiently is important. \\
+In this paper we propose a parallel algorithm for finding bridges in a graph which we show scales to hundreds of cores. \\
+To the best of our knowledge, no other works have shown evidence of a scalable parallel bridge finding algorithm.
+\section{Related Work}
+The world of parallel bridge algorithms is somewhat sparse. Kumar and Singh ~\cite{kumar2021efficient} proposed a parallel bridge finding algorithm focused on DFS, however their implementation only seemed to scale up to 50 cores.
+\section{Methodology}
+Our algorithm uses union find to construct a spanning tree of the graph. Any edge which is not included in the spanning tree is guaranteed not to be a bridge. We construct a spanning tree again, however this time we add the not bridge edges to the union first. We repeatedly construct spanning trees until 
+\section{Results}
+Present your findings and analysis.
+
+\section{Discussion}
+Interpretation of your results.
+
+\section{Conclusion}
+Summary and possible future directions.
+
+\section*{Acknowledgment}
+(Optional) Acknowledge support, grants, or contributions.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}
