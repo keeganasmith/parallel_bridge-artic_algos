@@ -16,3 +16,12 @@ Starting cross node benchmarks
 total bridges: 35122
 total iterations: 3
 ./graphs/301989888_16.csv took 1140.32s with 192 regular
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 1614.41s with 384 regular
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 2514.47s with 576 regular
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 2864.87s with 768 regular

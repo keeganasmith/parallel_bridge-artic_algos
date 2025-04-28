@@ -20,6 +20,7 @@ def graph(x, y, xlabel: str, ylabel: str, title: str, xlog: bool, ylog: bool):
     
     plt.tight_layout()
     file_name = "./graphs/" + title.replace(" ", "_") + ".png"
+    plt.ylim(bottom=0)
     plt.savefig(file_name)
     plt.close()
 
@@ -30,7 +31,7 @@ def seperate_single_multi(results, vary = False):
         i += 1
     if(vary):
         i = 0
-        while(proc[i] != 768):
+        while(i < len(proc) and proc[i] != 768):
             i += 1
         i -= 1
     single = {}
@@ -49,14 +50,24 @@ def strong_scaling_graphs(results):
     multi_time = multi["time"]
     graph(single_proc, single_time, "# processors", "time (s)", "Strong Scaling Single Node", True, True)
     graph(multi_proc, multi_time, "# processors", "time (s)", "Strong Scaling Multi-Node", False, False)
+
 def vary_graphs(result):
     single, multi = seperate_single_multi(result, True)
     single_time = single["time"]
     multi_time = multi["time"]
     single_degree = single["degree"]
     multi_degree = multi["degree"]
-    graph(single_degree, single_time, "average degree", "normalized time (s)", "Degree Sensitivity Single Node", True, False)
-    graph(multi_degree, multi_time, "average degree", "normalized time (s)", "Degree Sensitivity Multi Node", True, False)
+    graph(single_degree, single_time, "average degree", "time (s)", "Degree Sensitivity Single Node", True, False)
+    graph(multi_degree, multi_time, "average degree", "time (s)", "Degree Sensitivity Multi Node", True, False)
+
+def weak_scaling_graphs(result):
+    single, multi = seperate_single_multi(result)
+    single_time = single["time"]
+    multi_time = multi["time"]
+    single_proc = single["proc"]
+    multi_proc = multi["proc"]
+    graph(single_proc, single_time, "# processors", "time (s)", "Weak Scaling Single Node", True, False)
+    graph(multi_proc, multi_time, "# processors", "time (s)", "Weak Scaling Multi Node", False, False)
     
 
 
@@ -105,6 +116,7 @@ def main():
         strong_scaling_graphs(result)
     if(scale_type == "d"):
         vary_graphs(result)
-    
+    if(scale_type == "w"):
+        weak_scaling_graphs(result)
 if __name__ == "__main__":
     main()
