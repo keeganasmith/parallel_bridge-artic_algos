@@ -10,7 +10,7 @@
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B parallel
-BASE_VERT=16777216
+BASE_VERT=33554432
 MAX_PROCESSES=768
 for ((np=24; np<=192; np*=2)); do
   file_name="./graphs/${BASE_VERT}_16.csv"

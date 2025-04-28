@@ -27,3 +27,10 @@ total iterations: 3
 total bridges: 19545
 total iterations: 3
 ./graphs/201326592_16.csv took 1750.59s with 384 regular
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 2110.96s with 576 regular
+total bridges: 90900
+total iterations: 3
+./graphs/402653184_16.csv took 4156.3s with 768 regular
+2 total processes killed (some possibly by mpirun during cleanup)

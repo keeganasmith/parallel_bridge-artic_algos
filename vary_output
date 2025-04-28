@@ -20,3 +20,6 @@ starting cross node
 total bridges: 23910159
 total iterations: 10
 ./graphs/134217728_2.csv took 1432.72s with 768 regular
+total bridges: 5828816
+total iterations: 7
+./graphs/134217728_4.csv took 2240.58s with 768 regular
