@@ -3,3 +3,89 @@ mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp b
 maybe max diff: 1
 maybe max diff: 0
 not max diff: 1
+maybe max diff: 0
+not max diff: 1
+total bridges: 3
+total iterations: 2
+./graphs/1048576_16.csv took 247.795s with 3 regular
+maybe max diff: 1
+maybe max diff: 1
+not max diff: 1
+maybe max diff: 0
+not max diff: 1
+total bridges: 0
+total iterations: 2
+./graphs/2097152_16.csv took 285.211s with 6 regular
+maybe max diff: 2
+maybe max diff: 1
+not max diff: 2
+maybe max diff: 2
+not max diff: 4
+total bridges: 8
+total iterations: 2
+./graphs/4194304_16.csv took 327.358s with 12 regular
+maybe max diff: 3
+maybe max diff: 1
+not max diff: 4
+maybe max diff: 2
+not max diff: 2
+maybe max diff: 2
+not max diff: 2
+total bridges: 10
+total iterations: 3
+./graphs/8388608_16.csv took 379.19s with 24 regular
+maybe max diff: 7
+maybe max diff: 1
+not max diff: 4
+maybe max diff: 2
+not max diff: 7
+maybe max diff: 2
+not max diff: 7
+total bridges: 25
+total iterations: 3
+./graphs/16777216_16.csv took 337.645s with 48 regular
+maybe max diff: 6
+maybe max diff: 1
+not max diff: 7
+maybe max diff: 2
+not max diff: 6
+maybe max diff: 3
+not max diff: 6
+total bridges: 68
+total iterations: 3
+./graphs/33554432_16.csv took 322.422s with 96 regular
+maybe max diff: 12
+maybe max diff: 1
+not max diff: 10
+maybe max diff: 2
+not max diff: 13
+maybe max diff: 3
+not max diff: 13
+total bridges: 294
+total iterations: 3
+./graphs/67108864_16.csv took 404.645s with 192 regular
+maybe max diff: 12
+maybe max diff: 2
+not max diff: 9
+maybe max diff: 5
+not max diff: 8
+maybe max diff: 5
+not max diff: 8
+total bridges: 1134
+total iterations: 3
+./graphs/100663296_16.csv took 1053.68s with 192 regular
+maybe max diff: 17
+maybe max diff: 3
+not max diff: 12
+maybe max diff: 8
+not max diff: 11
+maybe max diff: 10
+not max diff: 12
+total bridges: 19545
+total iterations: 3
+./graphs/201326592_16.csv took 1304.12s with 384 regular
+maybe max diff: 25
+maybe max diff: 4
+not max diff: 18
+maybe max diff: 7
+not max diff: 18

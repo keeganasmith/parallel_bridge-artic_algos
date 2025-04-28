@@ -1,3 +1,68 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
 maybe max diff: 2
+maybe max diff: 2
+not max diff: 2
+maybe max diff: 3
+not max diff: 3
+maybe max diff: 5
+not max diff: 2
+total bridges: 68
+total iterations: 3
+./graphs/33554432_16.csv took 989.646s with 24 regular
+maybe max diff: 4
+maybe max diff: 1
+not max diff: 5
+maybe max diff: 2
+not max diff: 5
+maybe max diff: 2
+not max diff: 5
+total bridges: 68
+total iterations: 3
+./graphs/33554432_16.csv took 534.262s with 48 regular
+maybe max diff: 6
+maybe max diff: 1
+not max diff: 8
+maybe max diff: 2
+not max diff: 6
+maybe max diff: 3
+not max diff: 6
+total bridges: 68
+total iterations: 3
+./graphs/33554432_16.csv took 323.428s with 96 regular
+maybe max diff: 8
+maybe max diff: 1
+not max diff: 9
+maybe max diff: 2
+not max diff: 6
+maybe max diff: 2
+not max diff: 6
+total bridges: 68
+total iterations: 3
+./graphs/33554432_16.csv took 275.328s with 192 regular
+Starting cross node benchmarks
+maybe max diff: 13
+maybe max diff: 5
+not max diff: 8
+maybe max diff: 7
+not max diff: 9
+maybe max diff: 7
+not max diff: 11
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 1244.54s with 192 regular
+maybe max diff: 15
+maybe max diff: 6
+not max diff: 14
+maybe max diff: 7
+not max diff: 12
+maybe max diff: 12
+not max diff: 13
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 1450.94s with 384 regular
+maybe max diff: 25
+maybe max diff: 4
+not max diff: 15
+maybe max diff: 7
+not max diff: 16

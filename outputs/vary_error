@@ -1,0 +1,1014 @@
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58220] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58203] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58186] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58035] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58151] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58247] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:57800] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:57811] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:57989] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58057] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58159] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[38297,1],159]
+  Exit code:    1
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59043] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59002] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58898] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59041] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58665] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58848] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58992] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58827] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58611] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58760] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58677] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:58667] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[37081,1],44]
+  Exit code:    1
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59998] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59719] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59676] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59765] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59608] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59697] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:59723] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[39951,1],188]
+  Exit code:    1
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:60310] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[40893,1],2]
+  Exit code:    1
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61349] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61224] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61381] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61421] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61539] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61376] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61356] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61216] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61367] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61387] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61643] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61145] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61213] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61226] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[39677,1],72]
+  Exit code:    1
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62030] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62151] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62103] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62230] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62213] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62248] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62268] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62287] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62312] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62283] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62317] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62316] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62327] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62325] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62344] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62367] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61985] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61990] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62037] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62034] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62052] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62058] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62056] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62064] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62111] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62120] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62150] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62155] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62143] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62154] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62174] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62178] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62191] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62182] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62197] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62218] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62050] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62047] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62049] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62054] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62051] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62053] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62062] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62060] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62070] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62065] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62068] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62072] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62078] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62073] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62076] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62079] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62086] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62081] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62083] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62092] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62097] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62090] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62096] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62101] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62114] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62108] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62357] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62121] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62128] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62117] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62127] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62134] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62123] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62124] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62132] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62140] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62133] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62131] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62136] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62138] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62135] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62147] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62149] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62152] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62166] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62157] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62159] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62158] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62161] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62169] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62163] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62170] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62183] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62175] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62172] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62192] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62179] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62176] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62200] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62198] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62186] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62210] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62203] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62193] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62189] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62217] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62208] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62202] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62225] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62212] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62206] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62205] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62232] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62209] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62207] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62238] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62369] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62216] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62246] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62236] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62223] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62219] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62252] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62242] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62234] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62228] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62263] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62249] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62240] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62235] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62269] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62257] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62247] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62241] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62277] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62265] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62259] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62280] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62271] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62267] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62262] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62292] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62278] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62273] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62300] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62285] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62275] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62306] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62291] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62311] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62297] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62299] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62315] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62324] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62307] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62322] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62345] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62313] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62319] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62355] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62321] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62346] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62361] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62347] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62351] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62352] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62375] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61976] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61977] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61978] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61979] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61980] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61981] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61983] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61982] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61984] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61987] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61986] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61988] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61989] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61991] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61993] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61992] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62014] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:61994] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62017] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62023] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62019] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62025] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62040] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62039] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62042] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62045] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62041] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62044] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+*** The MPI_Test() function was called after MPI_FINALIZE was invoked.
+*** This is disallowed by the MPI standard.
+*** Your MPI job will now abort.
+[lc12:62048] Local abort after MPI_FINALIZE started completed successfully, but am not able to aggregate error messages, and not able to guarantee that all other processes were killed!
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[34353,1],89]
+  Exit code:    1
+--------------------------------------------------------------------------

@@ -3,3 +3,84 @@ maybe max diff: 12
 not max diff: 8
 maybe max diff: 18
 not max diff: 9
+maybe max diff: 13
+not max diff: 7
+maybe max diff: 16
+not max diff: 9
+maybe max diff: 13
+not max diff: 11
+maybe max diff: 10
+not max diff: 13
+maybe max diff: 11
+not max diff: 14
+maybe max diff: 18
+not max diff: 14
+maybe max diff: 21
+not max diff: 14
+maybe max diff: 15
+not max diff: 15
+total bridges: 23910159
+total iterations: 10
+./graphs/134217728_2.csv took 629.732s with 192 regular
+maybe max diff: 6
+maybe max diff: 7
+not max diff: 8
+maybe max diff: 10
+not max diff: 13
+maybe max diff: 16
+not max diff: 7
+maybe max diff: 11
+not max diff: 7
+maybe max diff: 12
+not max diff: 6
+maybe max diff: 19
+not max diff: 6
+maybe max diff: 17
+not max diff: 6
+total bridges: 5828816
+total iterations: 7
+./graphs/134217728_4.csv took 735.334s with 192 regular
+maybe max diff: 6
+maybe max diff: 8
+not max diff: 8
+maybe max diff: 12
+not max diff: 8
+maybe max diff: 10
+not max diff: 8
+maybe max diff: 14
+not max diff: 8
+maybe max diff: 15
+not max diff: 8
+total bridges: 1420674
+total iterations: 5
+./graphs/134217728_6.csv took 623.902s with 192 regular
+maybe max diff: 10
+maybe max diff: 6
+not max diff: 8
+maybe max diff: 9
+not max diff: 6
+maybe max diff: 14
+not max diff: 6
+maybe max diff: 11
+not max diff: 6
+total bridges: 352658
+total iterations: 4
+./graphs/134217728_8.csv took 572.503s with 192 regular
+maybe max diff: 11
+maybe max diff: 2
+not max diff: 11
+maybe max diff: 4
+not max diff: 7
+maybe max diff: 8
+not max diff: 6
+total bridges: 2220
+total iterations: 3
+./graphs/134217728_16.csv took 671.577s with 192 regular
+maybe max diff: 9
+maybe max diff: 1
+not max diff: 11
+maybe max diff: 1
+not max diff: 12
+total bridges: 2
+total iterations: 2
+./graphs/134217728_32.csv took 910.418s with 192 regular
