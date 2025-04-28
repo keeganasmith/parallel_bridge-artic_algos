@@ -42,7 +42,7 @@ To the best of our knowledge, no other works have shown evidence of a scalable p
 \section{Related Work}
 The world of parallel bridge algorithms is somewhat sparse. Kumar and Singh ~\cite{kumar2021efficient} proposed a parallel bridge finding algorithm focused on DFS, however their implementation only seemed to scale up to 50 cores.
 \section{Methodology}
-Our algorithm uses union find to construct a spanning tree of the graph. Any edge which is not included in the spanning tree is guaranteed not to be a bridge. We construct a spanning tree again, however this time we add the not bridge edges to the union first. We repeatedly construct spanning trees until 
+Our algorithm leverages the fact that a bridge must be present in every spanning tree of a graph. By using this fact we 
 \section{Results}
 Present your findings and analysis.
 
