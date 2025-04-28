@@ -16,9 +16,4 @@ for avg in 2 4 6 8 16 32; do
   file_name="./graphs/${BASE_VERT}_${avg}.csv"
   mpirun -np $np parallel_runner $file_name 1
 done
-echo "starting cross node"
-np=768
-for avg in 2 4 6 8 16 32; do
-  file_name="./graphs/${BASE_VERT}_${avg}.csv"
-  mpirun -np $np parallel_runner $file_name 1
-done
+
