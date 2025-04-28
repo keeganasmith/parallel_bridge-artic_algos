@@ -4,7 +4,7 @@
 #SBATCH --ntasks=192
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
-#SBATCH --output=out
+#SBATCH --output=../outputs/out
 #SBATCH --partition=staff
 cd /scratch/user/u.ks124812/graph_parallel
 source modules.sh

@@ -4,8 +4,8 @@
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
-#SBATCH --output=vary_output
-#SBATCH --error=vary_error
+#SBATCH --output=../outputs/vary_output
+#SBATCH --error=../outputs/vary_error
 #SBATCH --partition=cpu
 #SBATCH --exclusive
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos

@@ -4,8 +4,8 @@
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
-#SBATCH --output=strong_scaling_output
-#SBATCH --error=strong_scaling_error
+#SBATCH --output=../outputs/strong_scaling_output
+#SBATCH --error=../outputs/strong_scaling_error
 #SBATCH --partition=cpu
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh

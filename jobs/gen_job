@@ -4,8 +4,8 @@
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=370G
-#SBATCH --output=gen_out
-#SBATCH --error=gen_error
+#SBATCH --output=../outputs/gen_out
+#SBATCH --error=../outputs/gen_error
 #SBATCH --partition=cpu
 
 module purge

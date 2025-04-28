@@ -67,7 +67,14 @@ vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges) {
   }
   return result;
 }
-
+long get_outlier(ygm::container::bag<pair<long long, long long>>& my_bag, ygm::comm& world){
+  long total_size = my_bag.size();
+  long local_size = my_bag.local_size();
+  double average_size = (double)total_size / (double)world.size();
+  long difference = abs((long)average_size - local_size);
+  long max_diff = ygm::max(difference, world);
+  return max_diff; 
+}
 void find_bridges_parallel(string& csv_file, ygm::comm& world){
   //csv file must be in the format:
   //<vertex one>,<vertex two>
@@ -76,48 +83,60 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   //<vertex one>,<vertex two>
   //and should not contain duplicates
   static ygm::comm* s_world = &world;
+  size_t world_size = world.size();
   vector<string> filenames(1, csv_file);
   ygm::io::csv_parser parser(world, filenames);
-  static vector<pair<long long, long long>> not_bridges;
-  static vector<pair<long long, long long>> maybe_bridges;
+  static ygm::container::bag<pair<long long, long long>> not_bridges(world);
+  static ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
   parser.for_all([](ygm::io::detail::csv_line line){
     long long vertex_one = line[0].as_integer();
     long long vertex_two = line[1].as_integer();
-    maybe_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two)); 
+    maybe_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two)); 
   });
   int num_iterations = 0;
   world.barrier();
+  long maybe_max_diff = get_outlier(maybe_bridges, world);
+  world.cout0("maybe max diff: ", maybe_max_diff);
   while(true){
     static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
-    static vector<pair<long long, long long>> new_maybe_bridges;
+    static ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
     const auto start{std::chrono::steady_clock::now()};
-    for(size_t i = 0; i < not_bridges.size(); i++){
-      disjoint.async_union(not_bridges.at(i).first, not_bridges.at(i).second);
-    }
+    const auto not_bridges_loop = [](const pair<long long, long long>& edge){
+      disjoint.async_union(edge.first, edge.second);
+    };
+    //world.cout0("executing not bridges loop");
+    not_bridges.for_all(not_bridges_loop);
     world.barrier();
-    
-    for(int i = 0; i < maybe_bridges.size(); i++){
-      pair<long long, long long> edge = maybe_bridges.at(i);
+    const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
       disjoint.async_union_and_execute(edge.first, edge.second, [](const long long& vertex_one, const long long& vertex_two, bool merged){
         if(!merged){
-          not_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two));
+          not_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two));
         }
         else{
-          new_maybe_bridges.push_back(pair<long long, long long>(vertex_one, vertex_two));
+          new_maybe_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two));
         }
       });
-    }
+    }; 
+    //world.cout0("executing maybe bridges loop");
+    maybe_bridges.for_all(maybe_bridges_loop);
     world.barrier();
     const auto end{std::chrono::steady_clock::now()};
     const std::chrono::duration<double> elapsed_seconds{end - start};
     //world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
-    size_t total_maybe_bridges_size = ygm::sum(maybe_bridges.size(), world);
-    size_t total_new_bridges_size = ygm::sum(new_maybe_bridges.size(), world);
+    size_t total_maybe_bridges_size = maybe_bridges.size();
+    size_t total_new_bridges_size = new_maybe_bridges.size();
     world.barrier();
     if(total_maybe_bridges_size == total_new_bridges_size){
       break;
     }
-    maybe_bridges = new_maybe_bridges;
+    world.barrier();
+    maybe_bridges.swap(new_maybe_bridges);
+    maybe_max_diff = get_outlier(maybe_bridges, world);
+    world.cout0("maybe max diff: ", maybe_max_diff);
+    long not_max_diff = get_outlier(not_bridges, world);
+    world.cout0("not max diff: ", not_max_diff);
+    //world.cout0("new maybe bridges size: ", total_new_bridges_size);
+    //world.cout0("not bridges size: ", not_bridges.size());
     new_maybe_bridges.clear();
     disjoint.clear();
     num_iterations++;
@@ -126,7 +145,7 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
     const std::chrono::duration<double> new_elapsed_seconds{new_end - end};
     //world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
   }
-  size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
+  size_t total_bridges = maybe_bridges.size();
   world.cout0("total bridges: ", total_bridges);
   world.cout0("total iterations: ", num_iterations);
   world.barrier();
