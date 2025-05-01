@@ -340,7 +340,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     world.cout0("doing label propagation with not_bridges size: ", not_bridges.size());
     label_propagation(not_bridges, ccids, parents, spanning_tree, world);
     world.barrier();
-    world.cout0("spanning tree size after not bridges: ", not_bridges.size());
+    world.cout0("spanning tree size after not bridges: ", spanning_tree.size());
     world.cout0("maybe bridges size for label propagation is: ", maybe_bridges.size());
     label_propagation(maybe_bridges, ccids, parents, spanning_tree, world);
     world.barrier();
@@ -355,7 +355,6 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
           s_world->cout0("edge was found in not edges, so ignoring");
         }
       });
-      
     };
     spanning_tree.for_all(spanning_tree_loop);
     world.barrier();
