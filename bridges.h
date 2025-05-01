@@ -16,4 +16,5 @@ vector<pair<long long, long long>> find_bridges(vector<pair<long long, long long
 vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges);
 void find_bridges_parallel(string& filename, ygm::comm& world);
 void find_bridges_parallel_opt(string& filename, ygm::comm& world);
+void test_disjoint_set(string& csv_file, ygm::comm& world);
 #endif

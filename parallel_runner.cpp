@@ -32,6 +32,12 @@ int main(int argc, char** argv){
     world.barrier();
     return 0;
   }
+  else if(version == "4"){
+    world.cout0(file_name, " with ", world.size(), " processors: ");
+    test_disjoint_set(file_name, world);
+    world.barrier();
+    return 0;
+  }
   const auto finish{std::chrono::steady_clock::now()};
   const std::chrono::duration<double> elapsed_seconds{finish - start};
   world.cout0(file_name," took ",elapsed_seconds," with ", world.size(), " ", version_name);

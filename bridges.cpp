@@ -246,7 +246,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     world.barrier();
     const auto end{std::chrono::steady_clock::now()};
     const std::chrono::duration<double> elapsed_seconds{end - start};
-    //world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
+    world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
     size_t total_maybe_bridges_size = ygm::sum(maybe_bridges.size(), world);
     size_t total_new_bridges_size = ygm::sum(new_maybe_bridges.size(), world);
     world.barrier();
@@ -260,10 +260,48 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     world.barrier();
     const auto new_end{std::chrono::steady_clock::now()};
     const std::chrono::duration<double> new_elapsed_seconds{new_end - end};
-    //world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
+    world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
   }
   size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
   world.cout0("total bridges: ", total_bridges);
   world.cout0("total iterations: ", num_iterations);
   world.barrier();
 }
+
+void test_disjoint_set(string& csv_file, ygm::comm& world){
+  //csv file must be in the format:
+  //<vertex one>,<vertex two>
+  //<vertex one>,<vertex two>
+  //...
+  //<vertex one>,<vertex two>
+  //and should not contain duplicates
+  static ygm::comm* s_world = &world;
+  size_t world_size = world.size();
+  vector<string> filenames(1, csv_file);
+  ygm::io::csv_parser parser(world, filenames);
+  static ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
+  parser.for_all([](ygm::io::detail::csv_line line){
+    long long vertex_one = line[0].as_integer();
+    long long vertex_two = line[1].as_integer();
+    maybe_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two)); 
+  });
+  world.barrier();
+  /*
+  long maybe_max_diff = get_outlier(maybe_bridges, world);
+  world.cout0("maybe max diff: ", maybe_max_diff);
+  */
+	static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
+	static ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
+	const auto start{std::chrono::steady_clock::now()};
+	//world.cout0("executing not bridges loop");
+	world.barrier();
+	const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
+		disjoint.async_union_and_execute(edge.first, edge.second, [](const long long& vertex_one, const long long& vertex_two, bool merged){});
+	}; 
+  maybe_bridges.for_all(maybe_bridges_loop);
+  world.barrier();
+  const auto end{std::chrono::steady_clock::now()};
+  const std::chrono::duration<double> new_elapsed_seconds{end - start};
+  world.cout0("union find took: ", new_elapsed_seconds, " seconds");
+}
+
