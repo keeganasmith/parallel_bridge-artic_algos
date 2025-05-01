@@ -170,102 +170,174 @@ bool compare_small(const Edge a, const Edge b){
 bool compare_large(const Edge a, const Edge b){
   return ((a.degree_one -1) * (a.degree_two -1)) > ((b.degree_one -1) * (b.degree_two - 1));
 }
-void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
-  //csv file must be in the format:
-  //<vertex one>,<vertex two>
-  //<vertex one>,<vertex two>
-  //...
-  //<vertex one>,<vertex two>
-  //and should not contain duplicates
-  static ygm::comm* s_world = &world;
-  vector<string> filenames(1, csv_file);
-  ygm::io::csv_parser parser(world, filenames);
-  static vector<Edge> not_bridges;
-  static vector<Edge> maybe_bridges;
-	static ygm::container::map<long long, long long> vertex_degree_mapping(world);
-  static auto map_increment_function = [](const long long& key, const long long& value){
-    vertex_degree_mapping.local_insert_or_assign(key, value + 1);
-  }; 
-  parser.for_all([](ygm::io::detail::csv_line line){
-    long long vertex_one = line[0].as_integer();
-    long long vertex_two = line[1].as_integer();
-    vertex_degree_mapping.async_visit(vertex_one, map_increment_function);
-    vertex_degree_mapping.async_visit(vertex_two, map_increment_function);
-    maybe_bridges.push_back(Edge(vertex_one, vertex_two, 0, 0)); 
-  });
 
-  std::vector<ygm::ygm_ptr<long long>> degree_one_ptrs;
-  std::vector<ygm::ygm_ptr<long long>> degree_two_ptrs;
-
-  for (size_t i = 0; i < maybe_bridges.size(); i++) {
-      degree_one_ptrs.push_back(ygm::ygm_ptr<long long>(&maybe_bridges.at(i).degree_one));
-      degree_two_ptrs.push_back(ygm::ygm_ptr<long long>(&maybe_bridges.at(i).degree_two));
-  }
-
-  static auto update_degree = [](const long long& key,const long long& value, const ygm::ygm_ptr<long long>& vertex_degree){
-    *vertex_degree = value;
-  };
-  for(size_t i = 0; i < maybe_bridges.size(); i++){
-    degree_one_ptrs.at(i).check(world);
-    degree_two_ptrs.at(i).check(world);
-    vertex_degree_mapping.async_visit(maybe_bridges.at(i).vertex_one, update_degree, degree_one_ptrs.at(i));
-    vertex_degree_mapping.async_visit(maybe_bridges.at(i).vertex_two, update_degree, degree_two_ptrs.at(i));
-  }  
-  int num_iterations = 0;
-  world.barrier();
-  world.cout0("got to main loop");
-  while(true){
-    static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
-    static vector<Edge> new_maybe_bridges;
-    const auto start{std::chrono::steady_clock::now()};
-    for(size_t i = 0; i < not_bridges.size(); i++){
-      disjoint.async_union(not_bridges.at(i).vertex_one, not_bridges.at(i).vertex_two);
-    }
-    world.barrier();
-    //edges connected to vertices with small degrees are more likely to be
-    //bridges
-    if(num_iterations % 2 == 0){
-      std::sort(maybe_bridges.begin(), maybe_bridges.end(), compare_small);
-    }
-    else{
-      std::sort(maybe_bridges.begin(), maybe_bridges.end(), compare_large);
-    }
-    world.cout0("first edge degrees: ", maybe_bridges.at(0).degree_one, " ", maybe_bridges.at(0).degree_two);
-    world.cout0("last edge degrees: ", maybe_bridges.at(maybe_bridges.size()-1).degree_one, " ", maybe_bridges.at(maybe_bridges.size() -1).degree_two);
-    for(int i = 0; i < maybe_bridges.size(); i++){
-      Edge edge = maybe_bridges.at(i);
-      disjoint.async_union_and_execute(edge.vertex_one, edge.vertex_two, [](const long long& vertex_one, const long long& vertex_two, bool merged, const Edge& my_edge){
-        if(!merged){
-          not_bridges.push_back(my_edge);
-        }
-        else{
-          new_maybe_bridges.push_back(my_edge);
-        }
+void label_propagation(ygm::container::set<pair<long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world){
+  /*
+  updated = true;
+  while(updated)
+    updated = false;
+    for [u, v] in edges:
+      if(ccids[u] < ccids[v]):
+        ccids[v] = ccids[u]
+        parents[v] = u
+        updated = true;
+      if(ccids[v] < ccids[u]):
+        ccids[u] = ccids[v]
+        parents[u] = v
+        updated = true;
+  
+  spanning tree edges = []
+  for(int i = 0; i < parents.size(); i++):
+    edge = [i, parents[i]]
+    spanning tree edges += edge
+  */
+  static ygm::container::set<pair<long long>>* s_edges;;
+  static ygm::container::map<long long, long long>* s_ccids;
+  static ygm::container::map<long long, long long>* s_parents;
+  static ygm::container::bag<pair<long long, long long>>* s_spanning_tree;
+  s_edges = &edges;
+  s_ccids = &ccids;
+  s_parents = &parents;
+  s_spanning_tree = &spanning_tree;
+  static bool local_updated;
+  local_updated = true;
+  while(local_updated){
+    local_updated = false;
+    auto edge_loop_function = [](const pair<long long>& edge){
+      s_ccids->async_vist(edge.first, [](const long long& key, const long long& value, const pair<long long>& edge){
+        long long u_ccid = value;
+        s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long>& edge){
+          long long v_ccid = value;
+          //edge is u, v
+          if(u_ccid < v_ccid){
+            s_ccids->async_insert_or_assign(edge.second, u_ccid);
+            s_parents->async_insert_or_assign(edge.second, edge.first);
+            local_updated = true;
+          } 
+          else if(v_ccid < u_ccid){
+            s_ccids->async_insert_or_assign(edge.first, v_ccid);
+            s_parents->async_insert_or_assign(edge.first, edge.second);
+            local_updated = true;
+          }
+        }, u_ccid, edge);
       }, edge);
     }
+    edges.for_all(edge_loop_function);
     world.barrier();
-    const auto end{std::chrono::steady_clock::now()};
-    const std::chrono::duration<double> elapsed_seconds{end - start};
-    world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
-    size_t total_maybe_bridges_size = ygm::sum(maybe_bridges.size(), world);
-    size_t total_new_bridges_size = ygm::sum(new_maybe_bridges.size(), world);
+    //if any proc has local updated, need to continue, reduce all or
+    bool local_updated = world.all_reduce(local_updated, [](const bool& one, const bool& two){
+      return one || two;
+    })
     world.barrier();
-    if(total_maybe_bridges_size == total_new_bridges_size){
+  }
+  spanning_tree.clear();
+  auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
+    pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
+    spanning_tree.async_insert(edge);
+  }
+  s_parents->for_all(parents_loop);
+  world.barrier();
+
+}
+
+
+void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
+  static ygm::comm* s_world = &world;
+  size_t world_size = world.size();
+  vector<string> filenames(1, csv_file);
+  ygm::io::csv_parser parser(world, filenames);
+  static ygm::container::set<pair<long long, long long>> not_bridges(world);
+  static ygm::container::set<pair<long long, long long>> maybe_bridges(world);
+  static ygm::container::bag<pair<long long, long long>> edges(world);
+  parser.for_all([](ygm::io::detail::csv_line line){
+    long long vertex_a = line[0].as_integer();
+    long long vertex_b = line[1].as_integer();
+    long long vertex_one = min(vertex_a, vertex_b);
+    long long vertex_two = max(vertex_a, vertex_b);
+    edges.async_insert(pair<long long, long long>(vertex_one, vertex_two));
+    maybe_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two)); 
+  });
+  while(true){
+    //label propogation
+    /*
+    ccids = []
+    parents = []
+    for [u, v] in edges:
+      ccid[u] = u
+      ccid[v] = v
+      parents[u] = u
+      parents[v] = v
+    
+    updated = true;
+    while(updated)
+      updated = false;
+      for [u, v] in edges:
+        if(ccids[u] < ccids[v]):
+          ccids[v] = ccids[u]
+          parents[v] = u
+          updated = true;
+        if(ccids[v] < ccids[u]):
+          ccids[u] = ccids[v]
+          parents[u] = v
+          updated = true;
+    
+    spanning tree edges = []
+    for(int i = 0; i < parents.size(); i++):
+      edge = [i, parents[i]]
+      spanning tree edges += edge
+    return spanning tree_edges
+
+
+    label_propagation(not_bridge_edges, ccids, parents, dummy_spanning_tree_edges)
+    # do nothing with spanning_tree_edges
+    world.barrier()
+    
+    label_propagation(maybe_bridge_edges, ccids, parents, spanning_tree_edges)
+    maybe_bridges = spanning_tree_edges not in not bridges, i.e:
+    for edge in spanning_tree_edges:
+      if(edge not in not bridges):
+        maybe_bridges += edge
+    
+    not_bridges = edges - maybe_bridges, i.e: 
+    for edge in edges: 
+      if edge not in maybe_bridges:
+        not_bridges += edge
+    
+    if not bridges is the same size, break, else repeat
+
+    to make this efficient, we need to make not_bridges and maybe_bridges sets
+    */
+    ygm::container::map<long long, long long> ccids(world);
+    ygm::container::map<long long, long long> parents(world);
+    ygm::container::bag<pair<long long, long long>> spanning_tree(world);
+    label_propagation(not_bridges, ccids, parents, spanning_tree, world);
+    world.barrier();
+    label_propagation(maybe_bridges, ccids, parents, spanning_tree, world);
+    world.barrier();
+    auto spanning_tree_loop = [](const pair<long long, long long>& edge){
+      size_t edge_count_not_bridges = not_bridges.count(edge);
+      if(edge_count_not_bridges == 0){
+        maybe_bridges.async_insert(edge);
+      } 
+    }
+    spanning_tree.for_all(spanning_tree_loop);
+    world.barrier();
+    size_t old_not_bridge_size = not_bridges.size();
+    not_bridges.clear();
+    auto edges_loop = [](const pair<long long, long long>& edge){
+      size_t edge_count_in_maybe_bridges = maybe_bridges.count(edge);
+      if(edge_count_in_maybe_bridges == 0){
+        not_bridges.async_insert(edge);
+      }
+    }
+    world.barrier();
+    size_t new_not_bridge_size = not_bridges.size();
+    if(new_not_bridge_size == old_not_bridge_size){
       break;
     }
-    maybe_bridges = new_maybe_bridges;
-    new_maybe_bridges.clear();
-    disjoint.clear();
-    num_iterations++;
-    world.barrier();
-    const auto new_end{std::chrono::steady_clock::now()};
-    const std::chrono::duration<double> new_elapsed_seconds{new_end - end};
-    world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
   }
-  size_t total_bridges = ygm::sum(maybe_bridges.size(), world);
-  world.cout0("total bridges: ", total_bridges);
-  world.cout0("total iterations: ", num_iterations);
   world.barrier();
+  world.cout0("Num bridges: ", maybe_bridges.size());
 }
 
 void test_disjoint_set(string& csv_file, ygm::comm& world){
