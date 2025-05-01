@@ -180,8 +180,8 @@ bool compare_large(const Edge a, const Edge b){
   return ((a.degree_one -1) * (a.degree_two -1)) > ((b.degree_one -1) * (b.degree_two - 1));
 }
 void initialize_ccids_parents(ygm::container::bag<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::comm& world){
-  static ygm::container::map<pair<long long, long long>>* s_ccids;
-  static ygm::container::map<pair<long long, long long>>* s_parents;
+  static ygm::container::map<long long, long long>* s_ccids;
+  static ygm::container::map<long long, long long>* s_parents;
   s_ccids = &ccids;
   s_parents = &parents;
   auto edges_loop = [](const pair<long long, long long>& edge){
