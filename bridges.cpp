@@ -221,6 +221,13 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   static ygm::comm* s_world = &world;
   static long long s_sign; //sign is to distinguish not bridge edges from bridge edges. We must save the bridge edges at all costs
   s_sign = sign;
+  auto apply_sign_function = [](const pair<long long, long long>& edge){
+    s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
+      s_ccids->async_insert_or_assign(vertex, value * s_sign);
+    })
+  };
+  edges.for_all(apply_sign_function);
+  world.barrier();
   s_edges = &edges;
   s_ccids = &ccids;
   s_parents = &parents;
@@ -231,9 +238,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     local_updated = false;
     auto edge_loop_function = [](const pair<long long, long long>& edge){
       s_ccids->async_visit(edge.first, [](const long long& key, const long long& value, const pair<long long, long long>& edge){
-        long long u_ccid = value * s_sign;
         s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long, long long>& edge){
-          long long v_ccid = value * s_sign;
           //edge is u, v
           if(u_ccid < v_ccid){
             s_ccids->async_insert_or_assign(edge.second, u_ccid);
