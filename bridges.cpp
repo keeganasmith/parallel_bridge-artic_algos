@@ -347,13 +347,15 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     maybe_bridges.clear();
     world.cout0("spanning tree size: ", spanning_tree.size());
     auto spanning_tree_loop = [](const pair<long long, long long>& edge){
-      size_t edge_count_not_bridges = not_bridges.count(edge);
-      if(edge_count_not_bridges == 0){
-        maybe_bridges.async_insert(edge);
-      } 
-      else{
-        s_world->cout0("edge was found in not edges, so ignoring");
-      }
+      not_bridges.async_visit(edge, [](const pair<long long, long long>& edge, bool present){
+        if(!present){
+          maybe_bridges.async_insert(edge);
+        }
+        else{
+          s_world->cout0("edge was found in not edges, so ignoring");
+        }
+      });
+      
     };
     spanning_tree.for_all(spanning_tree_loop);
     world.barrier();
@@ -362,9 +364,11 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     not_bridges.clear();
     auto edges_loop = [](const pair<long long, long long>& edge){
       size_t edge_count_in_maybe_bridges = maybe_bridges.count(edge);
-      if(edge_count_in_maybe_bridges == 0){
-        not_bridges.async_insert(edge);
-      }
+      maybe_bridges.async_visit(edge, [](const pair<long long, long long>& edge, bool present){
+        if(!present){
+          not_bridges.async_insert(edge);
+        }
+      });
     };
     edges.for_all(edges_loop);
     world.barrier();
