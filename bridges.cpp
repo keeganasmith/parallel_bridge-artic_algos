@@ -213,7 +213,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   while(local_updated){
     local_updated = false;
     auto edge_loop_function = [](const pair<long long, long long>& edge){
-      s_ccids->async_vist(edge.first, [](const long long& key, const long long& value, const pair<long long, long long>& edge){
+      s_ccids->async_visit(edge.first, [](const long long& key, const long long& value, const pair<long long, long long>& edge){
         long long u_ccid = value;
         s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long, long long>& edge){
           long long v_ccid = value;
@@ -230,20 +230,20 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
           }
         }, u_ccid, edge);
       }, edge);
-    }
+    };
     edges.for_all(edge_loop_function);
     world.barrier();
     //if any proc has local updated, need to continue, reduce all or
     bool local_updated = world.all_reduce(local_updated, [](const bool& one, const bool& two){
       return one || two;
-    })
+    });
     world.barrier();
   }
   spanning_tree.clear();
   auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
     pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
     spanning_tree.async_insert(edge);
-  }
+  };
   s_parents->for_all(parents_loop);
   world.barrier();
 
