@@ -323,6 +323,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     world.barrier();
     label_propagation(maybe_bridges, ccids, parents, spanning_tree, world);
     world.barrier();
+    world.cout0("spanning tree size: ", spanning_tree.size());
     auto spanning_tree_loop = [](const pair<long long, long long>& edge){
       size_t edge_count_not_bridges = not_bridges.count(edge);
       if(edge_count_not_bridges == 0){
@@ -331,6 +332,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     };
     spanning_tree.for_all(spanning_tree_loop);
     world.barrier();
+    world.cout0("maybe bridges size: ", maybe_bridges.size());
     size_t old_not_bridge_size = not_bridges.size();
     not_bridges.clear();
     auto edges_loop = [](const pair<long long, long long>& edge){
