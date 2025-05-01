@@ -257,13 +257,10 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   spanning_tree.clear();
   auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
     if(child_vertex != parent_vertex){
-      s_world->cout0("child vertex: ", child_vertex);
-      s_world->cout0("parent vertex: ", parent_vertex);
       pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
       s_spanning_tree->async_insert(edge);
     }
   };
-  world.cout0("s_parents size: ", s_parents->size());
   s_parents->for_all(parents_loop);
   world.barrier();
 
@@ -342,6 +339,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     initialize_ccids_parents(edges, ccids, parents, world);
     label_propagation(not_bridges, ccids, parents, spanning_tree, world);
     world.barrier();
+    world.cout0("spanning tree size after not bridges: ", not_bridges.size());
     label_propagation(maybe_bridges, ccids, parents, spanning_tree, world);
     world.barrier();
     maybe_bridges.clear();
