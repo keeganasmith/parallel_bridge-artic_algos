@@ -361,6 +361,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
         not_bridges.async_insert(edge);
       }
     };
+    edges.for_all(edges_loop);
     world.barrier();
     size_t new_not_bridge_size = not_bridges.size();
     if(new_not_bridge_size == old_not_bridge_size){
