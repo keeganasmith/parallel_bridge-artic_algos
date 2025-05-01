@@ -1,5 +1,14 @@
 #include "bridges.h"
 using std::cout, std::vector, std::pair, std::endl;
+namespace std {
+  template<>
+  struct hash<std::pair<long long,long long>> {
+    size_t operator()(std::pair<long long,long long> const& p) const noexcept {
+      // e.g. boost’s combine, or a simple mix:
+      return (uint64_t(p.first) * 11400714819323198485ULL) ^ (uint64_t(p.second) * 14029467366897019727ULL);
+    }
+  };
+}
 vector<pair<long long, long long>> find_bridges(vector<pair<long long, long long>>& edges, size_t num_vertices){
   vector<pair<long long, long long>> not_bridges;
   vector<pair<long long, long long>> maybe_bridges(edges);
