@@ -364,9 +364,6 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
         if(!present){
           maybe_bridges.async_insert(edge);
         }
-        else{
-          s_world->cout0("edge was found in not edges, so ignoring");
-        }
       });
     };
     spanning_tree.for_all(spanning_tree_loop);
