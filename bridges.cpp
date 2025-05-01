@@ -228,6 +228,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   };
   edges.for_all(apply_sign_function);
   world.barrier();
+  world.cout0("finished apply sign function");
   s_edges = &edges;
   s_ccids = &ccids;
   s_parents = &parents;
