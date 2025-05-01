@@ -1,5 +1,5 @@
 #include "bridges.h"
-using std::cout, std::vector, std::pair, std::endl;
+using std::cout, std::vector, std::pair, std::endl, std::max, std::min;
 namespace std {
   template<>
   struct hash<std::pair<long long,long long>> {
@@ -242,7 +242,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   spanning_tree.clear();
   auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
     pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
-    spanning_tree.async_insert(edge);
+    s_spanning_tree->async_insert(edge);
   };
   s_parents->for_all(parents_loop);
   world.barrier();
@@ -328,7 +328,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
       if(edge_count_not_bridges == 0){
         maybe_bridges.async_insert(edge);
       } 
-    }
+    };
     spanning_tree.for_all(spanning_tree_loop);
     world.barrier();
     size_t old_not_bridge_size = not_bridges.size();
@@ -338,7 +338,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
       if(edge_count_in_maybe_bridges == 0){
         not_bridges.async_insert(edge);
       }
-    }
+    };
     world.barrier();
     size_t new_not_bridge_size = not_bridges.size();
     if(new_not_bridge_size == old_not_bridge_size){
