@@ -256,8 +256,10 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   }
   spanning_tree.clear();
   auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
-    pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
-    s_spanning_tree->async_insert(edge);
+    if(child_vertex != parent_vertex){
+      pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
+      s_spanning_tree->async_insert(edge);
+    }
   };
   world.cout0("s_parents size: ", s_parents->size());
   s_parents->for_all(parents_loop);
