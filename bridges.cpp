@@ -240,10 +240,10 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     local_updated = false;
     auto edge_loop_function = [](const pair<long long, long long>& edge){
       s_ccids->async_visit(edge.first, [](const long long& key, const long long& value, const pair<long long, long long>& edge){
-        long long u_ccid = key;
+        long long u_ccid = value;
         s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long, long long>& edge){
           //edge is u, v
-          long long v_ccid = edge.second;
+          long long v_ccid = value;
           if(u_ccid < v_ccid){
             s_ccids->async_insert_or_assign(edge.second, u_ccid);
             s_parents->async_insert_or_assign(edge.second, edge.first);
