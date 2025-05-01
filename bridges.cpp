@@ -219,6 +219,12 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   static ygm::container::map<long long, long long>* s_parents;
   static ygm::container::bag<pair<long long, long long>>* s_spanning_tree;
   static ygm::comm* s_world = &world;
+  s_edges = &edges;
+  s_ccids = &ccids;
+  s_parents = &parents;
+  s_spanning_tree = &spanning_tree;
+  static bool local_updated;
+  local_updated = true;
   static long long s_sign; //sign is to distinguish not bridge edges from bridge edges. We must save the bridge edges at all costs
   s_sign = sign;
   auto apply_sign_function = [](const pair<long long, long long>& edge){
@@ -229,12 +235,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   edges.for_all(apply_sign_function);
   world.barrier();
   world.cout0("finished apply sign function");
-  s_edges = &edges;
-  s_ccids = &ccids;
-  s_parents = &parents;
-  s_spanning_tree = &spanning_tree;
-  static bool local_updated;
-  local_updated = true;
+  
   while(local_updated){
     local_updated = false;
     auto edge_loop_function = [](const pair<long long, long long>& edge){
