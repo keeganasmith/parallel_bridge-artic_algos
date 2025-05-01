@@ -179,6 +179,16 @@ bool compare_small(const Edge a, const Edge b){
 bool compare_large(const Edge a, const Edge b){
   return ((a.degree_one -1) * (a.degree_two -1)) > ((b.degree_one -1) * (b.degree_two - 1));
 }
+void initialize_ccids_parents(ygm::container::bag<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::comm& world){
+  auto edges_loop = [](const pair<long long, long long>& edge){
+    ccids.async_insert_or_assign(edge.first, edge.first);
+    ccids.async_insert_or_assign(edge.second, edge.second);
+    parents.async_insert_or_assign(edge.first, edge.first);
+    parents.async_insert_or_assign(edge.second, edge.second);
+  };
+  edges.for_all(edge_loop);
+  world.barrier();
+}
 
 void label_propagation(ygm::container::set<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world){
   /*
@@ -323,6 +333,7 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     ygm::container::map<long long, long long> ccids(world);
     ygm::container::map<long long, long long> parents(world);
     ygm::container::bag<pair<long long, long long>> spanning_tree(world);
+    initialize_ccids_parents(edges, ccids, parents, world);
     label_propagation(not_bridges, ccids, parents, spanning_tree, world);
     world.barrier();
     label_propagation(maybe_bridges, ccids, parents, spanning_tree, world);
