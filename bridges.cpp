@@ -219,11 +219,13 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
           long long v_ccid = value;
           //edge is u, v
           if(u_ccid < v_ccid){
+            world.cout0("got here");
             s_ccids->async_insert_or_assign(edge.second, u_ccid);
             s_parents->async_insert_or_assign(edge.second, edge.first);
             local_updated = true;
           } 
           else if(v_ccid < u_ccid){
+            world.cout("got here");
             s_ccids->async_insert_or_assign(edge.first, v_ccid);
             s_parents->async_insert_or_assign(edge.first, edge.second);
             local_updated = true;
