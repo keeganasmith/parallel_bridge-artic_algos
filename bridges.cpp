@@ -180,13 +180,17 @@ bool compare_large(const Edge a, const Edge b){
   return ((a.degree_one -1) * (a.degree_two -1)) > ((b.degree_one -1) * (b.degree_two - 1));
 }
 void initialize_ccids_parents(ygm::container::bag<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::comm& world){
+  static ygm::container::bag<pair<long long, long long>>* s_ccids;
+  static ygm::container::bag<pair<long long, long long>>* s_parents;
+  s_ccids = &ccids;
+  s_parents = &parents;
   auto edges_loop = [](const pair<long long, long long>& edge){
-    ccids.async_insert_or_assign(edge.first, edge.first);
-    ccids.async_insert_or_assign(edge.second, edge.second);
-    parents.async_insert_or_assign(edge.first, edge.first);
-    parents.async_insert_or_assign(edge.second, edge.second);
+    s_ccids->async_insert_or_assign(edge.first, edge.first);
+    s_ccids->async_insert_or_assign(edge.second, edge.second);
+    s_parents->async_insert_or_assign(edge.first, edge.first);
+    s_parents->async_insert_or_assign(edge.second, edge.second);
   };
-  edges.for_all(edge_loop);
+  edges.for_all(edges_loop);
   world.barrier();
 }
 
