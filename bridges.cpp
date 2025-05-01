@@ -180,7 +180,7 @@ bool compare_large(const Edge a, const Edge b){
   return ((a.degree_one -1) * (a.degree_two -1)) > ((b.degree_one -1) * (b.degree_two - 1));
 }
 
-void label_propagation(ygm::container::set<pair<long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world){
+void label_propagation(ygm::container::set<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world){
   /*
   updated = true;
   while(updated)
@@ -200,7 +200,7 @@ void label_propagation(ygm::container::set<pair<long long>>& edges, ygm::contain
     edge = [i, parents[i]]
     spanning tree edges += edge
   */
-  static ygm::container::set<pair<long long>>* s_edges;;
+  static ygm::container::set<pair<long long, long long>>* s_edges;;
   static ygm::container::map<long long, long long>* s_ccids;
   static ygm::container::map<long long, long long>* s_parents;
   static ygm::container::bag<pair<long long, long long>>* s_spanning_tree;
@@ -212,10 +212,10 @@ void label_propagation(ygm::container::set<pair<long long>>& edges, ygm::contain
   local_updated = true;
   while(local_updated){
     local_updated = false;
-    auto edge_loop_function = [](const pair<long long>& edge){
-      s_ccids->async_vist(edge.first, [](const long long& key, const long long& value, const pair<long long>& edge){
+    auto edge_loop_function = [](const pair<long long, long long>& edge){
+      s_ccids->async_vist(edge.first, [](const long long& key, const long long& value, const pair<long long, long long>& edge){
         long long u_ccid = value;
-        s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long>& edge){
+        s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long, long long>& edge){
           long long v_ccid = value;
           //edge is u, v
           if(u_ccid < v_ccid){
