@@ -194,7 +194,7 @@ void initialize_ccids_parents(ygm::container::bag<pair<long long, long long>>& e
   world.barrier();
 }
 
-void label_propagation(ygm::container::set<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world){
+void label_propagation(ygm::container::set<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world, long long sign){
   /*
   updated = true;
   while(updated)
@@ -219,6 +219,8 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   static ygm::container::map<long long, long long>* s_parents;
   static ygm::container::bag<pair<long long, long long>>* s_spanning_tree;
   static ygm::comm* s_world = &world;
+  static long long s_sign; //sign is to distinguish not bridge edges from bridge edges. We must save the bridge edges at all costs
+  s_sign = sign;
   s_edges = &edges;
   s_ccids = &ccids;
   s_parents = &parents;
@@ -229,9 +231,9 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     local_updated = false;
     auto edge_loop_function = [](const pair<long long, long long>& edge){
       s_ccids->async_visit(edge.first, [](const long long& key, const long long& value, const pair<long long, long long>& edge){
-        long long u_ccid = value;
+        long long u_ccid = value * s_sign;
         s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long, long long>& edge){
-          long long v_ccid = value;
+          long long v_ccid = value * s_sign;
           //edge is u, v
           if(u_ccid < v_ccid){
             s_ccids->async_insert_or_assign(edge.second, u_ccid);
@@ -338,11 +340,11 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     ygm::container::bag<pair<long long, long long>> spanning_tree(world);
     initialize_ccids_parents(edges, ccids, parents, world);
     world.cout0("doing label propagation with not_bridges size: ", not_bridges.size());
-    label_propagation(not_bridges, ccids, parents, spanning_tree, world);
+    label_propagation(not_bridges, ccids, parents, spanning_tree, world, -1); //-1 indicates not bridges
     world.barrier();
     world.cout0("spanning tree size after not bridges: ", spanning_tree.size());
     world.cout0("maybe bridges size for label propagation is: ", maybe_bridges.size());
-    label_propagation(maybe_bridges, ccids, parents, spanning_tree, world);
+    label_propagation(maybe_bridges, ccids, parents, spanning_tree, world, 1);
     world.barrier();
     maybe_bridges.clear();
     world.cout0("spanning tree size: ", spanning_tree.size());
