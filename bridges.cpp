@@ -234,12 +234,12 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
       }
       if(s_sign < 0 && value > 0){
         s_world->cout0("got here");
-        s_ccids->local_insert_or_assign(vertex, value * s_sign);
+        s_ccids->local_insert_or_assign(vertex, vertex * s_sign);
       }
     });
     s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
       if(s_sign < 0 && value > 0){
-        s_ccids->local_insert_or_assign(vertex, value * s_sign);
+        s_ccids->local_insert_or_assign(vertex, vertex * s_sign);
       }
     });
   };
