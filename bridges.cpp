@@ -267,7 +267,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     edges.for_all(edge_loop_function);
     world.barrier();
     //if any proc has local updated, need to continue, reduce all or
-    bool local_updated = world.all_reduce(local_updated, [](const bool& one, const bool& two){
+    local_updated = world.all_reduce(local_updated, [](const bool& one, const bool& two){
       return one || two;
     });
     world.barrier();
