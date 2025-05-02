@@ -233,6 +233,11 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
         s_ccids->async_insert_or_assign(vertex, value * s_sign);
       }
     });
+    s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
+      if(value / s_sign < 0){
+        s_ccids->asnyc_insert_or_assign(vertex, value * s_sign);
+      }
+    })
   };
   edges.for_all(apply_sign_function);
   world.barrier();
