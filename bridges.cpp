@@ -229,17 +229,15 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   s_sign = sign;
   auto apply_sign_function = [](const pair<long long, long long>& edge){
     s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
-      if(s_sign < 0){
-        s_world->cout0("value: ", value);
-      }
+      
       if(s_sign < 0 && value > 0){
         s_world->cout0("got here");
-        s_ccids->local_insert_or_assign(vertex, vertex * s_sign);
+        s_ccids->async_insert_or_assign(vertex, vertex * s_sign);
       }
     });
     s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
       if(s_sign < 0 && value > 0){
-        s_ccids->local_insert_or_assign(vertex, vertex * s_sign);
+        s_ccids->async_insert_or_assign(vertex, vertex * s_sign);
       }
     });
   };
