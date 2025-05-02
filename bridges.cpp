@@ -230,7 +230,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   auto apply_sign_function = [](const pair<long long, long long>& edge){
     s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
       if(value / s_sign < 0){
-        world.cout0("got here");
+        s_world.cout0("got here");
         s_ccids->local_insert_or_assign(vertex, value * s_sign);
       }
     });
