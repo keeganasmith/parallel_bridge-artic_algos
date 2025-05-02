@@ -252,11 +252,18 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
           //edge is u, v
           long long v_ccid = value;
           if(u_ccid < v_ccid){
+            if(edge.first == 1 && edge.second == 0){
+              s_world->cout0("0 was: ", v_ccid, " 1 was: ", u_ccid);
+            }
             s_ccids->async_insert_or_assign(edge.second, u_ccid);
             s_parents->async_insert_or_assign(edge.second, edge.first);
             local_updated = true;
           } 
           else if(v_ccid < u_ccid){
+             if(edge.second == 1 && edge.first == 0){
+              s_world->cout0("0 was: ", u_ccid, " 1 was: ", v_ccid);
+            }
+
             s_ccids->async_insert_or_assign(edge.first, v_ccid);
             s_parents->async_insert_or_assign(edge.first, edge.second);
             local_updated = true;
@@ -277,6 +284,7 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     if(child_vertex != parent_vertex){
       pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
       s_spanning_tree->async_insert(edge);
+      s_world->cout0("edge: ", child_vertex, ", ", parent_vertex);
     }
   };
   s_parents->for_all(parents_loop);
