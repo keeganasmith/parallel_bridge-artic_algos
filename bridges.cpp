@@ -230,12 +230,12 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   auto apply_sign_function = [](const pair<long long, long long>& edge){
     s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
       
-      if(s_sign < 0 && value == 0){
+      if(s_sign < 0 && value > 0){
         s_ccids->async_insert_or_assign(vertex, vertex * s_sign);
       }
     });
     s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
-      if(s_sign < 0 && value == 0){
+      if(s_sign < 0 && value > 0){
         s_ccids->async_insert_or_assign(vertex, vertex * s_sign);
       }
     });
@@ -243,7 +243,6 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   edges.for_all(apply_sign_function);
   world.barrier();
   world.cout0("finished apply sign function");
-  
   while(local_updated){
     local_updated = false;
     auto edge_loop_function = [](const pair<long long, long long>& edge){
@@ -356,13 +355,14 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     ygm::container::map<long long, long long> parents(world);
     ygm::container::bag<pair<long long, long long>> spanning_tree(world);
     initialize_ccids_parents(edges, ccids, parents, world);
+    
+    world.cout0("not bridges size for label propagation is: ", not_bridges.size());
+    label_propagation(not_bridges, ccids, parents, spanning_tree, world, -1); //-1 indicates not bridges
+    world.barrier();
     world.cout0("maybe bridges size for label propagation is: ", maybe_bridges.size());
     label_propagation(maybe_bridges, ccids, parents, spanning_tree, world, 1);
     world.barrier();
     world.cout0("spanning tree size after maybe bridges: ", spanning_tree.size());
-    world.cout0("not bridges size for label propagation is: ", not_bridges.size());
-    label_propagation(not_bridges, ccids, parents, spanning_tree, world, -1); //-1 indicates not bridges
-    world.barrier();
     maybe_bridges.clear();
     world.cout0("spanning tree size: ", spanning_tree.size());
     auto spanning_tree_loop = [](const pair<long long, long long>& edge){
