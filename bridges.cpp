@@ -355,12 +355,12 @@ void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
     ygm::container::map<long long, long long> parents(world);
     ygm::container::bag<pair<long long, long long>> spanning_tree(world);
     initialize_ccids_parents(edges, ccids, parents, world);
-    world.cout0("doing label propagation with not_bridges size: ", not_bridges.size());
-    label_propagation(not_bridges, ccids, parents, spanning_tree, world, -1); //-1 indicates not bridges
-    world.barrier();
-    world.cout0("spanning tree size after not bridges: ", spanning_tree.size());
     world.cout0("maybe bridges size for label propagation is: ", maybe_bridges.size());
     label_propagation(maybe_bridges, ccids, parents, spanning_tree, world, 1);
+    world.barrier();
+    world.cout0("spanning tree size after maybe bridges: ", spanning_tree.size());
+    world.cout0("not bridges size for label propagation is: ", not_bridges.size());
+    label_propagation(not_bridges, ccids, parents, spanning_tree, world, -1); //-1 indicates not bridges
     world.barrier();
     maybe_bridges.clear();
     world.cout0("spanning tree size: ", spanning_tree.size());
