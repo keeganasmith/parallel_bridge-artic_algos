@@ -272,6 +272,20 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     });
     world.barrier();
   }
+  if(sign == -1){
+    auto tear_it_function = [](const pair<long long, long long>& edge){
+      s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
+        s_ccids->async_insert_or_assign(vertex, INT64_MIN);
+        
+      });
+      s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
+        if(s_sign < 0 && value > 0){
+          s_ccids->async_insert_or_assign(vertex, INT64_MIN);
+        }
+      });
+    };
+    edges.for_all(tear_it_function);
+  }
   spanning_tree.clear();
   auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
     if(child_vertex != parent_vertex){
