@@ -1,0 +1,11 @@
+rm -f *.o test parallel_runner
+mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
+Starting cross node benchmarks
+./graphs/301989888_16.csv with 192 processors: 
+union find took: 227.401s seconds
+./graphs/301989888_16.csv with 384 processors: 
+union find took: 238.17s seconds
+./graphs/301989888_16.csv with 576 processors: 
+union find took: 374.365s seconds
+./graphs/301989888_16.csv with 768 processors: 
+union find took: 466.069s seconds

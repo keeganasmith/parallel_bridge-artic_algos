@@ -17,10 +17,8 @@ vector<pair<long long, long long>> parse_graph_csv(string file_name){
   return result;
 }
 int main(int argc, char** argv){
-  long long size = stol(argv[1]);
-  long long degree = stol(argv[2]);
-  string file_name = "./graphs/" + to_string(size) + "_" + to_string(degree) + ".csv";
+  string file_name(argv[1]);
   vector<pair<long long, long long>> edge_list = parse_graph_csv(file_name);
-  vector<pair<long long, long long>> result = find_bridges(edge_list, size);
+  vector<pair<long long, long long>> result = find_bridges(edge_list, 20);
   cout << "num bridges: " << result.size();
 }

@@ -1,24 +1,24 @@
 #!/bin/bash
-#SBATCH --job-name=BRIDGE_STRONG_SCALING
+#SBATCH --job-name=UNION_SCALING
 #SBATCH --time=08:00:00
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=371G
-#SBATCH --output=../outputs/strong_scaling_output
-#SBATCH --error=../outputs/strong_scaling_error
+#SBATCH --output=../outputs/union_scaling_output
+#SBATCH --error=../outputs/union_scaling_error
 #SBATCH --partition=cpu
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B parallel
 BASE_VERT=33554432
 MAX_PROCESSES=768
-for ((np=24; np<=192; np*=2)); do
-  file_name="./graphs/${BASE_VERT}_2.csv"
+for ((np=200; np<=192; np*=2)); do
+  file_name="./graphs/${BASE_VERT}_16.csv"
   mpirun -np $np parallel_runner $file_name 1
 done
 echo "Starting cross node benchmarks"
 BASE_VERT=301989888
 for ((np=192; np<=MAX_PROCESSES; np+=192)); do
-  file_name="./graphs/${BASE_VERT}_2.csv"
-  mpirun -np $np parallel_runner $file_name 1
+  file_name="./graphs/${BASE_VERT}_16.csv"
+  mpirun -np $np parallel_runner $file_name 4
 done

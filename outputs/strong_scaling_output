@@ -1,68 +1,31 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
-maybe max diff: 2
-maybe max diff: 2
-not max diff: 2
-maybe max diff: 3
-not max diff: 3
-maybe max diff: 5
-not max diff: 2
-total bridges: 68
-total iterations: 3
-./graphs/33554432_16.csv took 989.646s with 24 regular
-maybe max diff: 4
-maybe max diff: 1
-not max diff: 5
-maybe max diff: 2
-not max diff: 5
-maybe max diff: 2
-not max diff: 5
-total bridges: 68
-total iterations: 3
-./graphs/33554432_16.csv took 534.262s with 48 regular
-maybe max diff: 6
-maybe max diff: 1
-not max diff: 8
-maybe max diff: 2
-not max diff: 6
-maybe max diff: 3
-not max diff: 6
-total bridges: 68
-total iterations: 3
-./graphs/33554432_16.csv took 323.428s with 96 regular
-maybe max diff: 8
-maybe max diff: 1
-not max diff: 9
-maybe max diff: 2
-not max diff: 6
-maybe max diff: 2
-not max diff: 6
-total bridges: 68
-total iterations: 3
-./graphs/33554432_16.csv took 275.328s with 192 regular
+total bridges: 6053169
+total iterations: 11
+./graphs/33554432_2.csv took 957.059 with 24 regular
+./graphs/33554432_2.csv took 965.995s with 24 regular
+total bridges: 6053169
+total iterations: 11
+./graphs/33554432_2.csv took 527.312 with 48 regular
+./graphs/33554432_2.csv took 531.804s with 48 regular
+total bridges: 6053169
+total iterations: 11
+./graphs/33554432_2.csv took 333.943 with 96 regular
+./graphs/33554432_2.csv took 336.202s with 96 regular
+total bridges: 6053169
+total iterations: 12
+./graphs/33554432_2.csv took 275.09 with 192 regular
+./graphs/33554432_2.csv took 277.349s with 192 regular
 Starting cross node benchmarks
-maybe max diff: 13
-maybe max diff: 5
-not max diff: 8
-maybe max diff: 7
-not max diff: 9
-maybe max diff: 7
-not max diff: 11
-total bridges: 35122
-total iterations: 3
-./graphs/301989888_16.csv took 1244.54s with 192 regular
-maybe max diff: 15
-maybe max diff: 6
-not max diff: 14
-maybe max diff: 7
-not max diff: 12
-maybe max diff: 12
-not max diff: 13
-total bridges: 35122
-total iterations: 3
-./graphs/301989888_16.csv took 1450.94s with 384 regular
-maybe max diff: 25
-maybe max diff: 4
-not max diff: 15
-maybe max diff: 7
-not max diff: 16
+total bridges: 48661498
+total iterations: 10
+./graphs/301989888_2.csv took 1078.49 with 192 regular
+./graphs/301989888_2.csv took 1099.07s with 192 regular
+total bridges: 48661498
+total iterations: 10
+./graphs/301989888_2.csv took 1231.6 with 384 regular
+./graphs/301989888_2.csv took 1250.34s with 384 regular
+total bridges: 48661498
+total iterations: 10
+./graphs/301989888_2.csv took 1738.87 with 576 regular
+./graphs/301989888_2.csv took 1769.27s with 576 regular

@@ -89,3 +89,18 @@ maybe max diff: 4
 not max diff: 18
 maybe max diff: 7
 not max diff: 18
+maybe max diff: 10
+not max diff: 17
+total bridges: 35122
+total iterations: 3
+./graphs/301989888_16.csv took 2298.04s with 576 regular
+maybe max diff: 17
+maybe max diff: 5
+not max diff: 13
+maybe max diff: 9
+not max diff: 12
+maybe max diff: 11
+not max diff: 13
+total bridges: 90900
+total iterations: 3
+./graphs/402653184_16.csv took 3547.56s with 768 regular

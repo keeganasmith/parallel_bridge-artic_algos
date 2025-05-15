@@ -84,7 +84,7 @@ long get_outlier(ygm::container::bag<pair<long long, long long>>& my_bag, ygm::c
   long max_diff = ygm::max(difference, world);
   return max_diff; 
 }
-void find_bridges_parallel(string& csv_file, ygm::comm& world){
+double find_bridges_parallel(string& csv_file, ygm::comm& world){
   //csv file must be in the format:
   //<vertex one>,<vertex two>
   //<vertex one>,<vertex two>
@@ -104,16 +104,16 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
   });
   int num_iterations = 0;
   world.barrier();
-  long maybe_max_diff = get_outlier(maybe_bridges, world);
-  world.cout0("maybe max diff: ", maybe_max_diff);
+  //long maybe_max_diff = get_outlier(maybe_bridges, world);
+  //world.cout0("maybe max diff: ", maybe_max_diff);
+
+  const auto start{std::chrono::steady_clock::now()};
   while(true){
     static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
     static ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
-    const auto start{std::chrono::steady_clock::now()};
     const auto not_bridges_loop = [](const pair<long long, long long>& edge){
       disjoint.async_union(edge.first, edge.second);
     };
-    //world.cout0("executing not bridges loop");
     not_bridges.for_all(not_bridges_loop);
     world.barrier();
     const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
@@ -126,12 +126,8 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
         }
       });
     }; 
-    //world.cout0("executing maybe bridges loop");
     maybe_bridges.for_all(maybe_bridges_loop);
     world.barrier();
-    const auto end{std::chrono::steady_clock::now()};
-    const std::chrono::duration<double> elapsed_seconds{end - start};
-    //world.cout0("Time spent on union find stuff: ", elapsed_seconds, "\n"); 
     size_t total_maybe_bridges_size = maybe_bridges.size();
     size_t total_new_bridges_size = new_maybe_bridges.size();
     world.barrier();
@@ -140,34 +136,36 @@ void find_bridges_parallel(string& csv_file, ygm::comm& world){
     }
     world.barrier();
     maybe_bridges.swap(new_maybe_bridges);
-    maybe_max_diff = get_outlier(maybe_bridges, world);
-    world.cout0("maybe max diff: ", maybe_max_diff);
-    long not_max_diff = get_outlier(not_bridges, world);
-    world.cout0("not max diff: ", not_max_diff);
+    //maybe_max_diff = get_outlier(maybe_bridges, world);
+    //world.cout0("maybe max diff: ", maybe_max_diff);
+    //long not_max_diff = get_outlier(not_bridges, world);
+    //world.cout0("not max diff: ", not_max_diff);
     //world.cout0("new maybe bridges size: ", total_new_bridges_size);
     //world.cout0("not bridges size: ", not_bridges.size());
     new_maybe_bridges.clear();
     disjoint.clear();
     num_iterations++;
     world.barrier();
-    const auto new_end{std::chrono::steady_clock::now()};
-    const std::chrono::duration<double> new_elapsed_seconds{new_end - end};
     //world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
   }
+
+  const auto end{std::chrono::steady_clock::now()};
+  const std::chrono::duration<double> elapsed_seconds{end - start};
   size_t total_bridges = maybe_bridges.size();
   world.cout0("total bridges: ", total_bridges);
   world.cout0("total iterations: ", num_iterations);
   world.barrier();
+  return elapsed_seconds.count();
 }
 
 
 struct Edge{
-	long long vertex_one;
-	long long vertex_two;
-	long long degree_one;
-	long long degree_two;
+  long long vertex_one;
+  long long vertex_two;
+  long long degree_one;
+  long long degree_two;
   Edge() : vertex_one(0), vertex_two(0), degree_one(0), degree_two(0) {}
-	Edge(long long vertex_one, long long vertex_two, long long degree_one, long long degree_two): vertex_one(vertex_one), vertex_two(vertex_two), degree_one(degree_one), degree_two(degree_two){}
+  Edge(long long vertex_one, long long vertex_two, long long degree_one, long long degree_two): vertex_one(vertex_one), vertex_two(vertex_two), degree_one(degree_one), degree_two(degree_two){}
   template <class Archive>
   void serialize(Archive& ar) {
       ar(vertex_one, vertex_two, degree_one, degree_two);
@@ -230,13 +228,13 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
   auto apply_sign_function = [](const pair<long long, long long>& edge){
     s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
       
-      if(s_sign < 0 && value > 0){
-        s_ccids->async_insert_or_assign(vertex, vertex * s_sign);
+      if(s_sign < 0 && value >= 0){
+        s_ccids->async_insert_or_assign(vertex, (vertex + 1) * s_sign);
       }
     });
     s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
-      if(s_sign < 0 && value > 0){
-        s_ccids->async_insert_or_assign(vertex, vertex * s_sign);
+      if(s_sign < 0 && value >= 0){
+        s_ccids->async_insert_or_assign(vertex,(vertex +1) * s_sign);
       }
     });
   };
@@ -251,22 +249,35 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
         s_ccids->async_visit(edge.second, [](const long long& key, const long long& value, const long long& u_ccid, const pair<long long, long long>& edge){
           //edge is u, v
           long long v_ccid = value;
-          if(u_ccid < v_ccid){
-            if(edge.first == 1 && edge.second == 0){
-              s_world->cout0("0 was: ", v_ccid, " 1 was: ", u_ccid);
+          if(s_sign == 1 && u_ccid < 0 && v_ccid < 0){
+            if(u_ccid < v_ccid){
+              s_parents->async_insert_or_assign(edge.second, edge.first);
+              //but don't update ccid cuz they are negative or whatever
             }
-            s_ccids->async_insert_or_assign(edge.second, u_ccid);
-            s_parents->async_insert_or_assign(edge.second, edge.first);
-            local_updated = true;
-          } 
-          else if(v_ccid < u_ccid){
-             if(edge.second == 1 && edge.first == 0){
-              s_world->cout0("0 was: ", u_ccid, " 1 was: ", v_ccid);
+            else if(v_ccid < u_ccid){
+              s_parents->async_insert_or_assign(edge.first, edge.second);
             }
+          }
+          else{
+            if(u_ccid < v_ccid){
+              /*if(edge.first == 1 && edge.second == 0){
+                s_world->cout0("0 was: ", v_ccid, " 1 was: ", u_ccid);
+              }
+              */
+              s_ccids->async_insert_or_assign(edge.second, u_ccid);
+              s_parents->async_insert_or_assign(edge.second, edge.first);
+              local_updated = true;
+            } 
+            else if(v_ccid < u_ccid){
+               /*if(edge.second == 1 && edge.first == 0){
+                s_world->cout0("0 was: ", u_ccid, " 1 was: ", v_ccid);
+              }
+              */
 
-            s_ccids->async_insert_or_assign(edge.first, v_ccid);
-            s_parents->async_insert_or_assign(edge.first, edge.second);
-            local_updated = true;
+              s_ccids->async_insert_or_assign(edge.first, v_ccid);
+              s_parents->async_insert_or_assign(edge.first, edge.second);
+              local_updated = true;
+            }
           }
         }, u_ccid, edge);
       }, edge);
@@ -279,26 +290,25 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
     });
     world.barrier();
   }
-  if(sign == -1){
+  /*if(sign == -1){
     auto tear_it_function = [](const pair<long long, long long>& edge){
       s_ccids->async_visit(edge.first, [](const long long& vertex, const long long& value){
         s_ccids->async_insert_or_assign(vertex, INT64_MIN);
         
       });
       s_ccids->async_visit(edge.second, [](const long long& vertex, const long long& value){
-        if(s_sign < 0 && value > 0){
-          s_ccids->async_insert_or_assign(vertex, INT64_MIN);
-        }
+        s_ccids->async_insert_or_assign(vertex, INT64_MIN);
       });
     };
     edges.for_all(tear_it_function);
   }
+  */
   spanning_tree.clear();
   auto parents_loop = [](const long long& child_vertex, const long long& parent_vertex){
     if(child_vertex != parent_vertex){
       pair<long long, long long> edge(min(child_vertex, parent_vertex), max(child_vertex, parent_vertex));
       s_spanning_tree->async_insert(edge);
-      s_world->cout0("edge: ", child_vertex, ", ", parent_vertex);
+      //s_world->cout0("edge: ", child_vertex, ", ", parent_vertex);
     }
   };
   s_parents->for_all(parents_loop);
@@ -440,14 +450,14 @@ void test_disjoint_set(string& csv_file, ygm::comm& world){
   long maybe_max_diff = get_outlier(maybe_bridges, world);
   world.cout0("maybe max diff: ", maybe_max_diff);
   */
-	static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
-	static ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
-	const auto start{std::chrono::steady_clock::now()};
-	//world.cout0("executing not bridges loop");
-	world.barrier();
-	const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
-		disjoint.async_union_and_execute(edge.first, edge.second, [](const long long& vertex_one, const long long& vertex_two, bool merged){});
-	}; 
+  static ygm::container::disjoint_set<long long> disjoint(world); //use async_union_and_execute
+  static ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
+  const auto start{std::chrono::steady_clock::now()};
+  //world.cout0("executing not bridges loop");
+  world.barrier();
+  const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
+    disjoint.async_union_and_execute(edge.first, edge.second, [](const long long& vertex_one, const long long& vertex_two, bool merged){});
+  }; 
   maybe_bridges.for_all(maybe_bridges_loop);
   world.barrier();
   const auto end{std::chrono::steady_clock::now()};

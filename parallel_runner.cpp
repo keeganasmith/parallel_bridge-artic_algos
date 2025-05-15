@@ -14,7 +14,9 @@ int main(int argc, char** argv){
   string version_name;
   if(version == "1"){
     version_name = "regular";
-    find_bridges_parallel(file_name, world);
+    double time_taken = find_bridges_parallel(file_name, world);
+    world.cout0(file_name," took ",time_taken," with ", world.size(), " ", version_name);
+    world.barrier();
   }
   else if(version == "2"){
     version_name = "optimized";

@@ -61,9 +61,6 @@ void generate_graph(long long num_vertices, long long average_degree, ygm::comm&
               }
 
             });
-        if(i % (my_num_edges / 10) == 0){
-          world.cout0("finished ", i," edges");
-        }
     }
     world.barrier();
     world.cout0("generating file");
@@ -101,7 +98,7 @@ int main(int argc, char** argv){
         return 1;
     }
     long long max_num_vertices = stol(argv[1]);
-    long long num_vertices = 131072;
+    long long num_vertices = 4;
     long long average_degree = stol(argv[2]);
     int max_power = int(floor(log_base(max_num_vertices / num_vertices, 2)));
     for(long long power = 0; power <= max_power; power++) {
