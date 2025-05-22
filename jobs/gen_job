@@ -3,7 +3,6 @@
 #SBATCH --time=1-00:00:00
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=370G
 #SBATCH --output=../outputs/gen_out
 #SBATCH --error=../outputs/gen_error
 #SBATCH --partition=cpu
@@ -14,9 +13,4 @@ PROC=768
 cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
 source modules.sh
 make -B generate
-mpirun -np $PROC generate 200000000 2 
-mpirun -np $PROC generate 200000000 4 
-mpirun -np $PROC generate 200000000 6 
-mpirun -np $PROC generate 200000000 8 
-mpirun -np $PROC generate 200000000 16 
-mpirun -np $PROC generate 200000000 32
+mpirun -np $PROC generate 2147483648 16 

@@ -1,0 +1,32 @@
+rm -f *.o test parallel_runner generate
+mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition generate_random_graph.cpp -o generate
+======================================
+ YY    YY     GGGGGG      MM     MM   
+  YY  YY     GG    GG     MMM   MMM   
+   YYYY      GG           MMMM MMMM   
+    YY       GG   GGGG    MM MMM MM   
+    YY       GG    GG     MM     MM   
+    YY       GG    GG     MM     MM   
+    YY        GGGGGG      MM     MM   
+======================================
+COMM_SIZE      = 768
+RANKS_PER_NODE = 192
+NUM_NODES      = 4
+MPI_LIBRARY    = Open MPI v4.1.6
+YGM_VERSION    = v0.8-dev
+======== ENVIRONMENT SETTINGS ========
+YGM_COMM_LOCAL_BUFFER_SIZE_KB   = 4096
+YGM_COMM_REMOTE_BUFFER_SIZE_KB  = 12288
+YGM_COMM_NUM_IRECVS             = 8
+YGM_COMM_IRECVS_SIZE_KB         = 1048576
+YGM_COMM_NUM_ISENDS_WAIT        = 4
+YGM_COMM_ISSEND_FREQ            = 8
+YGM_COMM_ROUTING                = NONE
+======================================
+generating graph
+4
+536870912
+2147483648
+world size is: 768
+got to generate graphs: 2147483648
+my edges: 22369621

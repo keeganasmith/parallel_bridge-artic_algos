@@ -29,3 +29,7 @@ total bridges: 48661498
 total iterations: 10
 ./graphs/301989888_2.csv took 1738.87 with 576 regular
 ./graphs/301989888_2.csv took 1769.27s with 576 regular
+total bridges: 48661498
+total iterations: 10
+./graphs/301989888_2.csv took 1813.27 with 768 regular
+./graphs/301989888_2.csv took 1838.76s with 768 regular

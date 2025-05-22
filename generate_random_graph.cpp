@@ -65,10 +65,13 @@ void generate_graph(long long num_vertices, long long average_degree, ygm::comm&
     world.barrier();
     world.cout0("generating file");
     vector<char> buffer;
-    for(pair<long long, long long> edge : vertex_edges){
+    while(!vertex_edges.empty()){
+      pair<long long, long long> edge = vertex_edges.back();
+      vertex_edges.pop_back();
       string line = to_string(edge.first) + "," + to_string(edge.second) + "\n";
       buffer.insert(buffer.end(), line.begin(), line.end());
     }
+    world.cout0("opening file");
     MPI_File fh;
     MPI_File_open(MPI_COMM_WORLD, file_name.c_str(), MPI_MODE_CREATE | MPI_MODE_WRONLY, MPI_INFO_NULL, &fh);
 
@@ -80,7 +83,9 @@ void generate_graph(long long num_vertices, long long average_degree, ygm::comm&
     if (rank == 0) {
         local_offset = 0;
     }
-
+    if(world.rank0()){
+      std::cout << "got to MPI_File_write_at_all" << endl;
+    }
     MPI_File_write_at_all(fh, local_offset, buffer.data(), local_size, MPI_CHAR, MPI_STATUS_IGNORE);
 
     MPI_File_close(&fh);
@@ -101,7 +106,7 @@ int main(int argc, char** argv){
     long long num_vertices = 4;
     long long average_degree = stol(argv[2]);
     int max_power = int(floor(log_base(max_num_vertices / num_vertices, 2)));
-    for(long long power = 0; power <= max_power; power++) {
+    for(long long power = max_power; power <= max_power; power++) {
       world.cout0("generating graph");
       world.cout0(num_vertices);
       world.cout0(int_pow(2, power));
