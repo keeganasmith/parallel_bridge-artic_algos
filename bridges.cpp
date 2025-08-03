@@ -9,6 +9,7 @@ namespace std {
     }
   };
 }
+//serial bridge finding with union find
 vector<pair<long long, long long>> find_bridges(vector<pair<long long, long long>>& edges, size_t num_vertices){
   vector<pair<long long, long long>> not_bridges;
   vector<pair<long long, long long>> maybe_bridges(edges);
@@ -58,6 +59,7 @@ void dfs(unordered_map<int, vector<int>>& graph, int vertex, int parent, int& ti
   }
 }
 
+//serial bridge finding with tarjan (dfs approach)
 vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges) {
   unordered_map<int, vector<int>> graph;
   for (const auto& edge : edges) {
@@ -76,6 +78,8 @@ vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges) {
   }
   return result;
 }
+
+//function for finding the largest difference between local size and average local size
 long get_outlier(ygm::container::bag<pair<long long, long long>>& my_bag, ygm::comm& world){
   long total_size = my_bag.size();
   long local_size = my_bag.local_size();
@@ -84,6 +88,8 @@ long get_outlier(ygm::container::bag<pair<long long, long long>>& my_bag, ygm::c
   long max_diff = ygm::max(difference, world);
   return max_diff; 
 }
+
+//parallel algorithm for finding bridges using union find
 double find_bridges_parallel(string& csv_file, ygm::comm& world){
   //csv file must be in the format:
   //<vertex one>,<vertex two>
@@ -192,8 +198,11 @@ void initialize_ccids_parents(ygm::container::bag<pair<long long, long long>>& e
   world.barrier();
 }
 
+
+
 void label_propagation(ygm::container::set<pair<long long, long long>>& edges, ygm::container::map<long long, long long>& ccids, ygm::container::map<long long, long long>& parents, ygm::container::bag<pair<long long, long long>>& spanning_tree, ygm::comm& world, long long sign){
   /*
+  Creates a spanning tree using label propagation:
   updated = true;
   while(updated)
     updated = false;
@@ -316,7 +325,8 @@ void label_propagation(ygm::container::set<pair<long long, long long>>& edges, y
 
 }
 
-
+//parallel algorithm for finding bridges using label propogation
+//NOT WORKING - wrong answer
 void find_bridges_parallel_opt(string& csv_file, ygm::comm& world){
   static ygm::comm* s_world = &world;
   size_t world_size = world.size();
