@@ -75,10 +75,10 @@ TEST(FindBridgesTest, MultipleBridges) {
     vector<pair<long long, long long>> result = find_bridges(edges, 5);
 
     EXPECT_EQ(result.size(), 4);
-    EXPECT_NE(find(result.begin(), result.end(), make_pair(0, 1)), result.end());
-    EXPECT_NE(find(result.begin(), result.end(), make_pair(1, 2)), result.end());
-    EXPECT_NE(find(result.begin(), result.end(), make_pair(2, 3)), result.end());
-    EXPECT_NE(find(result.begin(), result.end(), make_pair(3, 4)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(0LL, 1LL)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(1LL, 2LL)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(2LL, 3LL)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(3LL, 4LL)), result.end());
 }
 
 TEST(FindBridgesTest, NoBridges) {
@@ -93,8 +93,8 @@ TEST(FindBridgesTest, DisconnectedGraph) {
     vector<pair<long long, long long>> result = find_bridges(edges, 4);
 
     EXPECT_EQ(result.size(), 2);
-    EXPECT_NE(find(result.begin(), result.end(), make_pair(0, 1)), result.end());
-    EXPECT_NE(find(result.begin(), result.end(), make_pair(2, 3)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(0LL, 1LL)), result.end());
+    EXPECT_NE(find(result.begin(), result.end(), make_pair(2LL, 3LL)), result.end());
 }
 
 TEST(FindBridgesTest, SingleNodeNoEdges) {
