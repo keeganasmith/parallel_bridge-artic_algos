@@ -63,16 +63,16 @@ TEST_F(UnionFindTest, MergeByRank) {
 }
 
 TEST(FindBridgesTest, SingleBridge) {
-    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {1, 3}};  // Bridge: (0, 1)
-    vector<pair<int, int>> result = find_bridges(edges, 4);
+    vector<pair<long long, long long>> edges = {{0, 1}, {1, 2}, {2, 3}, {1, 3}};  // Bridge: (0, 1)
+    vector<pair<long long, long long>> result = find_bridges(edges, 4);
 
     ASSERT_EQ(result.size(), 1);
     EXPECT_EQ(result[0], make_pair(0, 1));
 }
 
 TEST(FindBridgesTest, MultipleBridges) {
-    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}};  // Bridges: (0, 1), (1, 2), (2, 3), (3, 4)
-    vector<pair<int, int>> result = find_bridges(edges, 5);
+    vector<pair<long long, long long>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}};  // Bridges: (0, 1), (1, 2), (2, 3), (3, 4)
+    vector<pair<long long, long long>> result = find_bridges(edges, 5);
 
     EXPECT_EQ(result.size(), 4);
     EXPECT_NE(find(result.begin(), result.end(), make_pair(0, 1)), result.end());
@@ -82,15 +82,15 @@ TEST(FindBridgesTest, MultipleBridges) {
 }
 
 TEST(FindBridgesTest, NoBridges) {
-    vector<pair<int, int>> edges = {{0, 1}, {1, 2}, {2, 0}, {1, 3}, {3, 4}, {4, 1}};  // No bridges
-    vector<pair<int, int>> result = find_bridges(edges, 5);
+    vector<pair<long long, long long>> edges = {{0, 1}, {1, 2}, {2, 0}, {1, 3}, {3, 4}, {4, 1}};  // No bridges
+    vector<pair<long long, long long>> result = find_bridges(edges, 5);
 
     EXPECT_TRUE(result.empty()) << "Expected no bridges, but some were found.";
 }
 
 TEST(FindBridgesTest, DisconnectedGraph) {
-    vector<pair<int, int>> edges = {{0, 1}, {2, 3}};  // Two disconnected components, each edge is a bridge
-    vector<pair<int, int>> result = find_bridges(edges, 4);
+    vector<pair<long long, long long>> edges = {{0, 1}, {2, 3}};  // Two disconnected components, each edge is a bridge
+    vector<pair<long long, long long>> result = find_bridges(edges, 4);
 
     EXPECT_EQ(result.size(), 2);
     EXPECT_NE(find(result.begin(), result.end(), make_pair(0, 1)), result.end());
@@ -98,14 +98,14 @@ TEST(FindBridgesTest, DisconnectedGraph) {
 }
 
 TEST(FindBridgesTest, SingleNodeNoEdges) {
-    vector<pair<int, int>> edges = {};  // No edges
-    vector<pair<int, int>> result = find_bridges(edges, 1);
+    vector<pair<long long, long long>> edges = {};  // No edges
+    vector<pair<long long, long long>> result = find_bridges(edges, 1);
 
     EXPECT_TRUE(result.empty()) << "Expected no bridges for a single node with no edges.";
 }
 
 TEST(FindBridgesTest, GoogleSnap){
-    vector<pair<int, int>> edges;
+    vector<pair<long long, long long>> edges;
     ifstream fs("web-Google.txt");
     set<pair<int, int>> unique_edges;
     string line;
@@ -130,13 +130,13 @@ TEST(FindBridgesTest, GoogleSnap){
       edges.push_back(*it);
     }
     auto start_time = high_resolution_clock::now();
-    vector<pair<int, int>> result = find_bridges(edges, max_vertex_num + 1);
+    vector<pair<long long, long long>> result = find_bridges(edges, max_vertex_num + 1);
     auto end_time = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end_time - start_time);
     cout << "Time taken (parallel imp): " << duration.count() << " ms" << endl;
     cout << "Num bridges: " << result.size() << "\n";
     start_time = high_resolution_clock::now();
-    vector<pair<int, int>> seq_result = find_bridges_tarjan(edges);
+    vector<pair<long long, long long>> seq_result = find_bridges_tarjan(edges);
     end_time = high_resolution_clock::now();
     duration = duration_cast<milliseconds>(end_time - start_time);
     cout << "time taken (tarjan): " << duration.count() << " ms" << endl;
