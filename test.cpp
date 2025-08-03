@@ -67,7 +67,7 @@ TEST(FindBridgesTest, SingleBridge) {
     vector<pair<long long, long long>> result = find_bridges(edges, 4);
 
     ASSERT_EQ(result.size(), 1);
-    EXPECT_EQ(result[0], make_pair(0, 1));
+    EXPECT_EQ(result[0], make_pair<long long, long long>(0, 1));
 }
 
 TEST(FindBridgesTest, MultipleBridges) {
