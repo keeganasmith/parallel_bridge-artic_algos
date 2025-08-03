@@ -36,9 +36,9 @@ vector<pair<long long, long long>> find_bridges(vector<pair<long long, long long
   return maybe_bridges;
 }
 
-void dfs(unordered_map<int, vector<int>>& graph, int vertex, int parent, int& time,
-         unordered_map<int, int>& discovery_times, unordered_map<int, int>& low_times, 
-         vector<pair<int, int>>& result) {
+void dfs(unordered_map<long long, vector<long long>>& graph, long long vertex, long long parent, int& time,
+         unordered_map<long long, int>& discovery_times, unordered_map<long long, int>& low_times, 
+         vector<pair<long long, long long>>& result) {
     
   discovery_times[vertex] = low_times[vertex] = ++time;
 
@@ -60,16 +60,16 @@ void dfs(unordered_map<int, vector<int>>& graph, int vertex, int parent, int& ti
 }
 
 //serial bridge finding with tarjan (dfs approach)
-vector<pair<int, int>> find_bridges_tarjan(vector<pair<int, int>>& edges) {
-  unordered_map<int, vector<int>> graph;
+vector<pair<long long, long long>> find_bridges_tarjan(vector<pair<long long, long long>>& edges) {
+  unordered_map<long long, vector<long long>> graph;
   for (const auto& edge : edges) {
     graph[edge.first].push_back(edge.second);
     graph[edge.second].push_back(edge.first);
   }
 
-  vector<pair<int, int>> result;
+  vector<pair<long long, long long>> result;
   int time = 0;
-  unordered_map<int, int> discovery_times, low_times;
+  unordered_map<long long, int> discovery_times, low_times;
 
   for (const auto& it : graph) {
     if (discovery_times.find(it.first) == discovery_times.end()) {
