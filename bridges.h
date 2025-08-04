@@ -8,7 +8,6 @@
 #include <ygm/container/bag.hpp>
 #include <ygm/container/disjoint_set.hpp>
 #include <ygm/io/csv_parser.hpp>
-#include <ygm/collective.hpp>
 #include <chrono>
 #include "uf.h"
 using std::pair, std::vector, std::unordered_map, std::min, std::string;
