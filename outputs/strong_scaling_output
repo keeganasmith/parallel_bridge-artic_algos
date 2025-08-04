@@ -1,35 +1,3 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
-total bridges: 6053169
-total iterations: 11
-./graphs/33554432_2.csv took 957.059 with 24 regular
-./graphs/33554432_2.csv took 965.995s with 24 regular
-total bridges: 6053169
-total iterations: 11
-./graphs/33554432_2.csv took 527.312 with 48 regular
-./graphs/33554432_2.csv took 531.804s with 48 regular
-total bridges: 6053169
-total iterations: 11
-./graphs/33554432_2.csv took 333.943 with 96 regular
-./graphs/33554432_2.csv took 336.202s with 96 regular
-total bridges: 6053169
-total iterations: 12
-./graphs/33554432_2.csv took 275.09 with 192 regular
-./graphs/33554432_2.csv took 277.349s with 192 regular
 Starting cross node benchmarks
-total bridges: 48661498
-total iterations: 10
-./graphs/301989888_2.csv took 1078.49 with 192 regular
-./graphs/301989888_2.csv took 1099.07s with 192 regular
-total bridges: 48661498
-total iterations: 10
-./graphs/301989888_2.csv took 1231.6 with 384 regular
-./graphs/301989888_2.csv took 1250.34s with 384 regular
-total bridges: 48661498
-total iterations: 10
-./graphs/301989888_2.csv took 1738.87 with 576 regular
-./graphs/301989888_2.csv took 1769.27s with 576 regular
-total bridges: 48661498
-total iterations: 10
-./graphs/301989888_2.csv took 1813.27 with 768 regular
-./graphs/301989888_2.csv took 1838.76s with 768 regular
