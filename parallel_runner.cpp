@@ -42,6 +42,6 @@ int main(int argc, char** argv){
   }
   const auto finish{std::chrono::steady_clock::now()};
   const std::chrono::duration<double> elapsed_seconds{finish - start};
-  world.cout0(file_name," took ",elapsed_seconds," with ", world.size(), " ", version_name);
+  //world.cout0(file_name," took ",elapsed_seconds," with ", world.size(), " ", version_name);
   world.barrier();
 }

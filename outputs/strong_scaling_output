@@ -1,3 +1,15 @@
 rm -f *.o test parallel_runner
 mpic++ -std=c++20 -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
 Starting cross node benchmarks
+total bridges: 10714035
+total iterations: 6
+./graphs/402653184_4.csv took 2277.43 with 96 regular
+total bridges: 10714035
+total iterations: 6
+./graphs/402653184_4.csv took 1897.58 with 192 regular
+total bridges: 10714035
+total iterations: 6
+./graphs/402653184_4.csv took 1464.45 with 384 regular
+total bridges: 10714035
+total iterations: 6
+./graphs/402653184_4.csv took 1251.35 with 768 regular
