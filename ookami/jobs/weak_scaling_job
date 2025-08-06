@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name=BRIDGE_WEAK_SCALING
+#SBATCH --time=08:00:00
+#SBATCH --ntasks=768
+#SBATCH --nodes=8
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=5G
+#SBATCH --output=../outputs/weak_scaling_output
+#SBATCH --error=../outputs/weak_scaling_error
+#SBATCH --partition=pvc
+#SBATCH --gres=gpu:pvc:2
+#SBATCH --exclusive
+cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
+source modules.sh
+make -B parallel
+MAX_PROCESSES=768
+BASE_VERT=524288
+for ((np=96; np<=MAX_PROCESSES; np+=96)); do
+  VERT=$(( BASE_VERT * np ))
+  file_name="./graphs/${VERT}_16.csv"
+  mpirun -np $np parallel_runner $file_name 1
+done

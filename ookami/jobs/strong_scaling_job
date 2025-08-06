@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=BRIDGE_STRONG_SCALING
+#SBATCH --time=04:00:00
+#SBATCH --ntasks=48
+#SBATCH --cpus-per-task=1
+#SBATCH --output=../../outputs/strong_scaling_output
+#SBATCH --error=../../outputs/strong_scaling_error
+#SBATCH --partition=short
+cd /lustre/home/amos/scratch/keegan_byteboost_25/parallel_bridge-artic_algos
+cd ookami
+source modules.sh
+which srun
+cd ..
+make -B parallel
+echo "Starting single node benchmarks"
+BASE_VERT=134217728
+for ((np=6; np<=48;np*=2)); do
+  file_name="./graphs/${BASE_VERT}_4.csv"
+  mpirun -np $np parallel_runner $file_name 1
+done
+echo "Starting cross node benchmarks"
+BASE_VERT=402653184
+MAX_PROCESSES=0
+for ((np=96; np<=MAX_PROCESSES; np*=2)); do
+  file_name="./graphs/${BASE_VERT}_4.csv"
+  mpirun -np $np parallel_runner $file_name 1
+done
