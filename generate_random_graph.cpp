@@ -116,6 +116,7 @@ int main(int argc, char** argv){
     }
     num_vertices = 524288; 
     for(long long vertices = num_vertices * 192; vertices <= 192 * 4 * num_vertices; vertices += 192 * num_vertices){
+      world.cout0("got here, vertices: ", vertices, "\n");
       generate_graph(vertices, average_degree, world);  
       world.barrier();
     }
