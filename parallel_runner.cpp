@@ -40,6 +40,12 @@ int main(int argc, char** argv){
     world.barrier();
     return 0;
   }
+  else if(version == "5"){
+    version_name = "dynamic_programming";
+    double time_taken = find_bridges_parallel_dp(file_name, world);
+    world.cout0(file_name," took ",time_taken," with ", world.size(), " ", version_name);
+    world.barrier();
+  } 
   const auto finish{std::chrono::steady_clock::now()};
   const std::chrono::duration<double> elapsed_seconds{finish - start};
   //world.cout0(file_name," took ",elapsed_seconds," with ", world.size(), " ", version_name);

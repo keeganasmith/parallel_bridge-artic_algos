@@ -3,8 +3,8 @@
 #SBATCH --time=12:00:00
 #SBATCH --ntasks=768
 #SBATCH --cpus-per-task=1
-#SBATCH --output=../../outputs/strong_scaling_output
-#SBATCH --error=../../outputs/strong_scaling_error
+#SBATCH --output=../../outputs/with_flags_strong_scaling_output
+#SBATCH --error=../../outputs/with_flags_strong_scaling_error
 #SBATCH --partition=medium
 cd /lustre/home/amos/scratch/keegan_byteboost_25/parallel_bridge-artic_algos
 cd ookami

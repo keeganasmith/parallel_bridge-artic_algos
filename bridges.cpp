@@ -476,3 +476,88 @@ void test_disjoint_set(string& csv_file, ygm::comm& world){
   world.cout0("union find took: ", new_elapsed_seconds, " seconds");
 }
 
+double find_bridges_parallel_dp(string& csv_file, ygm::comm& world){
+  //csv file must be in the format:
+  //<vertex one>,<vertex two>
+  //<vertex one>,<vertex two>
+  //...
+  //<vertex one>,<vertex two>
+  //and should not contain duplicates
+  static ygm::comm* s_world = &world;
+  size_t world_size = world.size();
+  vector<string> filenames(1, csv_file);
+  ygm::io::csv_parser parser(world, filenames);
+  static ygm::container::bag<pair<long long, long long>> not_bridges(world);
+  static ygm::container::bag<pair<long long, long long>> maybe_bridges(world);
+  parser.for_all([](ygm::io::detail::csv_line line){
+    long long vertex_one = line[0].as_integer();
+    long long vertex_two = line[1].as_integer();
+    maybe_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two)); 
+  });
+  int num_iterations = 0;
+  world.barrier();
+  //long maybe_max_diff = get_outlier(maybe_bridges, world);
+  //world.cout0("maybe max diff: ", maybe_max_diff);
+
+  const auto start{std::chrono::steady_clock::now()};
+
+  static ygm::container::bag<pair<long long, long long>> new_not_bridges(world);
+  static ygm::container::disjoint_set<long long> not_bridges_persistent(world);
+  static ygm::container::disjoint_set<long long> disjoint(world);
+  while(true){
+    static ygm::container::bag<pair<long long, long long>> new_maybe_bridges(world);
+    world.cout0("new not bridges size: ", new_not_bridges.size());
+    //add only the newest not bridges to the union
+    const auto not_bridges_loop = [](const pair<long long, long long>& edge){
+      not_bridges_persistent.async_union(edge.first, edge.second);
+    };
+    world.cout0("not bridges persistent size: ", not_bridges_persistent.size(), "\n");
+    new_not_bridges.for_all(not_bridges_loop);
+    new_not_bridges.clear();
+    disjoint = not_bridges_persistent;
+    world.barrier();
+    //add all maybe bridges to the union
+    const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
+      disjoint.async_union_and_execute(edge.first, edge.second, [](const long long& vertex_one, const long long& vertex_two, bool merged){
+        if(!merged){
+          not_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two));
+	  new_not_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two));
+        }
+        else{
+          new_maybe_bridges.async_insert(pair<long long, long long>(vertex_one, vertex_two));
+        }
+      });
+    }; 
+    world.cout0("not bridges persistent size after: ", not_bridges_persistent.size(), "\n");
+    maybe_bridges.for_all(maybe_bridges_loop);
+    world.barrier();
+    size_t total_maybe_bridges_size = maybe_bridges.size();
+    size_t total_new_bridges_size = new_maybe_bridges.size();
+    world.barrier();
+    if(total_maybe_bridges_size == total_new_bridges_size){
+      break;
+    }
+    world.barrier();
+    maybe_bridges.swap(new_maybe_bridges);
+    //maybe_max_diff = get_outlier(maybe_bridges, world);
+    //world.cout0("maybe max diff: ", maybe_max_diff);
+    //long not_max_diff = get_outlier(not_bridges, world);
+    //world.cout0("not max diff: ", not_max_diff);
+    //world.cout0("new maybe bridges size: ", total_new_bridges_size);
+    //world.cout0("not bridges size: ", not_bridges.size());
+    new_maybe_bridges.clear();
+    disjoint.clear();
+    num_iterations++;
+    world.barrier();
+    //world.cout0("Time spend on gathering: ", new_elapsed_seconds, "\n"); 
+  }
+
+  const auto end{std::chrono::steady_clock::now()};
+  const std::chrono::duration<double> elapsed_seconds{end - start};
+  size_t total_bridges = maybe_bridges.size();
+  world.cout0("total bridges: ", total_bridges);
+  world.cout0("total iterations: ", num_iterations);
+  world.barrier();
+  return elapsed_seconds.count();
+}
+
