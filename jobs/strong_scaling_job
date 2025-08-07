@@ -6,8 +6,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=5G
 #SBATCH --exclusive
-#SBATCH --output=../outputs/strong_scaling_output
-#SBATCH --error=../outputs/strong_scaling_error
+#SBATCH --output=../outputs/aces_strong_scaling_output
+#SBATCH --error=../outputs/aces_strong_scaling_error
 #SBATCH --gres=gpu:pvc:2
 #SBATCH --partition=pvc
 cd $SCRATCH/parallel_bridge-artic_algos
@@ -15,7 +15,7 @@ source modules.sh
 make -B parallel
 MAX_PROCESSES=768
 echo "Starting cross node benchmarks"
-BASE_VERT=402653184
+BASE_VERT=268435456
 for ((np=96; np<=MAX_PROCESSES; np*=2)); do
   file_name="./graphs/${BASE_VERT}_4.csv"
   mpirun -np $np parallel_runner $file_name 1

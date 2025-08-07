@@ -514,7 +514,7 @@ double find_bridges_parallel_dp(string& csv_file, ygm::comm& world){
     world.cout0("not bridges persistent size: ", not_bridges_persistent.size(), "\n");
     new_not_bridges.for_all(not_bridges_loop);
     new_not_bridges.clear();
-    disjoint = not_bridges_persistent;
+    //disjoint = not_bridges_persistent;
     world.barrier();
     //add all maybe bridges to the union
     const auto maybe_bridges_loop = [](const pair<long long, long long>& edge){
