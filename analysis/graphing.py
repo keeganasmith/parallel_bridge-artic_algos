@@ -44,12 +44,13 @@ def seperate_single_multi(results, vary = False):
 
 def strong_scaling_graphs(results):
     single, multi = seperate_single_multi(results)
+    multi = results
     single_proc = single["proc"]
     single_time = single["time"]
     multi_proc = multi["proc"]
     multi_time = multi["time"]
     graph(single_proc, single_time, "# processors", "time (s)", "Strong Scaling Single Node", True, True)
-    graph(multi_proc, multi_time, "# processors", "time (s)", "Strong Scaling Multi-Node", False, False)
+    graph(multi_proc, multi_time, "# processors", "time (s)", "Strong Scaling Multi-Node", True, False)
 
 def vary_graphs(result):
     single, multi = seperate_single_multi(result, True)
@@ -112,6 +113,7 @@ def main():
     input_file_name = args[1]
     scale_type = args[2]
     result = parse(input_file_name)
+    print(result)
     if(scale_type == "s"):
         strong_scaling_graphs(result)
     if(scale_type == "d"):

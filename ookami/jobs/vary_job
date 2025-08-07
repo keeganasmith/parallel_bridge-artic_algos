@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=BRIDGE_VARY
+#SBATCH --time=08:00:00
+#SBATCH --ntasks=768
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=371G
+#SBATCH --output=../outputs/vary_output
+#SBATCH --error=../outputs/vary_error
+#SBATCH --partition=cpu
+#SBATCH --exclusive
+cd /scratch/user/u.ks124812/parallel_bridge-artic_algos
+source modules.sh
+BASE_VERT=134217728
+np=192
+for avg in 2 4 6 8 16 32; do
+  file_name="./graphs/${BASE_VERT}_${avg}.csv"
+  mpirun -np $np parallel_runner $file_name 1
+done
+

@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --job-name=graph_generation
+#SBATCH --time=04:00:00
+#SBATCH --ntasks=48
+#SBATCH --cpus-per-task=1
+#SBATCH --output=../../outputs/gen_out
+#SBATCH --error=../../outputs/gen_error
+#SBATCH --partition=short
+##SBATCH --partition=byteboost
+
+module purge
+PROC=48
+cd /lustre/home/amos/scratch/keegan_byteboost_25/parallel_bridge-artic_algos  
+cd ookami
+source modules.sh
+cd ..
+make -B generate
+mpirun -np $PROC generate 16 4

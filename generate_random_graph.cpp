@@ -107,7 +107,7 @@ int main(int argc, char** argv){
     long long num_vertices = 4;
     long long average_degree = stol(argv[2]);
     int max_power = int(floor(log_base(max_num_vertices / num_vertices, 2)));
-    for(long long power = max_power; power <= max_power; power++) {
+    for(long long power = 1; power <= max_power; power++) {
       world.cout0("generating graph");
       world.cout0(num_vertices);
       world.cout0(int_pow(2, power));
@@ -117,6 +117,7 @@ int main(int argc, char** argv){
     }
     num_vertices = 524288; 
     for(long long vertices = num_vertices * 192; vertices <= 192 * 4 * num_vertices; vertices += 192 * num_vertices){
+      world.cout0("got here, vertices: ", vertices, "\n");
       generate_graph(vertices, average_degree, world);  
       world.barrier();
     }
