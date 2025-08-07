@@ -1,0 +1,17 @@
+/cm/shared/apps/slurm/current/bin/srun
+rm -f *.o test parallel_runner
+mpic++ -std=c++20 -O3 -mcpu=a64fx -fcommon -Wl,--allow-multiple-definition parallel_runner.cpp bridges.cpp uf.cpp -o parallel_runner
+Starting single node benchmarks
+Starting cross node benchmarks
+total bridges: 26056461
+total iterations: 8
+./graphs/268435456_4.csv took 1435.67 with 96 regular
+total bridges: 26056461
+total iterations: 9
+./graphs/268435456_4.csv took 1237.44 with 192 regular
+total bridges: 26056461
+total iterations: 8
+./graphs/268435456_4.csv took 778.993 with 384 regular
+total bridges: 26056461
+total iterations: 8
+./graphs/268435456_4.csv took 713.318 with 768 regular

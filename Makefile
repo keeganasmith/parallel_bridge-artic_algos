@@ -1,7 +1,7 @@
 CC := mpicc
 CXX := mpicxx
 FC := mpif90
-CLUSTER := ACES
+CLUSTER := ookami
 CFLAGS := 
 ifeq ($(CLUSTER),ookami)
 CFLAGS := -O3 -mcpu=a64fx
