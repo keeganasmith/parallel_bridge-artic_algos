@@ -100,6 +100,7 @@ int main(int argc, char** argv){
     world.welcome();
     if(argc < 3){
         world.cout0("need to provide max number of vertices and average degree\n");
+        world.cout0("usage: ", argv[0], "<max num vert> <avg degree>\n");
         return 1;
     }
     long long max_num_vertices = stol(argv[1]);

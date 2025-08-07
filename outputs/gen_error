@@ -1,0 +1,631 @@
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[lc27:28230:0:28230] ib_mlx5_log.c:171  Remote access on mlx5_0:1/IB (synd 0x13 vend 0x88 hw_synd 0/0)
+[lc27:28230:0:28230] ib_mlx5_log.c:171  DCI QP 0x633a wqe[2277]: RDMA_READ s-- [rqpn 0xa143 rlid 63] [rva 0x151a1d93f000 rkey 0xa64000] [va 0x1529d37fd000 len 43700 lkey 0x34c600] 
+==== backtrace (tid:  28230) ====
+ 0 0x000000000002593d uct_ib_mlx5_completion_with_err()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5_log.c:171
+ 1 0x0000000000051b1f uct_dc_mlx5_ep_handle_failure()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5_ep.c:1731
+ 2 0x0000000000026915 uct_ib_mlx5_check_completion()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.c:477
+ 3 0x0000000000053f97 uct_ib_mlx5_poll_cq()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.inl:146
+ 4 0x0000000000053f97 uct_dc_mlx5_poll_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:271
+ 5 0x0000000000053f97 uct_dc_mlx5_iface_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:317
+ 6 0x0000000000053f97 uct_dc_mlx5_iface_progress_ll()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:327
+ 7 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 8 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 9 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+10 0x000000000002ea53 opal_progress()  ???:0
+11 0x00000000000507d0 ompi_request_default_test()  ???:0
+12 0x000000000008bbee MPI_Test()  ???:0
+13 0x000000000040d5fc ygm::comm::check_completed_sends()  ???:0
+14 0x000000000040cdea ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040da47 ygm::comm::flush_to_capacity()  ???:0
+17 0x0000000000416ddc ygm::comm::async<ygm::container::detail::base_async_insert_value<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_insert(std::pair<long long, long long> const&)::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  ???:0
+18 0x00000000004129aa ygm::container::detail::base_async_insert_value<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_insert()  ???:0
+19 0x00000000004058bc generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}::operator()()  generate_random_graph.cpp:0
+20 0x0000000000406f30 std::__invoke_impl<void, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+21 0x0000000000406cb9 std::__invoke<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+22 0x00000000004068b1 std::__apply_impl<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, std::tuple<bool&, std::pair<long long, long long> const&>, 0ul, 1ul>()  generate_random_graph.cpp:0
+23 0x00000000004068f2 std::apply<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, std::tuple<bool&, std::pair<long long, long long> const&> >()  generate_random_graph.cpp:0
+24 0x000000000040692b ygm::meta::details::apply<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+25 0x0000000000406973 ygm::meta::apply_optional<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+26 0x00000000004069f6 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}::operator()<ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > >()  generate_random_graph.cpp:0
+27 0x0000000000406f9f std::__invoke_impl<void, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+28 0x0000000000406d20 std::__invoke<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+29 0x0000000000406a54 std::__apply_impl<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, std::tuple<ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >, 0ul, 1ul>()  generate_random_graph.cpp:0
+30 0x0000000000406a95 std::apply<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, std::tuple<ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> > >()  generate_random_graph.cpp:0
+31 0x0000000000406ace ygm::meta::details::apply<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm*, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+32 0x0000000000406b16 ygm::meta::apply_optional<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, ygm::comm*, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+33 0x0000000000406bc5 ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}::operator()()  generate_random_graph.cpp:0
+34 0x0000000000406d65 ygm::comm::pack_lambda_generic<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*)#1}::operator()()  generate_random_graph.cpp:0
+35 0x0000000000406d8d ygm::comm::pack_lambda_generic<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*)#1}::_FUN()  generate_random_graph.cpp:0
+36 0x000000000041230e ygm::detail::lambda_map<void (*)(ygm::comm*, cereal::YGMInputArchive*), unsigned short>::execute<ygm::comm*, cereal::YGMInputArchive*>()  ???:0
+37 0x000000000040e1bf ygm::comm::handle_next_receive()  ???:0
+38 0x000000000040ebc2 ygm::comm::local_process_incoming()  ???:0
+39 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+40 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+41 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+42 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+43 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+44 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+45 0x0000000000405c8e generate_graph()  ???:0
+46 0x0000000000406362 main()  ???:0
+47 0x000000000003a7e5 __libc_start_main()  ???:0
+48 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28230] *** Process received signal ***
+[lc27:28230] Signal: Aborted (6)
+[lc27:28230] Signal code:  (-6)
+[lc27:28230] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x152b6a0d15b0]
+[lc27:28230] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x152b6a0d152f]
+[lc27:28230] [ 2] /lib64/libc.so.6(abort+0x127)[0x152b6a0a4e65]
+[lc27:28230] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x152b62dd295b]
+[lc27:28230] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x152b62dd68e5]
+[lc27:28230] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x152b62dd6c4d]
+[lc27:28230] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_completion_with_err+0x47d)[0x152b62ba293d]
+[lc27:28230] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_dc_mlx5_ep_handle_failure+0xbf)[0x152b62bceb1f]
+[lc27:28230] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_check_completion+0x35)[0x152b62ba3915]
+[lc27:28230] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(+0x53f97)[0x152b62bd0f97]
+[lc27:28230] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x152b62e8c17a]
+[lc27:28230] [11] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x152b69f44a53]
+[lc27:28230] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x152b6ab8b7d0]
+[lc27:28230] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x152b6abc6bee]
+[lc27:28230] [14] generate[0x40d5fc]
+[lc27:28230] [15] generate[0x40cdea]
+[lc27:28230] [16] generate[0x40d4f3]
+[lc27:28230] [17] generate[0x40da47]
+[lc27:28230] [18] generate[0x416ddc]
+[lc27:28230] [19] generate[0x4129aa]
+[lc27:28230] [20] generate[0x4058bc]
+[lc27:28230] [21] generate[0x406f30]
+[lc27:28230] [22] generate[0x406cb9]
+[lc27:28230] [23] generate[0x4068b1]
+[lc27:28230] [24] generate[0x4068f2]
+[lc27:28230] [25] generate[0x40692b]
+[lc27:28230] [26] generate[0x406973]
+[lc27:28230] [27] generate[0x4069f6]
+[lc27:28230] [28] generate[0x406f9f]
+[lc27:28230] [29] generate[0x406d20]
+[lc27:28230] *** End of error message ***
+[lc27:28462:0:28462] ib_mlx5_log.c:171  Remote access on mlx5_0:1/IB (synd 0x13 vend 0x88 hw_synd 0/0)
+[lc27:28462:0:28462] ib_mlx5_log.c:171  DCI QP 0x63e9 wqe[2299]: RDMA_READ s-- [rqpn 0xa2d3 rlid 63] [rva 0x15046d7bf000 rkey 0x8ec500] [va 0x14857f7fd000 len 44850 lkey 0x2c3700] 
+[lc27:28149:0:28149] ib_mlx5_log.c:171  Remote access on mlx5_0:1/IB (synd 0x13 vend 0x88 hw_synd 0/0)
+[lc27:28149:0:28149] ib_mlx5_log.c:171  DCI QP 0x617b wqe[2214]: RDMA_READ s-- [rqpn 0xa143 rlid 63] [rva 0x151a85dbf000 rkey 0xad8f00] [va 0x14a6113e6000 len 43286 lkey 0x3e3100] 
+==== backtrace (tid:  28462) ====
+ 0 0x000000000002593d uct_ib_mlx5_completion_with_err()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5_log.c:171
+ 1 0x0000000000051b1f uct_dc_mlx5_ep_handle_failure()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5_ep.c:1731
+ 2 0x0000000000026915 uct_ib_mlx5_check_completion()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.c:477
+ 3 0x0000000000053f97 uct_ib_mlx5_poll_cq()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.inl:146
+ 4 0x0000000000053f97 uct_dc_mlx5_poll_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:271
+ 5 0x0000000000053f97 uct_dc_mlx5_iface_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:317
+ 6 0x0000000000053f97 uct_dc_mlx5_iface_progress_ll()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:327
+ 7 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 8 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 9 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+10 0x000000000002ea53 opal_progress()  ???:0
+11 0x00000000000507d0 ompi_request_default_test()  ???:0
+12 0x000000000008bbee MPI_Test()  ???:0
+13 0x000000000040d5fc ygm::comm::check_completed_sends()  ???:0
+14 0x000000000040cdea ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040da47 ygm::comm::flush_to_capacity()  ???:0
+17 0x0000000000416ddc ygm::comm::async<ygm::container::detail::base_async_insert_value<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_insert(std::pair<long long, long long> const&)::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  ???:0
+18 0x00000000004129aa ygm::container::detail::base_async_insert_value<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_insert()  ???:0
+19 0x00000000004058bc generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}::operator()()  generate_random_graph.cpp:0
+20 0x0000000000406f30 std::__invoke_impl<void, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+21 0x0000000000406cb9 std::__invoke<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+22 0x00000000004068b1 std::__apply_impl<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, std::tuple<bool&, std::pair<long long, long long> const&>, 0ul, 1ul>()  generate_random_graph.cpp:0
+23 0x00000000004068f2 std::apply<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, std::tuple<bool&, std::pair<long long, long long> const&> >()  generate_random_graph.cpp:0
+24 0x000000000040692b ygm::meta::details::apply<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+25 0x0000000000406973 ygm::meta::apply_optional<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}&, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, bool&, std::pair<long long, long long> const&>()  generate_random_graph.cpp:0
+26 0x00000000004069f6 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}::operator()<ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > >()  generate_random_graph.cpp:0
+27 0x0000000000406f9f std::__invoke_impl<void, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+28 0x0000000000406d20 std::__invoke<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+29 0x0000000000406a54 std::__apply_impl<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, std::tuple<ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >, 0ul, 1ul>()  generate_random_graph.cpp:0
+30 0x0000000000406a95 std::apply<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, std::tuple<ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> > >()  generate_random_graph.cpp:0
+31 0x0000000000406ace ygm::meta::details::apply<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm*, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+32 0x0000000000406b16 ygm::meta::apply_optional<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}&, ygm::comm*, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+33 0x0000000000406bc5 ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}::operator()()  generate_random_graph.cpp:0
+34 0x0000000000406d65 ygm::comm::pack_lambda_generic<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*)#1}::operator()()  generate_random_graph.cpp:0
+35 0x0000000000406d8d ygm::comm::pack_lambda_generic<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::comm::pack_lambda<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >(ygm::detail::byte_vector&, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*, ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, auto:1, (auto:2 const&)...)::{lambda(auto:1, std::pair<long long, long long> const&)#1})#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > > const&, std::pair<long long, long long> const&)::{lambda(ygm::comm*, cereal::YGMInputArchive*)#1}::_FUN()  generate_random_graph.cpp:0
+36 0x000000000041230e ygm::detail::lambda_map<void (*)(ygm::comm*, cereal::YGMInputArchive*), unsigned short>::execute<ygm::comm*, cereal::YGMInputArchive*>()  ???:0
+37 0x000000000040e1bf ygm::comm::handle_next_receive()  ???:0
+38 0x000000000040ebc2 ygm::comm::local_process_incoming()  ???:0
+39 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+40 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+41 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+42 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+43 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+44 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+45 0x0000000000405c8e generate_graph()  ???:0
+46 0x0000000000406362 main()  ???:0
+47 0x000000000003a7e5 __libc_start_main()  ???:0
+48 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28462] *** Process received signal ***
+[lc27:28462] Signal: Aborted (6)
+[lc27:28462] Signal code:  (-6)
+[lc27:28462] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x1487564ae5b0]
+[lc27:28462] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x1487564ae52f]
+[lc27:28462] [ 2] /lib64/libc.so.6(abort+0x127)[0x148756481e65]
+[lc27:28462] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x14874f1a795b]
+[lc27:28462] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x14874f1ab8e5]
+[lc27:28462] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x14874f1abc4d]
+[lc27:28462] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_completion_with_err+0x47d)[0x14874ef7793d]
+[lc27:28462] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_dc_mlx5_ep_handle_failure+0xbf)[0x14874efa3b1f]
+[lc27:28462] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_check_completion+0x35)[0x14874ef78915]
+[lc27:28462] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(+0x53f97)[0x14874efa5f97]
+[lc27:28462] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x14874f26117a]
+[lc27:28462] [11] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x148756321a53]
+[lc27:28462] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x148756f627d0]
+[lc27:28462] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x148756f9dbee]
+[lc27:28462] [14] generate[0x40d5fc]
+[lc27:28462] [15] generate[0x40cdea]
+[lc27:28462] [16] generate[0x40d4f3]
+[lc27:28462] [17] generate[0x40da47]
+[lc27:28462] [18] generate[0x416ddc]
+[lc27:28462] [19] generate[0x4129aa]
+[lc27:28462] [20] generate[0x4058bc]
+[lc27:28462] [21] generate[0x406f30]
+[lc27:28462] [22] generate[0x406cb9]
+[lc27:28462] [23] generate[0x4068b1]
+[lc27:28462] [24] generate[0x4068f2]
+[lc27:28462] [25] generate[0x40692b]
+[lc27:28462] [26] generate[0x406973]
+[lc27:28462] [27] generate[0x4069f6]
+[lc27:28462] [28] generate[0x406f9f]
+[lc27:28462] [29] generate[0x406d20]
+[lc27:28462] *** End of error message ***
+[lc27:28487:0:28487] ib_mlx5_log.c:171  Remote access on mlx5_0:1/IB (synd 0x13 vend 0x88 hw_synd 0/0)
+[lc27:28487:0:28487] ib_mlx5_log.c:171  DCI QP 0x6194 wqe[2215]: RDMA_READ s-- [rqpn 0xa143 rlid 63] [rva 0x151a845bf000 rkey 0x914d00] [va 0x149aa97ff000 len 45402 lkey 0x279f00] 
+==== backtrace (tid:  28149) ====
+ 0 0x000000000002593d uct_ib_mlx5_completion_with_err()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5_log.c:171
+ 1 0x0000000000051b1f uct_dc_mlx5_ep_handle_failure()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5_ep.c:1731
+ 2 0x0000000000026915 uct_ib_mlx5_check_completion()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.c:477
+ 3 0x0000000000053f97 uct_ib_mlx5_poll_cq()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.inl:146
+ 4 0x0000000000053f97 uct_dc_mlx5_poll_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:271
+ 5 0x0000000000053f97 uct_dc_mlx5_iface_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:317
+ 6 0x0000000000053f97 uct_dc_mlx5_iface_progress_ll()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:327
+ 7 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 8 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 9 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+10 0x000000000002ea53 opal_progress()  ???:0
+11 0x00000000000507d0 ompi_request_default_test()  ???:0
+12 0x000000000008bbee MPI_Test()  ???:0
+13 0x000000000040e8c1 ygm::comm::local_process_incoming()  ???:0
+14 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+15 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+16 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+17 0x000000000040da47 ygm::comm::flush_to_capacity()  ???:0
+18 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+19 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+20 0x0000000000405c8e generate_graph()  ???:0
+21 0x0000000000406362 main()  ???:0
+22 0x000000000003a7e5 __libc_start_main()  ???:0
+23 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28149] *** Process received signal ***
+[lc27:28149] Signal: Aborted (6)
+[lc27:28149] Signal code:  (-6)
+[lc27:28149] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x14a7a6b425b0]
+[lc27:28149] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x14a7a6b4252f]
+[lc27:28149] [ 2] /lib64/libc.so.6(abort+0x127)[0x14a7a6b15e65]
+[lc27:28149] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x14a7a406a95b]
+[lc27:28149] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x14a7a406e8e5]
+[lc27:28149] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x14a7a406ec4d]
+[lc27:28149] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_completion_with_err+0x47d)[0x14a79f60a93d]
+[lc27:28149] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_dc_mlx5_ep_handle_failure+0xbf)[0x14a79f636b1f]
+[lc27:28149] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_check_completion+0x35)[0x14a79f60b915]
+[lc27:28149] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(+0x53f97)[0x14a79f638f97]
+[lc27:28149] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x14a7a412417a]
+[lc27:28149] [11] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x14a7a69b5a53]
+[lc27:28149] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x14a7a75fc7d0]
+[lc27:28149] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x14a7a7637bee]
+[lc27:28149] [14] generate[0x40e8c1]
+[lc27:28149] [15] generate[0x40e79c]
+[lc27:28149] [16] generate[0x40d3fc]
+[lc27:28149] [17] generate[0x40d4f3]
+[lc27:28149] [18] generate[0x40da47]
+[lc27:28149] [19] generate[0x40684c]
+[lc27:28149] [20] generate[0x4064f0]
+[lc27:28149] [21] generate[0x405c8e]
+[lc27:28149] [22] generate[0x406362]
+[lc27:28149] [23] /lib64/libc.so.6(__libc_start_main+0xe5)[0x14a7a6b2e7e5]
+[lc27:28149] [24] generate[0x40566e]
+[lc27:28149] *** End of error message ***
+==== backtrace (tid:  28487) ====
+ 0 0x000000000002593d uct_ib_mlx5_completion_with_err()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5_log.c:171
+ 1 0x0000000000051b1f uct_dc_mlx5_ep_handle_failure()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5_ep.c:1731
+ 2 0x0000000000026915 uct_ib_mlx5_check_completion()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.c:477
+ 3 0x0000000000053f97 uct_ib_mlx5_poll_cq()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.inl:146
+ 4 0x0000000000053f97 uct_dc_mlx5_poll_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:271
+ 5 0x0000000000053f97 uct_dc_mlx5_iface_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:317
+ 6 0x0000000000053f97 uct_dc_mlx5_iface_progress_ll()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:327
+ 7 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 8 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 9 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+10 0x000000000002ea53 opal_progress()  ???:0
+11 0x00000000000507d0 ompi_request_default_test()  ???:0
+12 0x000000000008bbee MPI_Test()  ???:0
+13 0x000000000040e8c1 ygm::comm::local_process_incoming()  ???:0
+14 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+15 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+16 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+17 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+18 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+19 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+20 0x0000000000405c8e generate_graph()  ???:0
+21 0x0000000000406362 main()  ???:0
+22 0x000000000003a7e5 __libc_start_main()  ???:0
+23 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28487] *** Process received signal ***
+[lc27:28487] Signal: Aborted (6)
+[lc27:28487] Signal code:  (-6)
+[lc27:28487] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x149b4132a5b0]
+[lc27:28487] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x149b4132a52f]
+[lc27:28487] [ 2] /lib64/libc.so.6(abort+0x127)[0x149b412fde65]
+[lc27:28487] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x149b3a02b95b]
+[lc27:28487] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x149b3a02f8e5]
+[lc27:28487] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x149b3a02fc4d]
+[lc27:28487] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_completion_with_err+0x47d)[0x149b39dfb93d]
+[lc27:28487] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_dc_mlx5_ep_handle_failure+0xbf)[0x149b39e27b1f]
+[lc27:28487] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_check_completion+0x35)[0x149b39dfc915]
+[lc27:28487] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(+0x53f97)[0x149b39e29f97]
+[lc27:28487] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x149b3a0e517a]
+[lc27:28487] [11] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x149b4119da53]
+[lc27:28487] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x149b41de47d0]
+[lc27:28487] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x149b41e1fbee]
+[lc27:28487] [14] generate[0x40e8c1]
+[lc27:28487] [15] generate[0x40e79c]
+[lc27:28487] [16] generate[0x40d3fc]
+[lc27:28487] [17] generate[0x40d4f3]
+[lc27:28487] [18] generate[0x40daad]
+[lc27:28487] [19] generate[0x40684c]
+[lc27:28487] [20] generate[0x4064f0]
+[lc27:28487] [21] generate[0x405c8e]
+[lc27:28487] [22] generate[0x406362]
+[lc27:28487] [23] /lib64/libc.so.6(__libc_start_main+0xe5)[0x149b413167e5]
+[lc27:28487] [24] generate[0x40566e]
+[lc27:28487] *** End of error message ***
+[lc27:28068:0:28068]      cma_ep.c:81   process_vm_readv(pid=28290 {0x1457277fd000,11914}-->{0x148bc7a5b000,11914}) returned -1: No such process
+==== backtrace (tid:  28068) ====
+ 0 0x00000000000036f3 uct_cma_ep_tx_error()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:81
+ 1 0x0000000000003a18 uct_cma_ep_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:113
+ 2 0x000000000001de75 uct_scopy_ep_progress_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/base/scopy_ep.c:151
+ 3 0x0000000000021dd1 ucs_arbiter_dispatch_nonempty()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.c:321
+ 4 0x000000000001d999 ucs_arbiter_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.h:386
+ 5 0x0000000000022587 ucs_callbackq_slow_proxy()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.c:404
+ 6 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 7 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 8 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+ 9 0x000000000002ea53 opal_progress()  ???:0
+10 0x00000000000507d0 ompi_request_default_test()  ???:0
+11 0x000000000008bbee MPI_Test()  ???:0
+12 0x000000000040e8c1 ygm::comm::local_process_incoming()  ???:0
+13 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+14 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+17 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+18 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+19 0x0000000000405c8e generate_graph()  ???:0
+20 0x0000000000406362 main()  ???:0
+21 0x000000000003a7e5 __libc_start_main()  ???:0
+22 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28068] *** Process received signal ***
+[lc27:28068] Signal: Aborted (6)
+[lc27:28068] Signal code:  (-6)
+[lc27:28068] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x1458bdefd5b0]
+[lc27:28068] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x1458bdefd52f]
+[lc27:28068] [ 2] /lib64/libc.so.6(abort+0x127)[0x1458bded0e65]
+[lc27:28068] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x1458b6bfe95b]
+[lc27:28068] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x1458b6c028e5]
+[lc27:28068] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x1458b6c02c4d]
+[lc27:28068] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(+0x36f3)[0x1458b69976f3]
+[lc27:28068] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(uct_cma_ep_tx+0x188)[0x1458b6997a18]
+[lc27:28068] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_ep_progress_tx+0x55)[0x1458b6c51e75]
+[lc27:28068] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_arbiter_dispatch_nonempty+0[lc27:28178:0:28178] ib_mlx5_log.c:171  Remote access on mlx5_0:1/IB (synd 0x13 vend 0x88 hw_synd 0/0)
+[lc27:28178:0:28178] ib_mlx5_log.c:171  DCI QP 0x5e43 wqe[2406]: RDMA_READ s-- [rqpn 0xa143 rlid 63] [rva 0x151a743bf000 rkey 0xb39e00] [va 0x1517ef7fd000 len 43470 lkey 0x325700] 
+==== backtrace (tid:  28178) ====
+ 0 0x000000000002593d uct_ib_mlx5_completion_with_err()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5_log.c:171
+ 1 0x0000000000051b1f uct_dc_mlx5_ep_handle_failure()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5_ep.c:1731
+ 2 0x0000000000026915 uct_ib_mlx5_check_completion()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.c:477
+ 3 0x0000000000053f97 uct_ib_mlx5_poll_cq()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.inl:146
+ 4 0x0000000000053f97 uct_dc_mlx5_poll_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:271
+ 5 0x0000000000053f97 uct_dc_mlx5_iface_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:317
+ 6 0x0000000000053f97 uct_dc_mlx5_iface_progress_ll()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:327
+ 7 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 8 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 9 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+10 0x000000000002ea53 opal_progress()  ???:0
+11 0x00000000000507d0 ompi_request_default_test()  ???:0
+12 0x000000000008bbee MPI_Test()  ???:0
+13 0x000000000040d5fc ygm::comm::check_completed_sends()  ???:0
+14 0x000000000040cdea ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+17 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+18 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+19 0x0000000000405c8e generate_graph()  ???:0
+20 0x0000000000406362 main()  ???:0
+21 0x000000000003a7e5 __libc_start_main()  ???:0
+22 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28178] *** Process received signal ***
+[lc27:28178] Signal: Aborted (6)
+[lc27:28178] Signal code:  (-6)
+[lc27:28178] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x151985aba5b0]
+[lc27:28178] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x151985aba52f]
+[lc27:28178] [ 2] /lib64/libc.so.6(abort+0x127)[0x151985a8de65]
+[lc27:28178] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x15197e7bb95b]
+[lc27:28178] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x15197e7bf8e5]
+[lc27:28178] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x15197e7bfc4d]
+[lc27:28178] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_completion_with_err+0x47d)[0x15197e58b93d]
+[lc27:28178] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_dc_mlx5[lc27:28284:0:28284]      cma_ep.c:81   process_vm_readv(pid=28290 {0x1531a6af2000,11017}-->{0x148bc7a0d000,11017}) returned -1: No such process
+==== backtrace (tid:  28284) ====
+ 0 0x00000000000036f3 uct_cma_ep_tx_error()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:81
+ 1 0x0000000000003a18 uct_cma_ep_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:113
+ 2 0x000000000001de75 uct_scopy_ep_progress_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/base/scopy_ep.c:151
+ 3 0x0000000000021dd1 ucs_arbiter_dispatch_nonempty()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.c:321
+ 4 0x000000000001d999 ucs_arbiter_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.h:386
+ 5 0x0000000000022587 ucs_callbackq_slow_proxy()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.c:404
+ 6 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 7 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 8 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+ 9 0x000000000002ea53 opal_progress()  ???:0
+10 0x00000000000507d0 ompi_request_default_test()  ???:0
+11 0x000000000008bbee MPI_Test()  ???:0
+12 0x000000000040e8c1 ygm::comm::local_process_incoming()  ???:0
+13 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+14 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+17 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+18 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+19 0x0000000000405c8e generate_graph()  ???:0
+20 0x0000000000406362 main()  ???:0
+21 0x000000000003a7e5 __libc_start_main()  ???:0
+22 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28284] *** Process received signal ***
+[lc27:28284] Signal: Aborted (6)
+[lc27:28284] Signal code:  (-6)
+[lc27:28284] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x15323c2a55b0]
+[lc27:28284] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x15323c2a552f]
+[lc27:28284] [ 2] /lib64/libc.so.6(abort+0x127)[0x15323c278e65]
+[lc27:28284] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x153238fa695b]
+[lc27:28284] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x153238faa8e5]
+[lc27:28284] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x153238faac4d]
+[lc27:28284] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(+0x36f3)[0x153238d3f6f3]
+[lc27:28284] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(uct_cma_ep_tx+0x188)[0x153238d3fa18]
+[lc27:28284] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_ep_progress_tx+0x55)[0x153238ff9e75]
+[lc27:28284] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_arbiter_dispatch_nonempty+0[lc27:28495:0:28495]      cma_ep.c:81   process_vm_readv(pid=28290 {0x1535017ff000,11684}-->{0x148bc7a4f000,11684}) returned -1: No such process
+==== backtrace (tid:  28495) ====
+ 0 0x00000000000036f3 uct_cma_ep_tx_error()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:81
+ 1 0x0000000000003a18 uct_cma_ep_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:113
+ 2 0x000000000001de75 uct_scopy_ep_progress_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/base/scopy_ep.c:151
+ 3 0x0000000000021dd1 ucs_arbiter_dispatch_nonempty()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.c:321
+ 4 0x000000000001d999 ucs_arbiter_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.h:386
+ 5 0x0000000000022587 ucs_callbackq_slow_proxy()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.c:404
+ 6 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 7 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 8 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+ 9 0x000000000002ea53 opal_progress()  ???:0
+10 0x00000000000507d0 ompi_request_default_test()  ???:0
+11 0x000000000008bbee MPI_Test()  ???:0
+12 0x000000000040e8c1 ygm::comm::local_process_incoming()  ???:0
+13 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+14 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+17 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+18 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+19 0x0000000000405c8e generate_graph()  ???:0
+20 0x0000000000406362 main()  ???:0
+21 0x000000000003a7e5 __libc_start_main()  ???:0
+22 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28495] *** Process received signal ***
+[lc27:28495] Signal: Aborted (6)
+[lc27:28495] Signal code:  (-6)
+[lc27:28495] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x1535d74195b0]
+[lc27:28495] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x1535d741952f]
+[lc27:28495] [ 2] /lib64/libc.so.6(abort+0x127)[0x1535d73ece65]
+[lc27:28495] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x1535d411a95b]
+[lc27:28495] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x1535d411e8e5]
+[lc27:28495] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x1535d411ec4d]
+[lc27:28495] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(+0x36f3)[0x1535d40086f3]
+[lc27:28495] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(uct_cma_ep_tx+0x188)[0x1535d4008a18]
+[lc27:28495] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_ep_progress_tx+0x55)[0x1535d416de75]
+[lc27:28495] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_arbiter_dispatch_nonempty+0[lc27:28560:0:28560]      cma_ep.c:81   process_vm_readv(pid=28290 {0x1519eeb77000,10258}-->{0x148bcd235000,10258}) returned -1: No such process
+==== backtrace (tid:  28560) ====
+ 0 0x00000000000036f3 uct_cma_ep_tx_error()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:81
+ 1 0x0000000000003a18 uct_cma_ep_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/cma/cma_ep.c:113
+ 2 0x000000000001de75 uct_scopy_ep_progress_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/sm/scopy/base/scopy_ep.c:151
+ 3 0x0000000000021dd1 ucs_arbiter_dispatch_nonempty()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.c:321
+ 4 0x000000000001d999 ucs_arbiter_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/arbiter.h:386
+ 5 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 6 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 7 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+ 8 0x000000000002ea53 opal_progress()  ???:0
+ 9 0x00000000000507d0 ompi_request_default_test()  ???:0
+10 0x000000000008bbee MPI_Test()  ???:0
+11 0x000000000040e8c1 ygm::comm::local_process_incoming()  ???:0
+12 0x000000000040e79c ygm::comm::process_receive_queue()  ???:0
+13 0x000000000040d3fc ygm::comm::flush_send_buffer()  ???:0
+14 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+15 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+16 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+17 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+18 0x0000000000405c8e generate_graph()  ???:0
+19 0x0000000000406362 main()  ???:0
+20 0x000000000003a7e5 __libc_start_main()  ???:0
+21 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28560] *** Process received signal ***
+[lc27:28560] Signal: Aborted (6)
+[lc27:28560] Signal code:  (-6)
+[lc27:28560] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x151b442de5b0]
+[lc27:28560] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x151b442de52f]
+[lc27:28560] [ 2] /lib64/libc.so.6(abort+0x127)[0x151b442b1e65]
+[lc27:28560] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x151b40fdf95b]
+[lc27:28560] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x151b40fe38e5]
+[lc27:28560] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x151b40fe3c4d]
+[lc27:28560] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(+0x36f3)[0x151b40d786f3]
+[lc27:28560] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_cma.so.0(uct_cma_ep_tx+0x188)[0x151b40d78a18]
+[lc27:28560] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_ep_progress_tx+0x55)[0x151b41032e75]
+[lc27:28560] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_arbiter_dispatch_nonempty+0xa1)[0x151b40fd8dd1]
+[lc27:28560] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_iface_progress+0x59)[0x151b41032999]
+[lc2[lc27:28512:0:28512] ib_mlx5_log.c:171  Transport retry count exceeded on mlx5_0:1/IB (synd 0x15 vend 0x81 hw_synd 0/0)
+[lc27:28512:0:28512] ib_mlx5_log.c:171  DCI QP 0x5c08 wqe[2504]: SEND s-e [rqpn 0xa2d3 rlid 63] [inl len 61] 
+==== backtrace (tid:  28512) ====
+ 0 0x000000000002593d uct_ib_mlx5_completion_with_err()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5_log.c:171
+ 1 0x0000000000051b1f uct_dc_mlx5_ep_handle_failure()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5_ep.c:1731
+ 2 0x0000000000026915 uct_ib_mlx5_check_completion()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.c:477
+ 3 0x0000000000053f97 uct_ib_mlx5_poll_cq()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/mlx5/ib_mlx5.inl:146
+ 4 0x0000000000053f97 uct_dc_mlx5_poll_tx()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:271
+ 5 0x0000000000053f97 uct_dc_mlx5_iface_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:317
+ 6 0x0000000000053f97 uct_dc_mlx5_iface_progress_ll()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/ib/dc/dc_mlx5.c:327
+ 7 0x000000000004817a ucs_callbackq_dispatch()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucs/datastruct/callbackq.h:211
+ 8 0x000000000004817a uct_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/uct/api/uct.h:2777
+ 9 0x000000000004817a ucp_worker_progress()  /tmp/baum/easybuild/UCX/1.15.0/GCCcore-13.2.0/ucx-1.15.0/src/ucp/core/ucp_worker.c:2889
+10 0x000000000002ea53 opal_progress()  ???:0
+11 0x00000000000507d0 ompi_request_default_test()  ???:0
+12 0x000000000008bbee MPI_Test()  ???:0
+13 0x000000000040d5fc ygm::comm::check_completed_sends()  ???:0
+14 0x000000000040cdea ygm::comm::flush_send_buffer()  ???:0
+15 0x000000000040d4f3 ygm::comm::flush_next_send()  ???:0
+16 0x000000000040daad ygm::comm::flush_to_capacity()  ???:0
+17 0x000000000040684c ygm::comm::async<ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>(std::pair<long long, long long> const&, generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1})::{lambda(auto:1, std::pair<long long, long long> const&)#1}, ygm::ygm_ptr<ygm::container::set<std::pair<long long, long long> > >, std::pair<long long, long long> >()  generate_random_graph.cpp:0
+18 0x00000000004064f0 ygm::container::detail::base_async_contains<ygm::container::set<std::pair<long long, long long> >, std::tuple<std::pair<long long, long long> > >::async_contains<generate_graph(long long, long long, ygm::comm&)::{lambda(bool, std::pair<long long, long long> const&)#1}>()  generate_random_graph.cpp:0
+19 0x0000000000405c8e generate_graph()  ???:0
+20 0x0000000000406362 main()  ???:0
+21 0x000000000003a7e5 __libc_start_main()  ???:0
+22 0x000000000040566e _start()  ???:0
+=================================
+[lc27:28512] *** Process received signal ***
+[lc27:28512] Signal: Aborted (6)
+[lc27:28512] Signal code:  (-6)
+[lc27:28512] [ 0] /lib64/libc.so.6(+0x4e5b0)[0x1489b170d5b0]
+[lc27:28512] [ 1] /lib64/libc.so.6(gsignal+0x10f)[0x1489b170d52f]
+[lc27:28512] [ 2] /lib64/libc.so.6(abort+0x127)[0x1489b16e0e65]
+[lc27:28512] [ 3] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x2895b)[0x1489aa40a95b]
+[lc27:28512] [ 4] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_default_handler+0x7d5)[0x1489aa40e8e5]
+[lc27:28512] [ 5] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(ucs_log_dispatch+0xdd)[0x1489aa40ec4d]
+[lc27:28512] [ 6] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_completion_with_err+0x47d)[0x1489aa1da93d]
+[lc27:28512] [ 7] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_dc_mlx5_ep_handle_failure+0xbf)[0x1489aa206b1f]
+[lc27:28512] xa1)[0x1535d4113dd1]
+[lc27:28495] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_iface_progress+0x59)[0x1535d416d999]
+[lc27:28495] [11] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x22587)[0x1535d4114587]
+[lc27:28495] [12] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x1535d41d417a]
+[lc27:28495] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x1535d728ca53]
+[lc27:28495] [14] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x1535d7ed37d0]
+[lc27:28495] [15] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x1535d7f0ebee]
+[lc27:28495] [16] generate[0x40e8c1]
+[lc27:28495] [17] generate[0x40e79c]
+[lc27:28495] [18] generate[0x40d3fc]
+[lc27:28495] [19] generate[0x40d4f3]
+[lc27:28495] [20] generate[0x40daad]
+[lc27:28495] [21] generate[0x40684c]
+[lc27:28495] [22] generate[0x4064f0]
+[lc27:28495] [23] generate[0x405c8e]
+[lc27:28495] [24] generate[0x406362]
+[lc27:28495] [25] /lib64/libc.so.6(__libc_start_main+0xe5)[0x1535d74057e5]
+[lc27:28495] [26] generate[0x40566e]
+[lc27:28495] *** End of error message ***
+[ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_check_completion+0x35)[0x1489aa1db915]
+[lc27:28512] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(+0x53f97)[0x1489aa208f97]
+[lc27:28512] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x1489aa4c417a]
+[lc27:28512] [11] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x1489b1580a53]
+[lc27:28512] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x1489b21c77d0]
+[lc27:28512] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x1489b2202bee]
+[lc27:28512] [14] generate[0x40d5fc]
+[lc27:28512] [15] generate[0x40cdea]
+[lc27:28512] [16] generate[0x40d4f3]
+[lc27:28512] [17] generate[0x40daad]
+[lc27:28512] [18] generate[0x40684c]
+[lc27:28512] [19] generate[0x4064f0]
+[lc27:28512] [20] generate[0x405c8e]
+[lc27:28512] [21] generate[0x406362]
+[lc27:28512] [22] /lib64/libc.so.6(__libc_start_main+0xe5)[0x1489b16f97e5]
+[lc27:28512] [23] generate[0x40566e]
+[lc27:28512] *** End of error message ***
+7:28560] [11] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x151b4109917a]
+[lc27:28560] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x151b44151a53]
+[lc27:28560] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x151b44d987d0]
+[lc27:28560] [14] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x151b44dd3bee]
+[lc27:28560] [15] generate[0x40e8c1]
+[lc27:28560] [16] generate[0x40e79c]
+[lc27:28560] [17] generate[0x40d3fc]
+[lc27:28560] [18] generate[0x40d4f3]
+[lc27:28560] [19] generate[0x40daad]
+[lc27:28560] [20] generate[0x40684c]
+[lc27:28560] [21] generate[0x4064f0]
+[lc27:28560] [22] generate[0x405c8e]
+[lc27:28560] [23] generate[0x406362]
+[lc27:28560] [24] /lib64/libc.so.6(__libc_start_main+0xe5)[0x151b442ca7e5]
+[lc27:28560] [25] generate[0x40566e]
+[lc27:28560] *** End of error message ***
+xa1)[0x1458b6bf7dd1]
+[lc27:28068] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_iface_progress+0x59)[0x1458b6c51999]
+[lc27:28068] [11] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x22587)[0x1458b6bf8587]
+[lc27:28068] [12] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x1458b6cb817a]
+[lc27:28068] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x1458bdd70a53]
+[lc27:28068] [14] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x1458be9b77d0]
+[lc27:28068] [15] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x1458be9f2bee]
+[lc27:28068] [16] generate[0x40e8c1]
+[lc27:28068] [17] generate[0x40e79c]
+[lc27:28068] [18] generate[0x40d3fc]
+[lc27:28068] [19] generate[0x40d4f3]
+[lc27:28068] [20] generate[0x40daad]
+[lc27:28068] [21] generate[0x40684c]
+[lc27:28068] [22] generate[0x4064f0]
+[lc27:28068] [23] generate[0x405c8e]
+[lc27:28068] [24] generate[0x406362]
+[lc27:28068] [25] /lib64/libc.so.6(__libc_start_main+0xe5)[0x1458bdee97e5]
+[lc27:28068] [26] generate[0x40566e]
+[lc27:28068] *** End of error message ***
+_ep_handle_failure+0xbf)[0x15197e5b7b1f]
+[lc27:28178] [ 8] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(uct_ib_mlx5_check_completion+0x35)[0x15197e58c915]
+[lc27:28178] [ 9] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/ucx/libuct_ib.so.0(+0x53f97)[0x15197e5b9f97]
+[lc27:28178] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x15197e87517a]
+[lc27:28178] [11] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x15198592da53]
+[lc27:28178] [12] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x1519865747d0]
+[lc27:28178] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x1519865afbee]
+[lc27:28178] [14] generate[0x40d5fc]
+[lc27:28178] [15] generate[0x40cdea]
+[lc27:28178] [16] generate[0x40d4f3]
+[lc27:28178] [17] generate[0x40daad]
+[lc27:28178] [18] generate[0x40684c]
+[lc27:28178] [19] generate[0x4064f0]
+[lc27:28178] [20] generate[0x405c8e]
+[lc27:28178] [21] generate[0x406362]
+[lc27:28178] [22] /lib64/libc.so.6(__libc_start_main+0xe5)[0x151985aa67e5]
+[lc27:28178] [23] generate[0x40566e]
+[lc27:28178] *** End of error message ***
+xa1)[0x153238f9fdd1]
+[lc27:28284] [10] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libuct.so.0(uct_scopy_iface_progress+0x59)[0x153238ff9999]
+[lc27:28284] [11] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucs.so.0(+0x22587)[0x153238fa0587]
+[lc27:28284] [12] /sw/eb/sw/UCX/1.15.0-GCCcore-13.2.0/lib/libucp.so.0(ucp_worker_progress+0x5a)[0x15323906017a]
+[lc27:28284] [13] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libopen-pal.so.40(opal_progress+0x33)[0x15323c118a53]
+[lc27:28284] [14] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(ompi_request_default_test+0x30)[0x15323cd5f7d0]
+[lc27:28284] [15] /sw/eb/sw/OpenMPI/4.1.6-GCC-13.2.0/lib/libmpi.so.40(PMPI_Test+0x4e)[0x15323cd9abee]
+[lc27:28284] [16] generate[0x40e8c1]
+[lc27:28284] [17] generate[0x40e79c]
+[lc27:28284] [18] generate[0x40d3fc]
+[lc27:28284] [19] generate[0x40d4f3]
+[lc27:28284] [20] generate[0x40daad]
+[lc27:28284] [21] generate[0x40684c]
+[lc27:28284] [22] generate[0x4064f0]
+[lc27:28284] [23] generate[0x405c8e]
+[lc27:28284] [24] generate[0x406362]
+[lc27:28284] [25] /lib64/libc.so.6(__libc_start_main+0xe5)[0x15323c2917e5]
+[lc27:28284] [26] generate[0x40566e]
+[lc27:28284] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 585 with PID 28007 on node lc27 exited on signal 9 (Killed).
+--------------------------------------------------------------------------
