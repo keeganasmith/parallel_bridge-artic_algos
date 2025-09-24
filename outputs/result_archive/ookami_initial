@@ -1,3 +1,7 @@
+Starting single node benchmarks
+Starting cross node benchmarks
+total bridges: 26056461
+total iterations: 8
 ./graphs/268435456_4.csv took 9629.55 with 96 regular
 total bridges: 26056461
 total iterations: 8
@@ -10,3 +14,4 @@ total iterations: 8
 total bridges: 26056461
 total iterations: 8
 ./graphs/268435456_4.csv took 4142.34 with 768 regular
+15 total processes killed (some possibly by mpirun during cleanup)

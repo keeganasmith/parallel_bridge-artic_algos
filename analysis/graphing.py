@@ -1,5 +1,6 @@
 import sys
 import matplotlib.pyplot as plt
+
 def graph(x, y, xlabel: str, ylabel: str, title: str, xlog: bool, ylog: bool):
     plt.figure(figsize=(8, 6))
     
@@ -21,6 +22,31 @@ def graph(x, y, xlabel: str, ylabel: str, title: str, xlog: bool, ylog: bool):
     plt.tight_layout()
     file_name = "./graphs/" + title.replace(" ", "_") + ".png"
     plt.ylim(bottom=0)
+    plt.savefig(file_name)
+    plt.close()
+
+def graph_multi(xs, ys,  xlabel: str, ylabel: str, title: str, xlog: bool, ylog: bool, labels=["ACES (Sapphire Rapids)", "Ookami (A64FX)", "Ookami (A64FX) with vectorization"]):
+    plt.figure(figsize=(8, 6))
+
+    for x, y, label in zip(xs, ys, labels):
+        print(len(x), len(y))
+        if xlog and ylog:
+            plt.loglog(x, y, marker='o', label=label)
+        elif xlog:
+            plt.semilogx(x, y, marker='o', label=label)
+        elif ylog:
+            plt.semilogy(x, y, marker='o', label=label)
+        else:
+            plt.plot(x, y, marker='o', label=label)
+
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    file_name = "./graphs/" + title.replace(" ", "_") + ".png"
+    plt.grid(True, which="both", ls="--", linewidth=0.5)
+    plt.legend()
+
+    plt.tight_layout()
     plt.savefig(file_name)
     plt.close()
 
@@ -70,8 +96,16 @@ def weak_scaling_graphs(result):
     graph(single_proc, single_time, "# processors", "time (s)", "Weak Scaling Single Node", True, False)
     graph(multi_proc, multi_time, "# processors", "time (s)", "Weak Scaling Multi Node", False, False)
     
-
-
+def strong_scaling_graphs_comparison(results):
+    procs = []
+    times = []
+    for result in results:
+        print(result)
+        procs.append(result["proc"])
+        times.append(result["time"])
+         
+    graph_multi(procs, times, "# processors", "time (s)", "Strong Scaling Multi-Node", True, True)
+    
 def parse(input_file):
     result = ""
     with open(input_file, "r") as my_file:
@@ -110,15 +144,26 @@ def main():
     args = sys.argv
     if(len(args) < 3):
         print("usage: ./", args[0], " <file> <type [s|w|d]>")
-    input_file_name = args[1]
+    input_file_names = args[1].split(",")
+   
     scale_type = args[2]
-    result = parse(input_file_name)
-    print(result)
+    result = []
+    results = []
+    if(len(input_file_names) == 0):
+        result = parse(input_file_name)
+    else:
+        results = []
+        for my_file in input_file_names:
+            results.append(parse(my_file))
+
+
     if(scale_type == "s"):
         strong_scaling_graphs(result)
     if(scale_type == "d"):
         vary_graphs(result)
     if(scale_type == "w"):
         weak_scaling_graphs(result)
+    if(scale_type == "sm"):
+        strong_scaling_graphs_comparison(results)    
 if __name__ == "__main__":
     main()
